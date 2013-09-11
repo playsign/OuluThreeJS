@@ -147,7 +147,7 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23;
 
 	car.callback = function(object) {
-		addCar(object, 0, 10, 0, 1);
+		addCar(object, 142, 10, -20, 1); //10
 	};
 
 	car.loadPartsJSON("models/Car_LowPoly_Red.js", "models/Car_LowPoly_Red.js");
@@ -169,10 +169,13 @@ function addModelToScene(geometry, materials) {
 
 	for (var i = 0; i < materials.length; i++) {
 		if (materials[i].map) {
-			// replace .jpg to .dds
+			//  JPG TO DDS
 			var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
 			// console.log("ddsName: " + ddsName);
 			map = THREE.ImageUtils.loadCompressedTexture("./images/" + ddsName);
+			map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
+			map.repeat.set( 1, 1 ); // for dds only
+
 			// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
 			map.minFilter = map.magFilter = THREE.LinearFilter;
 			map.anisotropy = 4;

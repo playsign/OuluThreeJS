@@ -78,6 +78,8 @@ THREE.Car = function() {
 
 	this.meshes = [];
 
+	this.collisionCounter = 0;
+
 	// API
 
 	this.enableShadows = function(enable) {
@@ -199,6 +201,42 @@ THREE.Car = function() {
 			}
 
 		}
+
+		// // COLLISION
+		// this.collisionCounter += delta;
+		// if (this.collisionCounter > 1) {
+		// 	this.collisionCounter = 0;
+		// 	// Using a little trigonometry calculate a point in
+		// 	// space 1000 units in front of our character
+		// 	var deltaX = Math.floor(Math.sin(this.root.rotation.y - 180) * 1000);
+		// 	var deltaZ = Math.floor(Math.cos(this.root.rotation.y- 180) * 1000);
+
+		// 	// Calculate where this collision focus point is in
+		// 	// relation to our character position
+		// 	var focusX = this.root.position.x - deltaX;
+		// 	var focusZ = this.root.position.z - deltaZ;
+
+		// 	// // Fire a ray from the centre point of our character to the
+		// 	// // collision focus point
+		// 	// var ray = new THREE.Ray(this.root.position,
+		// 	//   new THREE.Vector3(focusX, 0, focusZ));
+
+		// 	// var c = THREE.Collisions.rayCastNearest( ray );
+
+		// 	// if(c && c.distance <= 50)
+		// 	// {
+		// 	//   console.log("collision: "+c.distance);
+		// 	//   //tween.stop();
+		// 	// }
+
+		// 	var raycaster = new THREE.Raycaster(this.root.position, new THREE.Vector3(focusX, 0, focusZ), 0, 8);
+		// 	// var intersects = raycaster.intersectObjects(objects);
+		// 	var intersects = raycaster.intersectObject(oulu);
+		// 	if (intersects.length > 0) {
+		// 		console.log("collisions: " + intersects.length);
+		// 		console.log(intersects[0]);
+		// 	}
+		// }
 
 		// car update
 
@@ -358,7 +396,7 @@ THREE.Car = function() {
 
 			// cache meshes
 
-			scope.meshes = [scope.bodyMesh /*, scope.frontLeftWheelMesh, scope.frontRightWheelMesh, scope.backLeftWheelMesh, scope.backRightWheelMesh*/];
+			scope.meshes = [scope.bodyMesh /*, scope.frontLeftWheelMesh, scope.frontRightWheelMesh, scope.backLeftWheelMesh, scope.backRightWheelMesh*/ ];
 
 			// callback
 
