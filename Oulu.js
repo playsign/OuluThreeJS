@@ -1,3 +1,4 @@
+/*jslint white: true */
 /*
 	OuluThreeJS
 	Author: Playsign
@@ -12,7 +13,7 @@ var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 
 // custom global variables
-var oulu, car;
+var car,oulu,colliderBuildings,colliderGround;
 
 var controlsCar = {
 
@@ -74,24 +75,6 @@ function init() {
 	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
 	directionalLight.position.set(0, 1, 0);
 	scene.add(directionalLight);
-	// FLOOR
-	/*
-	var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
-	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
-	floorTexture.repeat.set( 10, 10 );
-	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
-	var floorGeometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
-	var floor = new THREE.Mesh(floorGeometry, floorMaterial);
-	floor.position.y = -0.5;
-	floor.rotation.x = Math.PI / 2;
-	scene.add(floor);
-	*/
-	// SKYBOX/FOG
-	// var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
-	// var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
-	// var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
-	// // scene.add(skyBox);
-	// scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
 
 	////////////
 	// CUSTOM //
@@ -102,7 +85,15 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("Masterscene.js", addModelToScene);
+	jsonLoader.load("Masterscene.js", function(geometry, material){
+		addModelToScene(geometry, material, "oulu");
+	});
+	jsonLoader.load("ColliderBuildings.js", function(geometry, material){
+		addModelToScene(geometry, material, "colliderbuildings");
+	});
+	jsonLoader.load("ColliderGround.js", function(geometry, material){
+		addModelToScene(geometry, material, "colliderground");
+	});
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x111111);
@@ -110,32 +101,13 @@ function init() {
 
 	// CAR
 
-	// // Create an array of materials to be used in a cube, one for each side
-	// var cubeMaterialArray = [];
-	// // order to add materials: x+,x-,y+,y-,z+,z-
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xff3333 } ) );
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xff8800 } ) );
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xffff33 } ) );
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x33ff33 } ) );
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x3333ff } ) );
-	// cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x8833ff } ) );
-	// var cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );
-	// // Cube parameters: width (x), height (y), depth (z), 
-	// //        (optional) segments along x, segments along y, segments along z
-	// var cubeGeometry = new THREE.CubeGeometry( 10, 10, 10, 1, 1, 1 );
-	// // using THREE.MeshFaceMaterial() in the constructor below
-	// //   causes the mesh to use the materials stored in the geometry
-	// car = new THREE.Mesh( cubeGeometry, cubeMaterials );
-	// car.position.set(0, 80, 0);
-	// scene.add( car );	
-
 	car = new THREE.Car();
 
 	car.modelScale = 1;
 	car.backWheelOffset = 0.02;
 
 	car.MAX_SPEED = 25; //25
-	car.MAX_REVERSE_SPEED = -15;  //-15
+	car.MAX_REVERSE_SPEED = -15; //-15
 	car.FRONT_ACCELERATION = 12;
 	car.BACK_ACCELERATION = 15;
 
@@ -147,7 +119,7 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23;
 
 	car.callback = function(object) {
-		addCar(object, 142, 10, -20, 1); //10
+		addCar(object, 142, 15, -20, 1); //10
 	};
 
 	car.loadPartsJSON("models/Car_LowPoly_Red.js", "models/Car_LowPoly_Red.js");
@@ -162,44 +134,55 @@ function addCar(object, x, y, z, s) {
 	scene.add(object.root);
 }
 
-function addModelToScene(geometry, materials) {
+function addModelToScene(geometry, materials, type) {
+
 	temppi = materials; //TODO remove
+	var material, newMesh;
 
-	newMaterials = [];
+	if (type == "oulu") {
+		var newMaterials = [];
 
-	for (var i = 0; i < materials.length; i++) {
-		if (materials[i].map) {
-			//  JPG TO DDS
-			var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
-			// console.log("ddsName: " + ddsName);
-			map = THREE.ImageUtils.loadCompressedTexture("./images/" + ddsName);
-			map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
-			map.repeat.set( 1, 1 ); // for dds only
+		for (var i = 0; i < materials.length; i++) {
+			if (materials[i].map) {
+				//  JPG TO DDS
+				var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
+				// console.log("ddsName: " + ddsName);
+				map = THREE.ImageUtils.loadCompressedTexture("./images/" + ddsName);
+				map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
+				map.repeat.set(1, 1); // for dds only
 
-			// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
-			map.minFilter = map.magFilter = THREE.LinearFilter;
-			map.anisotropy = 4;
+				// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
+				map.minFilter = map.magFilter = THREE.LinearFilter;
+				map.anisotropy = 4;
 
-			newMaterials.push(new THREE.MeshBasicMaterial({
-				map: map
-			}));
-		} else {
-			newMaterials.push(materials[i]);
-			// console.log("png: " + i);
-		}
-	}
+				newMaterials.push(new THREE.MeshBasicMaterial({
+					map: map
+				}));
+			} else {
+				newMaterials.push(materials[i]);
+				// console.log("png: " + i);
+			}
+		} 
+		material = new THREE.MeshFaceMaterial(newMaterials);
+		newMesh = new THREE.Mesh(geometry, material);
+		oulu = newMesh;
+	} else if(type == "colliderbuildings") {
+		material = new THREE.MeshFaceMaterial(materials);
+		newMesh = new THREE.Mesh(geometry, material);
+		newMesh.visible = false;
+		colliderBuildings = newMesh;
+	} else if(type == "colliderground") {
+		material = new THREE.MeshFaceMaterial(materials);
+		newMesh = new THREE.Mesh(geometry, material);
+		newMesh.visible = false;
+		colliderGround = newMesh;
+	} 
 
+	newMesh.scale.set(1.5, 1.5, 1.5);
 
-	var material = new THREE.MeshFaceMaterial(newMaterials);
-	// var material = new THREE.MeshNormalMaterial( ); //materials );
-	// 		var material = new THREE.MeshLambertMaterial(
-	//     {
-	//       color: 0xCC0000
-	//     });
-	oulu = new THREE.Mesh(geometry, material);
-	oulu.scale.set(1.5, 1.5, 1.5);
-	scene.add(oulu);
+	scene.add(newMesh);
 }
+
 
 function animate() {
 	requestAnimationFrame(animate);
@@ -209,39 +192,9 @@ function animate() {
 
 function update() {
 	var delta = clock.getDelta(); // seconds.
-	// var moveDistance = 200 * delta; // 200 pixels per second
-	// var rotateAngle = Math.PI / 2 * delta; // pi/2 radians (90 degrees) per second
-
-	// // local transformations
-
-	// // move forwards/backwards/left/right
-	// if (keyboard.pressed("W") || keyboard.pressed("up"))
-	// 	car.translateZ(-moveDistance);
-	// if (keyboard.pressed("S") || keyboard.pressed("down"))
-	// 	car.translateZ(moveDistance);
-	// // if ( keyboard.pressed("Q") )
-	// // 	car.translateX( -moveDistance );
-	// // if ( keyboard.pressed("E") )
-	// // 	car.translateX(  moveDistance );	
-
-	// // rotate left/right/up/down
-	// var rotation_matrix = new THREE.Matrix4().identity();
-	// if (keyboard.pressed("A") || keyboard.pressed("left"))
-	// 	car.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotateAngle);
-	// if (keyboard.pressed("D") || keyboard.pressed("right"))
-	// 	car.rotateOnAxis(new THREE.Vector3(0, 1, 0), -rotateAngle);
-	// // if ( keyboard.pressed("R") )
-	// // 	car.rotateOnAxis( new THREE.Vector3(1,0,0), rotateAngle);
-	// // if ( keyboard.pressed("F") )
-	// // 	car.rotateOnAxis( new THREE.Vector3(1,0,0), -rotateAngle);
-
-	// if (keyboard.pressed("Z")) {
-	// 	car.position.set(0, 25.1, 0);
-	// 	car.rotation.set(0, 0, 0);
-	// }
 
 	if (car && car.bodyMesh) {
-		var relativeCameraOffset = new THREE.Vector3(0,8,-25);
+		var relativeCameraOffset = new THREE.Vector3(0, 8, -25);
 
 		var cameraOffset = relativeCameraOffset.applyMatrix4(car.bodyMesh.matrixWorld);
 

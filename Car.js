@@ -3,7 +3,6 @@
  */
 
 THREE.Car = function() {
-
 	var scope = this;
 
 	// car geometry manual parameters
@@ -28,7 +27,7 @@ THREE.Car = function() {
 
 	// car "feel" parameters
 
-	this.MAX_SPEED = 2200;
+	this.MAX_SPEED = 10000; // 2200
 	this.MAX_REVERSE_SPEED = -1500;
 
 	this.MAX_WHEEL_ROTATION = 0.6;
@@ -202,47 +201,69 @@ THREE.Car = function() {
 
 		}
 
-		// // COLLISION
-		// this.collisionCounter += delta;
-		// if (this.collisionCounter > 1) {
-		// 	this.collisionCounter = 0;
-		// 	// Using a little trigonometry calculate a point in
-		// 	// space 1000 units in front of our character
-		// 	var deltaX = Math.floor(Math.sin(this.root.rotation.y - 180) * 1000);
-		// 	var deltaZ = Math.floor(Math.cos(this.root.rotation.y- 180) * 1000);
+		var forwardDelta;
 
-		// 	// Calculate where this collision focus point is in
-		// 	// relation to our character position
-		// 	var focusX = this.root.position.x - deltaX;
-		// 	var focusZ = this.root.position.z - deltaZ;
+		// COLLISION
+		var foundCollision = true;
 
-		// 	// // Fire a ray from the centre point of our character to the
-		// 	// // collision focus point
-		// 	// var ray = new THREE.Ray(this.root.position,
-		// 	//   new THREE.Vector3(focusX, 0, focusZ));
+		// Building colliders
+		
+		// left back
+		var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000);// Using a little trigonometry calculate a point in space 1000 units in front of our character
+		var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
+		var focusX = this.root.position.x + deltaX; // Calculate where this collision focus point is in relation to our character position
+		var focusZ = this.root.position.z + deltaZ;
+		if (isColliding(this.root.position, focusX, focusZ) == false) {
+			// right back
+			var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
+			var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
+			var focusX = this.root.position.x + deltaX;
+			var focusZ = this.root.position.z + deltaZ;
 
-		// 	// var c = THREE.Collisions.rayCastNearest( ray );
+			if (isColliding(this.root.position, focusX, focusZ) == false) {
+				// right front
+				var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000);
+				var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
+				var focusX = this.root.position.x - deltaX;
+				var focusZ = this.root.position.z - deltaZ;
 
-		// 	// if(c && c.distance <= 50)
-		// 	// {
-		// 	//   console.log("collision: "+c.distance);
-		// 	//   //tween.stop();
-		// 	// }
+				if (isColliding(this.root.position, focusX, focusZ) == false) {
+					// left front
+					var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
+					var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
+					var focusX = this.root.position.x - deltaX;
+					var focusZ = this.root.position.z - deltaZ;
 
-		// 	var raycaster = new THREE.Raycaster(this.root.position, new THREE.Vector3(focusX, 0, focusZ), 0, 8);
-		// 	// var intersects = raycaster.intersectObjects(objects);
-		// 	var intersects = raycaster.intersectObject(oulu);
-		// 	if (intersects.length > 0) {
-		// 		console.log("collisions: " + intersects.length);
-		// 		console.log(intersects[0]);
-		// 	}
-		// }
+					if (isColliding(this.root.position, focusX, focusZ) == false) {
+						foundCollision = false;
+					}
+				}
+			}
+		}
 
+		if (foundCollision) {
+			forwardDelta = this.speed * delta * -3;
+			this.speed *= -0.25;
+			// this.acceleration = 0;
+		}
 		// car update
-
-		var forwardDelta = this.speed * delta;
+		else {
+			forwardDelta = this.speed * delta;
+		}
 
 		this.carOrientation += (forwardDelta * this.STEERING_RADIUS_RATIO) * this.wheelOrientation;
+
+		// Ground collider
+		var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y +50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
+
+		var intersects = raycaster.intersectObject(colliderGround);
+
+		if (intersects.length > 0) {
+			// console.log("plane collision: " + intersects.length);
+			// console.log(intersects[0]);
+			// console.log(intersects[0].point);
+			this.root.position.y = intersects[0].point.y + 0.6;
+		}
 
 		// displacement
 
@@ -282,13 +303,20 @@ THREE.Car = function() {
 		// this.frontLeftWheelRoot.rotation.y = this.wheelOrientation;
 		// this.frontRightWheelRoot.rotation.y = this.wheelOrientation;
 
-	};
+	}
+
+	function isColliding(position, focusX, focusZ) {
+		var raycaster = new THREE.Raycaster(position, new THREE.Vector3(focusX, 0, focusZ), 0, 4);
+		var intersects = raycaster.intersectObject(colliderBuildings);
+		if (intersects.length > 0) {
+			return true;
+		}
+		return false;
+	}
 
 	// internal helper methods
 
 	function createBody(geometry, materials) {
-
-
 
 		console.log("create body");
 
@@ -296,7 +324,7 @@ THREE.Car = function() {
 
 		createCar(materials);
 
-	};
+	}
 
 	function createWheels(geometry) {
 
@@ -304,7 +332,7 @@ THREE.Car = function() {
 
 		createCar();
 
-	};
+	}
 
 	function createCar(materials) {
 
@@ -410,7 +438,7 @@ THREE.Car = function() {
 
 		}
 
-	};
+	}
 
 	function clamp(x, a, b) {
 		return x < a ? a : (x > b ? b : x);
