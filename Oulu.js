@@ -7,13 +7,13 @@
 
 // MAIN
 
-// standard global variables
-var container, scene, camera, renderer, controls, stats;
+var container, scene, carCamera, flyCamera, renderer, controls, flyControls, stats, directionalLight;
+var flyMode = false;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
-
-// custom global variables
-var car,oulu,colliderBuildings,colliderGround;
+var time = Date.now();
+var car, oulu, colliderBuildings, colliderGround;
+var debugMode = false;
 
 var controlsCar = {
 
@@ -30,21 +30,29 @@ animate();
 // FUNCTIONS 		
 
 function init() {
-	var temppi;
 
 	// SCENE
 	scene = new THREE.Scene();
-	// CAMERA
+	// CAR CAMERA
 	var SCREEN_WIDTH = window.innerWidth,
 		SCREEN_HEIGHT = window.innerHeight;
 	var VIEW_ANGLE = 45,
 		ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
 		NEAR = 0.1,
 		FAR = 20000;
-	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-	scene.add(camera);
-	camera.position.set(0, 150, 400);
-	camera.lookAt(scene.position);
+	carCamera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(carCamera);
+	carCamera.position.set(0, 0, 0);
+	// FLY CAMERA
+	var SCREEN_WIDTH = window.innerWidth,
+		SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45,
+		ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
+		NEAR = 0.1,
+		FAR = 20000;
+	flyCamera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(flyCamera);
+	flyCamera.position.set(0, 0, 0); // don't touch this! modify freelook.js --> yawObject.position instead
 	// RENDERER
 	if (Detector.webgl)
 		renderer = new THREE.WebGLRenderer({
@@ -53,18 +61,44 @@ function init() {
 	else
 		renderer = new THREE.CanvasRenderer();
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	// For shadows
+	// renderer.shadowMapEnabled = true;
+	// renderer.shadowMapSoft = true;
+
+	// renderer.shadowCameraNear = 3;
+	// renderer.shadowCameraFar = camera.far;
+	// renderer.shadowCameraFov = 50;
+
+	// renderer.shadowMapBias = 0.0039;
+	// renderer.shadowMapDarkness = 0.5;
+	// renderer.shadowMapWidth = 1024;
+	// renderer.shadowMapHeight = 1024;
+
 	container = document.getElementById('ThreeJS');
 	container.appendChild(renderer.domElement);
 	// EVENTS
-	THREEx.WindowResize(renderer, camera);
+	if (flyMode) {
+		THREEx.WindowResize(renderer, flyCamera);
+	} else {
+		THREEx.WindowResize(renderer, carCamera);
+	}
 	THREEx.FullScreen.bindKey({
 		charCode: 'm'.charCodeAt(0)
 	});
 
 	document.addEventListener('keydown', onKeyDown, false);
 	document.addEventListener('keyup', onKeyUp, false);
-	// CONTROLS
-	// controls = new THREE.OrbitControls( camera, renderer.domElement );
+	// FLY CONTROLS
+	// flyControls = new THREE.FlyControls(camera);
+	// flyControls.movementSpeed = 1000;
+	// flyControls.domElement = renderer.domElement;
+	// flyControls.rollSpeed = Math.PI / 12; // Math.PI / 24
+	// flyControls.autoForward = false;
+	// flyControls.dragToLook = true;
+	flyControls = new THREE.PointerLockControls(flyCamera);
+	flyControls.enabled = false;
+	scene.add(flyControls.getObject());
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -72,8 +106,9 @@ function init() {
 	stats.domElement.style.zIndex = 100;
 	container.appendChild(stats.domElement);
 	// White directional light at half intensity shining from the top.
-	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-	directionalLight.position.set(0, 1, 0);
+	directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+	directionalLight.position.set(100, 100, 100);
+	directionalLight.castShadow = true;
 	scene.add(directionalLight);
 
 	////////////
@@ -85,18 +120,18 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("Masterscene.js", function(geometry, material){
+	jsonLoader.load("Masterscene.js", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
 	});
-	jsonLoader.load("ColliderBuildings.js", function(geometry, material){
+	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderbuildings");
 	});
-	jsonLoader.load("ColliderGround.js", function(geometry, material){
+	jsonLoader.load("ColliderGround.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderground");
 	});
 	// addModelToScene function is called back after model has loaded
 
-	var ambientLight = new THREE.AmbientLight(0x111111);
+	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
 	scene.add(ambientLight);
 
 	// CAR
@@ -122,7 +157,7 @@ function init() {
 		addCar(object, 142, 15, -20, 1); //10
 	};
 
-	car.loadPartsJSON("models/Car_LowPoly_Red.js", "models/Car_LowPoly_Red.js");
+	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
 
 
 }
@@ -132,14 +167,16 @@ function addCar(object, x, y, z, s) {
 
 	object.root.position.set(x, y, z);
 	scene.add(object.root);
+
+	// object.root.castShadow = true;
+	// object.root.receiveShadow = true;
 }
 
 function addModelToScene(geometry, materials, type) {
 
-	temppi = materials; //TODO remove
 	var material, newMesh;
 
-	if (type == "oulu") {
+	if (type == "oulu" && debugMode == false) {
 		var newMaterials = [];
 
 		for (var i = 0; i < materials.length; i++) {
@@ -162,21 +199,28 @@ function addModelToScene(geometry, materials, type) {
 				newMaterials.push(materials[i]);
 				// console.log("png: " + i);
 			}
-		} 
+		}
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
 		oulu = newMesh;
-	} else if(type == "colliderbuildings") {
+		// oulu.castShadow = true;
+		// oulu.receiveShadow = true;
+
+	} else if (type == "colliderbuildings") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		newMesh.visible = false;
+		if (debugMode == false) {
+			newMesh.visible = false;
+		}
 		colliderBuildings = newMesh;
-	} else if(type == "colliderground") {
+	} else if (type == "colliderground") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		newMesh.visible = false;
+		if (debugMode == false) {
+			newMesh.visible = false;
+		}
 		colliderGround = newMesh;
-	} 
+	}
 
 	newMesh.scale.set(1.5, 1.5, 1.5);
 
@@ -190,29 +234,51 @@ function animate() {
 	update();
 }
 
+function setFlyMode(flying) {
+	if (flying === true || flying === false) {
+		flyMode = flying;
+		flyControls.dragging = false;
+		flyControls.enabled = flying;
+
+	} else {
+		console.log("setFlyMode illegal parameter")
+	}
+}
+
 function update() {
 	var delta = clock.getDelta(); // seconds.
 
-	if (car && car.bodyMesh) {
-		var relativeCameraOffset = new THREE.Vector3(0, 8, -25);
+	if (flyMode === true) {
+		// flyControls.movementSpeed = delta * 10000;
+		// flyControls.update(delta);
 
-		var cameraOffset = relativeCameraOffset.applyMatrix4(car.bodyMesh.matrixWorld);
+		flyControls.update(Date.now() - time);
+	} else {
+		if (car && car.bodyMesh) {
+			var relativeCameraOffset = new THREE.Vector3(0, 3, -15);
 
-		camera.position.x = cameraOffset.x;
-		camera.position.y = cameraOffset.y;
-		camera.position.z = cameraOffset.z;
-		camera.lookAt(car.root.position);
+			var cameraOffset = relativeCameraOffset.applyMatrix4(car.bodyMesh.matrixWorld);
+
+			carCamera.position.x = cameraOffset.x;
+			carCamera.position.y = cameraOffset.y;
+			carCamera.position.z = cameraOffset.z;
+			carCamera.lookAt(car.root.position);
+			carCamera.position.y += 3;
+		}
+
+		// update car model
+		car.updateCarModel(delta, controlsCar);
 	}
 
-	// update car model
-	car.updateCarModel(delta, controlsCar);
-
-	// controls.update();
 	stats.update();
 }
 
 function render() {
-	renderer.render(scene, camera);
+	if (flyMode) {
+		renderer.render(scene, flyCamera);
+	} else {
+		renderer.render(scene, carCamera);
+	}
 }
 
 function onKeyDown(event) {
@@ -254,7 +320,10 @@ function onKeyDown(event) {
 			/*D*/
 			controlsCar.moveRight = true;
 			break;
-
+		case 70:
+			/*F*/
+			setFlyMode(!flyMode);
+			break;
 
 	}
 
@@ -299,7 +368,6 @@ function onKeyUp(event) {
 			/*D*/
 			controlsCar.moveRight = false;
 			break;
-
 	}
 
 };

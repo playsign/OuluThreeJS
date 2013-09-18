@@ -262,7 +262,7 @@ THREE.Car = function() {
 			// console.log("plane collision: " + intersects.length);
 			// console.log(intersects[0]);
 			// console.log(intersects[0].point);
-			this.root.position.y = intersects[0].point.y + 0.6;
+			this.root.position.y = intersects[0].point.y + 1;
 		}
 
 		// displacement
