@@ -44,12 +44,6 @@ function init() {
 	scene.add(carCamera);
 	carCamera.position.set(0, 0, 0);
 	// FLY CAMERA
-	var SCREEN_WIDTH = window.innerWidth,
-		SCREEN_HEIGHT = window.innerHeight;
-	var VIEW_ANGLE = 45,
-		ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
-		NEAR = 0.1,
-		FAR = 20000;
 	flyCamera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(flyCamera);
 	flyCamera.position.set(0, 0, 0); // don't touch this! modify freelook.js --> yawObject.position instead
@@ -78,11 +72,8 @@ function init() {
 	container = document.getElementById('ThreeJS');
 	container.appendChild(renderer.domElement);
 	// EVENTS
-	if (flyMode) {
-		THREEx.WindowResize(renderer, flyCamera);
-	} else {
-		THREEx.WindowResize(renderer, carCamera);
-	}
+	THREEx.WindowResize(renderer, carCamera);
+
 	THREEx.FullScreen.bindKey({
 		charCode: 'm'.charCodeAt(0)
 	});
@@ -176,7 +167,7 @@ function addModelToScene(geometry, materials, type) {
 
 	var material, newMesh;
 
-	if (type == "oulu" && debugMode == false) {
+	if (type == "oulu" && debugMode === false) {
 		var newMaterials = [];
 
 		for (var i = 0; i < materials.length; i++) {
@@ -239,7 +230,7 @@ function setFlyMode(flying) {
 		flyMode = flying;
 		flyControls.dragging = false;
 		flyControls.enabled = flying;
-
+		flying === true ? THREEx.WindowResize(renderer, flyCamera) : THREEx.WindowResize(renderer, carCamera);
 	} else {
 		console.log("setFlyMode illegal parameter")
 	}
@@ -274,11 +265,7 @@ function update() {
 }
 
 function render() {
-	if (flyMode) {
-		renderer.render(scene, flyCamera);
-	} else {
-		renderer.render(scene, carCamera);
-	}
+	flyMode ? renderer.render(scene, flyCamera) : renderer.render(scene, carCamera);
 }
 
 function onKeyDown(event) {
