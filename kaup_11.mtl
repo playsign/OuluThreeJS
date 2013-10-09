@@ -1,0 +1,885 @@
+# Blender MTL File: 'kaup_11.blend'
+# Material Count: 86
+
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_dormer_ao.png
+
+newmtl Material.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.461172 0.414834 0.307451
+Ks 0.034483 0.034483 0.034483
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\concrete-stucco_light_cream.dds
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl kapp-11_wall_deco
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kapp-11_wall_deco_ao.png
+
+newmtl kapp-11_wall_deco-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kapp-11_wall_deco_ao.png
+
+newmtl kapp-11_wall_mold
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\oulu\kauppurienkatu_9-12\kauppurienkatu_11\textures\fixtures\kapp-11_wall_mold_ao.png
+
+newmtl kapp-11_win_mold
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_win_mould.dds
+
+newmtl kapp-11_win_mold_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\concrete-5_light.dds
+
+newmtl kapp-11_win_mold_kapp-11_win_mold_shad
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\oulu\kauppurienkatu_9-12\kauppurienkatu_11\textures\fixtures\kapp-11_win_mold_shad.png
+
+newmtl kaup_11_awnings
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_awnings_ao.png
+
+newmtl kaup_11_door-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\kaup_11_door.png
+
+newmtl kaup_11_doors-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_door-1.dds
+
+newmtl kaup_11_doors-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_door-1.dds
+
+newmtl kaup_11_dormer-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_dormer-1_ao.png
+
+newmtl kaup_11_dormer-win
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-1.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-1.dds
+
+newmtl kaup_11_gate
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_door.dds
+
+newmtl kaup_11_railings
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_railings.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_railings.dds
+
+newmtl kaup_11_ref
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_ref.dds
+
+newmtl kaup_11_ref-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_ref-1.dds
+
+newmtl kaup_11_ref-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_ref.dds
+
+newmtl kaup_11_ref-3
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_ref-1.dds
+
+newmtl kaup_11_ref-4
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_ref-2.dds
+
+newmtl kaup_11_rnd_mold
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_rnd_mold.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_rnd_mold.dds
+
+newmtl kaup_11_roof
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_roof_ao.png
+
+newmtl kaup_11_roof-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_roof_ao.png
+
+newmtl kaup_11_roof-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_roof-2_ao.dds
+
+newmtl kaup_11_roof_gut
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_roof_gut.dds
+
+newmtl kaup_11_roof_gut-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_roof_gut.dds
+
+newmtl kaup_11_roof_gut-1.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\roof_eaves-1.dds
+
+newmtl kaup_11_roof_gut-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\roof_eaves-1.dds
+
+newmtl kaup_11_roof_gut-2.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\roof_eaves-2.dds
+
+newmtl kaup_11_roof_gut-2.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.282347 0.269173 0.269173
+Ks 0.025862 0.025862 0.025862
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+map_Disp C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+
+newmtl kaup_11_roof_gut-2.002_concrete-stucco_light_cream.dds
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.282347 0.269173 0.269173
+Ks 0.025862 0.025862 0.025862
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\concrete-stucco_light_cream.dds
+map_Disp C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+
+newmtl kaup_11_roof_gut-2.002_kapp-11_wall_mold_ao
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.282347 0.269173 0.269173
+Ks 0.025862 0.025862 0.025862
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\oulu\kauppurienkatu_9-12\kauppurienkatu_11\textures\fixtures\kapp-11_wall_mold_ao.png
+map_Disp C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+
+newmtl kaup_11_roof_gut-2.002_kaup_11_dormer-1_ao
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.282347 0.269173 0.269173
+Ks 0.025862 0.025862 0.025862
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+map_Disp C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\concrete-5_light.png
+
+newmtl kaup_11_signages-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_signages-2.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_signages-2.dds
+
+newmtl kaup_11_wall-b
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kapp-11_wall-b_ao.dds
+
+newmtl kaup_11_wall-b-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kapp-11_wall-b_ao.dds
+
+newmtl kaup_11_wall-f
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-f_ao.png
+
+newmtl kaup_11_wall-f-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-f_ao.png
+
+newmtl kaup_11_wall-f-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-f_ao.png
+
+newmtl kaup_11_wall-l
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-l_ao.png
+
+newmtl kaup_11_wall-l-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-l_ao.png
+
+newmtl kaup_11_wall-r
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r_ao.png
+
+newmtl kaup_11_wall-r-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r_ao.png
+map_Disp C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_concrete_wall.dds
+
+newmtl kaup_11_wall-r-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r_ao.png
+
+newmtl kaup_11_wall-r-b
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r-b_ao.png
+
+newmtl kaup_11_wall-r-b-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r-b_ao.png
+
+newmtl kaup_11_wall-r-c
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r-c_ao.png
+
+newmtl kaup_11_wall-r-c-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall-r-c_ao.png
+
+newmtl kaup_11_wall_mould
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\roof_eaves-3.dds
+
+newmtl kaup_11_wall_mould-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\oulu\kauppurienkatu_9-12\kauppurienkatu_11\textures\fixtures\kapp-11_win_mold_shad.png
+
+newmtl kaup_11_wall_mould-1_kaup_11_wall_mould-1_ao.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_wall_mould-1_ao.png
+
+newmtl kaup_11_win
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win.dds
+
+newmtl kaup_11_win-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win.dds
+
+newmtl kaup_11_win-10
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-2.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-2.dds
+
+newmtl kaup_11_win-11
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-4.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-4.dds
+
+newmtl kaup_11_win-12
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-4.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-4.dds
+
+newmtl kaup_11_win-13
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-4.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-4.dds
+
+newmtl kaup_11_win-14
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-4.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-4.dds
+
+newmtl kaup_11_win-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-1.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-1.dds
+
+newmtl kaup_11_win-3
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-1.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-1.dds
+
+newmtl kaup_11_win-4
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-1.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-1.dds
+
+newmtl kaup_11_win-5
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-2.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-2.dds
+
+newmtl kaup_11_win-6
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-2.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-2.dds
+
+newmtl kaup_11_win-7
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-3.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-3.dds
+
+newmtl kaup_11_win-8
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-3.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-3.dds
+
+newmtl kaup_11_win-9
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-3.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-3.dds
+
+newmtl kaup_11_win-fra-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-fra.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-fra.dds
+
+newmtl kaup_11_win_mould-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_11_win_mould.dds
+
+newmtl kaup_low_win
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_low_win.dds
+
+newmtl kaup_roof_apex
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\kaup_roof_apex_ao.png
+
+newmtl kaup_wall_deco
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_wall_deco.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_wall_deco-1.dds
+
+newmtl kaup_win
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-5.dds
+
+newmtl kaup_win-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_window-14.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_window-14.dds
+
+newmtl kaup_win_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-5.dds
+
+newmtl kaup_win_fra
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_win-fra.dds
+map_d C:\\Tapani\\oulu3dinfra_ydin\\area_ysi\\trunk\\t\\DDS\\kaup_11_win-fra.dds
+
+newmtl signages_bar
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\signages_bar_ao.png
+
+newmtl signages_bar-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\signages_bar_ao.png
+
+newmtl signages_bar-1-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\t\DDS\kaup_11_wall_deco.dds
+
+newmtl signages_bar-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\signages_bar_ao.png
+
+newmtl signages_bar-3
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\signages_bar_ao.png
+
+newmtl signages_bar-4
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dinfra_ydin\area_ysi\trunk\b1_16\kaup_11\signages_bar_ao.png
+
+newmtl win_col
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.522348 0.513515 0.470117
+Ks 0.603448 0.603448 0.603448
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl win_col-1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl win_col-2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.004701 0.004139 0.004074
+Ks 0.200000 0.200000 0.200000
+Ni 1.000000
+d 1.000000
+illum 2

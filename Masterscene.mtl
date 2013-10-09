@@ -1,0 +1,671 @@
+# Blender MTL File: 'MastersceneModified.blend'
+# Material Count: 67
+
+newmtl Asemakatu10
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Asemakatu10\asemakatu10AO.png
+
+newmtl Asemakatu2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Asemakatu2\asemakatu_2AO.png
+
+newmtl Asemakatu2walls
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Asemakatu2\asemakatu_2AO.png
+
+newmtl Asemakatu4
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Asemakatu4\asemakatu_4AO.png
+
+newmtl Asemakatu6
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Asemakatu6\Asemakatu_6AO.png
+
+newmtl Bench
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\BenchPark\bench_ao.png
+
+newmtl Hallituskatu10
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu10\hallituskatu10_AO.png
+
+newmtl Hallituskatu12
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu12\hallituskatu12_AO.png
+
+newmtl Hallituskatu16
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu16\Hallituskatu16AO.png
+
+newmtl Hallituskatu9
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu9\halliuskatu9AO.png
+
+newmtl Isokatu19
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Isokatu19\Isokatu19AO.png
+
+newmtl Isokatu20_22
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Isokatu22-20\isokatu22-20.png
+
+newmtl Isokatu23
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Isokatu23\isokatu23.png
+
+newmtl Kauppurienkatu09
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu09\Kauppurienkatu09.png
+
+newmtl Kauppurienkatu11
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu11\Kauppurienkatu11.png
+
+newmtl Kauppurienkatu15
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu15\kauppurienkatu_15.png
+
+newmtl Kauppurienkatu17
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.581452 0.581452 0.581452
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu17\kauppurienkatu_17.png
+
+newmtl Kauppurienkatu19
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu19\kauppurienkatu_19.png
+
+newmtl Kirkkokatu17
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kirkkokatu17\kirkkokatu_17.png
+
+newmtl Kirkkokatu2Base
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kirkkokatu2\Kirkkokatu2Base.png
+
+newmtl Kirkkokatu2Details
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kirkkokatu2\Kirkkokatu2Details.png
+
+newmtl Kirkkokatu2_vaakuna
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kirkkokatu2\Kirkkokatu2_vaakuna.png
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl OuluStreetBridge
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\OuluStreetBridge\OuluStreetBridge.png
+
+newmtl Pakkahuoneenkatu9BalconieRailing
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu09\balconieRailings.png
+map_d C:\\Tapani\\oulu3dlive-lofi\\oulu3dlive-lofi\\source\\Pakkahuoneenkatu09\\balconieRailings.png
+
+newmtl Pakkahuoneenkatu9a
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu09\Pakkahuoneenkatu9a.png
+
+newmtl SkyDome
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.979986 0.979986 0.979986
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Skydome\Skies0321_H.png
+
+newmtl StreetLamp2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\StreetLamps\OuluStreetLamp2AO.png
+
+newmtl StreetLamps1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\StreetLamps\OuluStreetLamp1AO.png
+
+newmtl grass
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\Grass-light.png
+
+newmtl hallituskatu11
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.984871 0.984871 0.984871
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu11\hallituskatu11_AO.png
+
+newmtl hallituskatu13_17
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu13_17\hallituskatu13-17AO.png
+
+newmtl hallituskatu14
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Hallituskatu14\hallituskatu14AO.png
+
+newmtl kauppurienkatu_13
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu13\kauppurienkatu_13.png
+
+newmtl oulu_ground
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.673320 0.673320 0.673320
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\FloorHerringbone0035_9_S.png
+
+newmtl oulu_ground_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.673320 0.673320 0.673320
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Tapani\\oulu3dlive-lofi\\oulu3dlive-lofi\\source\\_Textures\\concrete.png
+
+newmtl oulu_ground_concrete.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.673320 0.673320 0.673320
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\concrete.png
+
+newmtl oulu_park_bridge
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\OuluParkBridge\OuluParkBridge.png
+
+newmtl oulu_road
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\FloorsVarious0023_15_S.png
+
+newmtl oulu_road_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\\Tapani\\oulu3dlive-lofi\\oulu3dlive-lofi\\source\\_Textures\\FloorsVarious0023_15_S.png
+
+newmtl oulu_road_concrete+01_d100.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\concrete+01_d100.png
+
+newmtl oulu_road_concrete.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\concrete.png
+
+newmtl oulu_side-walk
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\FloorHerringbone0035_9_S.png
+
+newmtl oulu_side-walk_concrete+01_d100.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\concrete+01_d100.png
+
+newmtl oulu_st-dirt
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.273320 0.269885 0.200438
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\Grass-light.png
+
+newmtl pakkahuoneenkatu_10
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.999969 0.999969 0.999969
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu10\pakkahuoneenkatu_10.png
+
+newmtl pakkahuoneenkatu_11
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu11\pakkahuoneenkatu_11.png
+
+newmtl pakkahuoneenkatu_11_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu11\pakkahuoneenkatu_11_signs.png
+
+newmtl pakkahuoneenkatu_12
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu12\pakkahuoneenkatu_12.png
+
+newmtl pakkahuoneenkatu_12_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu12\pakkahuoneenkatu_12_signs.png
+
+newmtl pakkahuoneenkatu_13
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu13\pakkahuoneenkatu_13.png
+
+newmtl pakkahuoneenkatu_13_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu13\pakkahuoneenkatu_13_signs.png
+
+newmtl pakkahuoneenkatu_14-16
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu14-16\pakkahuoneenkatu14-16.png
+
+newmtl pakkahuoneenkatu_14-16_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu14-16\pakkahuoneenkatu14-16_signs.png
+
+newmtl pakkahuoneenkatu_15
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu15\pakkahuoneenkatu_15.png
+
+newmtl pakkahuoneenkatu_15_sign_boards
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.023520 0.023520 0.023520
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu15\pakkahuoneenkatu_15_signs_boards.png
+
+newmtl pakkahuoneenkatu_15_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.026481 0.026481 0.026481
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu15\pakkahuoneenkatu_15_signs.png
+
+newmtl pakkahuoneenkatu_18
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu18\pakkahuoneenkatu_18.png
+
+newmtl pakkahuoneenkatu_18_signs
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu18\pakkahuoneenkatu_18_signs.png
+
+newmtl pakkahuoneenkatu_22
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu22\pakkahuoneenkatu_22.png
+
+newmtl pakkahuoneenkatu_9b
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu09\pakkahuoneenkatu_9b.png
+
+newmtl pakkahuoneenkatu_railing_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.037638 0.037638 0.037638
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu15\pakkahuoneenkatu_railing_1.png
+
+newmtl pakkahuoneenkatu_railing_2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Pakkahuoneenkatu15\pakkahuoneenkatu_railing_2.png
+
+newmtl railing_bars
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Kauppurienkatu15\kauppurienkatu_15_railing_bars.png
+map_d C:\\Tapani\\oulu3dlive-lofi\\oulu3dlive-lofi\\source\\Kauppurienkatu15\\kauppurienkatu_15_railing_bars.png
+
+newmtl side_humps
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.080000 0.080000 0.080000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\_Textures\concrete+01_d100.png
+
+newmtl uusikatu_28
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Tapani\oulu3dlive-lofi\oulu3dlive-lofi\source\Uusikatu28\uusikatu_28.png
+
+newmtl water
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.357638 0.265235 0.228893
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2

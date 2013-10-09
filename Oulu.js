@@ -2,7 +2,7 @@
 /*
 	OuluThreeJS
 	Author: Playsign
-	Date: 2013
+	Date: 2013de
 */
 
 // MAIN
@@ -110,10 +110,77 @@ function init() {
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
+
+	// JSON loader
 	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("Masterscene.js", function(geometry, material) {
-		addModelToScene(geometry, material, "oulu");
+	// jsonLoader.load("Masterscene.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "oulu");
+	// });
+
+	// kaup_11.js
+	// jsonLoader.load("kaup_11.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "oulu");
+	// });
+
+	// OBJ + MTL loader
+	// var loader = new THREE.OBJMTLLoader();
+	// loader.addEventListener('load', function(event) {
+
+	// 	var object = event.content;
+	// 	console.log(object);
+
+	// 	object.position.y = -80;
+	// 	scene.add(object);
+
+	// });
+	// loader.load('kaup_11.obj', 'kaup_11.mtl');
+
+	// OBJ loader
+	var loader = new THREE.OBJLoader();
+	loader.addEventListener('load', function(event) {
+
+		var object = event.content;
+
+		// object.traverse(function(child) {
+
+		// 	if (child instanceof THREE.Mesh) {
+
+		// 		child.material.map = texture;
+
+		// 	}
+
+		// });
+
+		console.log(object);
+		object.position.y = -80;
+		scene.add(object);
+
 	});
+	loader.load('kaup_11.obj');
+
+	// COLLADA loader
+	// var loader = new THREE.ColladaLoader();
+	// loader.options.convertUpAxis = true;
+	// loader.load('kaup_11.dae', function(collada) {
+
+	// 	dae = collada.scene;
+	// 	skin = collada.skins[0];
+
+	// 	// dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
+	// 	// dae.updateMatrix();
+
+	// 	console.log(collada);
+
+	// 	scene.add(dae);
+
+	// 	// addModelToScene(collada.dae.geometries, collada.dae.materials, "oulu");
+
+	// 	// init();
+	// 	// animate();
+
+	// });
+
+
 	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderbuildings");
 	});
@@ -143,6 +210,21 @@ function init() {
 	car.WHEEL_ANGULAR_DECCELERATION = 1; //1.0
 
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
+
+	// car.modelScale = 0.8;
+	// car.backWheelOffset = 0.02;
+
+	// car.MAX_SPEED = 0.9; //25
+	// car.MAX_REVERSE_SPEED = -0.5; //-15
+	// car.FRONT_ACCELERATION = 0.4; //12
+	// car.BACK_ACCELERATION = 0.5; //15
+
+	// car.WHEEL_ANGULAR_ACCELERATION = 1; //1.5
+
+	// car.FRONT_DECCELERATION = 0.5 //10
+	// car.WHEEL_ANGULAR_DECCELERATION = 1; //1.0
+
+	// car.STEERING_RADIUS_RATIO = 0.23; //0.23
 
 	car.callback = function(object) {
 		addCar(object, 142, 15, -20, 1); //10

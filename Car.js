@@ -247,13 +247,13 @@ THREE.Car = function() {
 		}
 
 		if (foundCollision) {
-			forwardDelta = this.speed * -3;
+			forwardDelta = this.speed * -3; // * delta;
 			this.speed *= -0.25;
 			// this.acceleration = 0;
 		}
 		// car update
 		else {
-			forwardDelta = this.speed ;
+			forwardDelta = this.speed; //  * delta;
 		}
 
 		this.carOrientation += (forwardDelta * this.STEERING_RADIUS_RATIO) * this.wheelOrientation;

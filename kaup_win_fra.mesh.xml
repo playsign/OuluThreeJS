@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mesh>
+    <sharedgeometry vertexcount="4">
+        <vertexbuffer colours_diffuse="False" normals="true" texture_coords="1" positions="true">
+            <vertex>
+                <position z="0.002499" x="1.067217" y="-1.086709"/>
+                <normal z="0.999995" x="-0.002341" y="0.002301"/>
+                <texcoord v="0.492911" u="0.721442"/>
+            </vertex>
+            <vertex>
+                <position z="0.002499" x="1.067217" y="1.086709"/>
+                <normal z="0.999995" x="-0.002341" y="0.002301"/>
+                <texcoord v="0.029811" u="0.721442"/>
+            </vertex>
+            <vertex>
+                <position z="-0.007499" x="-1.067217" y="1.086709"/>
+                <normal z="0.999995" x="-0.002341" y="0.002301"/>
+                <texcoord v="0.029811" u="0.257531"/>
+            </vertex>
+            <vertex>
+                <position z="0.002501" x="-1.067217" y="-1.086709"/>
+                <normal z="0.999995" x="-0.002341" y="0.002301"/>
+                <texcoord v="0.492911" u="0.257531"/>
+            </vertex>
+        </vertexbuffer>
+    </sharedgeometry>
+    <submeshes>
+        <submesh operationtype="triangle_list" material="kaup_win_fra" usesharedvertices="true" use32bitindexes="False">
+            <faces count="2">
+                <face v1="0" v3="2" v2="1"/>
+                <face v1="0" v3="3" v2="2"/>
+            </faces>
+        </submesh>
+    </submeshes>
+    <submeshnames>
+        <submesh name="kaup_win_fra" index="0">
+        </submesh>
+    </submeshnames>
+</mesh>

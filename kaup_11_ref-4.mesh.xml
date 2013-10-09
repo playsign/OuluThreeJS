@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mesh>
+    <sharedgeometry vertexcount="4">
+        <vertexbuffer colours_diffuse="False" normals="true" texture_coords="1" positions="true">
+            <vertex>
+                <position z="6.185921" x="-0.199636" y="2.279985"/>
+                <normal z="-0.016815" x="0.999859" y="0.000000"/>
+                <texcoord v="0.271472" u="0.006550"/>
+            </vertex>
+            <vertex>
+                <position z="6.185921" x="-0.199635" y="-0.770788"/>
+                <normal z="-0.016815" x="0.999859" y="0.000000"/>
+                <texcoord v="0.713423" u="0.006550"/>
+            </vertex>
+            <vertex>
+                <position z="-6.163254" x="-0.407313" y="-0.770788"/>
+                <normal z="-0.016815" x="0.999859" y="0.000000"/>
+                <texcoord v="0.713423" u="0.994509"/>
+            </vertex>
+            <vertex>
+                <position z="-6.163254" x="-0.407313" y="2.279985"/>
+                <normal z="-0.016815" x="0.999859" y="0.000000"/>
+                <texcoord v="0.271472" u="0.994509"/>
+            </vertex>
+        </vertexbuffer>
+    </sharedgeometry>
+    <submeshes>
+        <submesh operationtype="triangle_list" material="kaup_11_ref-4" usesharedvertices="true" use32bitindexes="False">
+            <faces count="2">
+                <face v1="0" v3="2" v2="1"/>
+                <face v1="0" v3="3" v2="2"/>
+            </faces>
+        </submesh>
+    </submeshes>
+    <submeshnames>
+        <submesh name="kaup_11_ref-4" index="0">
+        </submesh>
+    </submeshnames>
+</mesh>
