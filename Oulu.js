@@ -1,3 +1,4 @@
+/* -*- js-indent-level: 8 -*- */
 /*jslint white: true */
 /*
 	OuluThreeJS
@@ -16,7 +17,6 @@ var car, oulu, colliderBuildings, colliderGround;
 var debugMode = false;
 
 var controlsCar = {
-
 	moveForward: false,
 	moveBackward: false,
 	moveLeft: false,
@@ -163,10 +163,17 @@ function addCar(object, x, y, z, s) {
 	// object.root.receiveShadow = true;
 }
 
+var texcache = {};
+var useTexcache = false;
+var allMaterials = [];
+var allGeometries = [];
+var unloadTextures = null;
+
 function addModelToScene(geometry, materials, type) {
 
 	var material, newMesh;
-
+	var basicMaterial;
+	allGeometries.push(geometry);
 	if (type == "oulu" && debugMode === false) {
 		var newMaterials = [];
 
@@ -175,21 +182,39 @@ function addModelToScene(geometry, materials, type) {
 				//  JPG TO DDS
 				var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
 				// console.log("ddsName: " + ddsName);
-				map = THREE.ImageUtils.loadCompressedTexture("./images/" + ddsName);
-				map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
-				map.repeat.set(1, 1); // for dds only
-
-				// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
-				map.minFilter = map.magFilter = THREE.LinearFilter;
-				map.anisotropy = 4;
-
-				newMaterials.push(new THREE.MeshBasicMaterial({
+				var texpath = "./images/" + ddsName;
+				if (useTexcache && texcache.hasOwnProperty(texpath)) {
+					map = texcache[texpath];
+					console.log("tex cache hit: " + texpath);
+				} else {
+					map = texcache[texpath] = THREE.ImageUtils.loadCompressedTexture(texpath);
+					map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
+					map.repeat.set(1, 1); // for dds only
+					// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
+					map.minFilter = map.magFilter = THREE.LinearFilter;
+					map.anisotropy = 4;
+				}
+				basicMaterial = new THREE.MeshBasicMaterial({
 					map: map
-				}));
+				})
+				newMaterials.push(basicMaterial);
+				allMaterials.push(basicMaterial);
 			} else {
 				newMaterials.push(materials[i]);
+				allMaterials.push(materials[i]);
 				// console.log("png: " + i);
 			}
+		}
+		unloadTextures = function () {
+			console.log("unloading textures");
+			for (var i = 0; i < allMaterials.length; i++)
+				allMaterials[i].dispose();
+			for (var i = 0; i < allGeometries.length; i++)
+				allGeometries[i].dispose();
+			for (var key in texcache)
+				if (texcache.hasOwnProperty(key))
+					texcache[key].dispose();
+			console.log("done");
 		}
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
