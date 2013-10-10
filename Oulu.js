@@ -14,6 +14,13 @@ var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var time = Date.now();
 var car, oulu, colliderBuildings, colliderGround;
+var ouluClones = [];
+var clonePosition = {
+	x: 0,
+	z: 0
+};
+var cloneOffset = 370;
+var cloneAmount = 1;
 var debugMode = false;
 
 var controlsCar = {
@@ -114,12 +121,24 @@ function init() {
 	jsonLoader.load("Masterscene.js", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
 	});
-	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-		addModelToScene(geometry, material, "colliderbuildings");
-	});
-	jsonLoader.load("ColliderGround.js", function(geometry, material) {
-		addModelToScene(geometry, material, "colliderground");
-	});
+
+
+	for (var i = 0; i < cloneAmount; i++) {
+		jsonLoader = new THREE.JSONLoader();
+		jsonLoader.load("Masterscene.js", function(geometry, material) {
+			addModelToScene(geometry, material, "oulu");
+		});
+
+
+	}
+
+
+	// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "colliderbuildings");
+	// });
+	// jsonLoader.load("ColliderGround.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "colliderground");
+	// });
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
@@ -170,11 +189,11 @@ var allGeometries = [];
 var unloadTextures = null;
 
 function addModelToScene(geometry, materials, type) {
-
 	var material, newMesh;
 	var basicMaterial;
 	allGeometries.push(geometry);
 	if (type == "oulu" && debugMode === false) {
+
 		var newMaterials = [];
 
 		for (var i = 0; i < materials.length; i++) {
@@ -205,7 +224,7 @@ function addModelToScene(geometry, materials, type) {
 				// console.log("png: " + i);
 			}
 		}
-		unloadTextures = function () {
+		unloadTextures = function() {
 			console.log("unloading textures");
 			for (var i = 0; i < allMaterials.length; i++)
 				allMaterials[i].dispose();
@@ -218,7 +237,21 @@ function addModelToScene(geometry, materials, type) {
 		}
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
-		oulu = newMesh;
+
+		if (oulu === undefined) {
+			oulu = newMesh;
+		} else {
+			clonePosition = getNextClonePosition(clonePosition);
+			console.log("clonePosition: " + oulu);
+			console.log(clonePosition);
+
+			newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
+			ouluClones.push(newMesh);
+
+
+		}
+
+
 		// oulu.castShadow = true;
 		// oulu.receiveShadow = true;
 
@@ -382,4 +415,31 @@ function onKeyUp(event) {
 			break;
 	}
 
+};
+
+function getNextClonePosition(pos) {
+	/* 
+	 * 12 13 14 15
+	 * 6  7  8  11
+	 * 2  3  5  10
+	 * 0  1  4  9
+	 *
+	 */
+
+	// Increase position for the next part
+	if (pos.x == pos.z) { // at equal corner
+		pos.x++;
+		pos.z = 0;
+	} else if (posx == (pos.z + 1)) { //at disequal corner
+		pos.x = 0;
+		pos.z++;
+	} else {
+		if (pos.x < pos.z) { // increase x
+			pos.x++;
+		} else {
+			pos.z++; // increase y
+		}
+	}
+
+	return pos;
 };
