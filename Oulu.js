@@ -20,7 +20,7 @@ var clonePosition = {
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 1;
+var cloneAmount = 2;
 var debugMode = false;
 
 var controlsCar = {
@@ -173,7 +173,7 @@ function init() {
 }
 
 function addCar(object, x, y, z, s) {
-	console.log("Add car");
+	// console.log("Add car");
 
 	object.root.position.set(x, y, z);
 	scene.add(object.root);
@@ -204,7 +204,7 @@ function addModelToScene(geometry, materials, type) {
 				var texpath = "./images/" + ddsName;
 				if (useTexcache && texcache.hasOwnProperty(texpath)) {
 					map = texcache[texpath];
-					console.log("tex cache hit: " + texpath);
+					// console.log("tex cache hit: " + texpath);
 				} else {
 					map = texcache[texpath] = THREE.ImageUtils.loadCompressedTexture(texpath);
 					map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
@@ -225,7 +225,7 @@ function addModelToScene(geometry, materials, type) {
 			}
 		}
 		unloadTextures = function() {
-			console.log("unloading textures");
+			// console.log("unloading textures");
 			for (var i = 0; i < allMaterials.length; i++)
 				allMaterials[i].dispose();
 			for (var i = 0; i < allGeometries.length; i++)
@@ -233,7 +233,7 @@ function addModelToScene(geometry, materials, type) {
 			for (var key in texcache)
 				if (texcache.hasOwnProperty(key))
 					texcache[key].dispose();
-			console.log("done");
+			// console.log("done");
 		}
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
@@ -242,8 +242,8 @@ function addModelToScene(geometry, materials, type) {
 			oulu = newMesh;
 		} else {
 			clonePosition = getNextClonePosition(clonePosition);
-			console.log("clonePosition: " + oulu);
-			console.log(clonePosition);
+			// console.log("clonePosition: " + oulu);
+			// console.log(clonePosition);
 
 			newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
 			ouluClones.push(newMesh);
@@ -430,7 +430,7 @@ function getNextClonePosition(pos) {
 	if (pos.x == pos.z) { // at equal corner
 		pos.x++;
 		pos.z = 0;
-	} else if (posx == (pos.z + 1)) { //at disequal corner
+	} else if (pos.x == (pos.z + 1)) { //at disequal corner
 		pos.x = 0;
 		pos.z++;
 	} else {
