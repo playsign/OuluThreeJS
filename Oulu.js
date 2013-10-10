@@ -20,7 +20,7 @@ var clonePosition = {
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 2;
+var cloneAmount = 1;
 var debugMode = false;
 
 var controlsCar = {
@@ -186,36 +186,51 @@ var texcache = {};
 var useTexcache = true;
 var allMaterials = [];
 var allGeometries = [];
-var unloadTextures = null;
+var unloadTextures, doLoadTextures;
+var loadTexturesAtStartup = false;
+
+function loadTexture(path) {
+	if (typeof(path) !== "string")
+		throw("bad path " + path);
+	var tex = THREE.ImageUtils.loadCompressedTexture(path);
+	tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+	tex.repeat.set(1, 1);
+	tex.minFilter = tex.magFilter = THREE.LinearFilter;
+	tex.anisotropy = 4;
+	return tex;
+}
 
 function addModelToScene(geometry, materials, type) {
 	var material, newMesh;
 	var basicMaterial;
 	allGeometries.push(geometry);
+	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	if (type == "oulu" && debugMode === false) {
 
 		var newMaterials = [];
-
+		var realTextures = [];
 		for (var i = 0; i < materials.length; i++) {
 			if (materials[i].map) {
 				//  JPG TO DDS
 				var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
 				// console.log("ddsName: " + ddsName);
 				var texpath = "./images/" + ddsName;
-				if (useTexcache && texcache.hasOwnProperty(texpath)) {
-					map = texcache[texpath];
-					// console.log("tex cache hit: " + texpath);
+				if (loadTexturesAtStartup) {
+					if (useTexcache && texcache.hasOwnProperty(texpath))
+						map = texcache[texpath];
+					else
+						map = texcache[texpath] = loadTexture(texpath);
+					
+					basicMaterial = new THREE.MeshBasicMaterial({
+						map: map
+					});
 				} else {
-					map = texcache[texpath] = THREE.ImageUtils.loadCompressedTexture(texpath);
-					map.wrapS = map.wrapT = THREE.RepeatWrapping; // for dds only
-					map.repeat.set(1, 1); // for dds only
-					// map = THREE.ImageUtils.loadCompressedTexture( materials[i].map.sourceFile + ".dds" );
-					map.minFilter = map.magFilter = THREE.LinearFilter;
-					map.anisotropy = 4;
+					realTextures[i] = texpath;
+					basicMaterial = new THREE.MeshBasicMaterial({
+						//color: 0xaabbcc,
+						map: placeholderTexture,
+					});
 				}
-				basicMaterial = new THREE.MeshBasicMaterial({
-					map: map
-				})
 				newMaterials.push(basicMaterial);
 				allMaterials.push(basicMaterial);
 			} else {
@@ -234,6 +249,22 @@ function addModelToScene(geometry, materials, type) {
 				if (texcache.hasOwnProperty(key))
 					texcache[key].dispose();
 			// console.log("done");
+		}
+		doLoadTextures = function() {
+			console.log("loading", realTextures.length, "textures");
+			var nchanged = 0;
+			for (var i = 0; i < realTextures.length; i++) {
+				// oulu.material.materials[i].map = loadTexture(realTextures[key]);
+				var m = oulu.material.materials[i];
+				if (m === undefined)
+					console.log("material", i, "was undefined");
+				else if (realTextures[i] !== undefined) {
+					m.map = loadTexture(realTextures[i]);
+					m.needsUpdate = true;
+					nchanged++;
+				}
+			}
+			console.log("done", nchanged);
 		}
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
@@ -254,7 +285,6 @@ function addModelToScene(geometry, materials, type) {
 
 		// oulu.castShadow = true;
 		// oulu.receiveShadow = true;
-
 	} else if (type == "colliderbuildings") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
