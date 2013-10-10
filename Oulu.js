@@ -118,14 +118,14 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("Masterscene.js", function(geometry, material) {
+	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
 	});
 
 
 	for (var i = 0; i < cloneAmount; i++) {
 		jsonLoader = new THREE.JSONLoader();
-		jsonLoader.load("Masterscene.js", function(geometry, material) {
+		jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
 			addModelToScene(geometry, material, "oulu");
 		});
 
@@ -183,7 +183,7 @@ function addCar(object, x, y, z, s) {
 }
 
 var texcache = {};
-var useTexcache = false;
+var useTexcache = true;
 var allMaterials = [];
 var allGeometries = [];
 var unloadTextures = null;
