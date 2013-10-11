@@ -8,7 +8,7 @@
 
 // MAIN
 
-var container, scene, carCamera, flyCamera, renderer, controls, flyControls, stats, directionalLight;
+var container, scene, carCamera, flyCamera, renderer, controls, flyControls, stats, rendererStats, directionalLight;
 var flyMode = false;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
@@ -103,6 +103,12 @@ function init() {
 	stats.domElement.style.bottom = '0px';
 	stats.domElement.style.zIndex = 100;
 	container.appendChild(stats.domElement);
+	// RENDERER STATS
+	rendererStats = new THREEx.RendererStats();
+	rendererStats.domElement.style.position = 'absolute';
+	rendererStats.domElement.style.left = '0px';
+	rendererStats.domElement.style.bottom = '200px';
+	container.appendChild(rendererStats.domElement);
 	// White directional light at half intensity shining from the top.
 	directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
 	directionalLight.position.set(100, 100, 100);
@@ -187,11 +193,11 @@ var useTexcache = true;
 var allMaterials = [];
 var allGeometries = [];
 var unloadTextures, doLoadTextures;
-var loadTexturesAtStartup = false;
+var loadTexturesAtStartup = true;
 
 function loadTexture(path) {
 	if (typeof(path) !== "string")
-		throw("bad path " + path);
+		throw ("bad path " + path);
 	var tex = THREE.ImageUtils.loadCompressedTexture(path);
 	tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
 	tex.repeat.set(1, 1);
@@ -220,7 +226,7 @@ function addModelToScene(geometry, materials, type) {
 						map = texcache[texpath];
 					else
 						map = texcache[texpath] = loadTexture(texpath);
-					
+
 					basicMaterial = new THREE.MeshBasicMaterial({
 						map: map
 					});
@@ -248,7 +254,7 @@ function addModelToScene(geometry, materials, type) {
 			for (var key in texcache)
 				if (texcache.hasOwnProperty(key))
 					texcache[key].dispose();
-			// console.log("done");
+				// console.log("done");
 		}
 		doLoadTextures = function() {
 			console.log("loading", realTextures.length, "textures");
@@ -350,6 +356,7 @@ function update() {
 	}
 
 	stats.update();
+	rendererStats.update(renderer);
 }
 
 function render() {
