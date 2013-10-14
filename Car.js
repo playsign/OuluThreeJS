@@ -261,7 +261,7 @@ THREE.Car = function() {
 		// Ground collider
 		var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y + 50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
 
-		var intersects = raycaster.intersectObject(colliderGround);
+		var intersects = raycaster.intersectObject(oulu.colliders[1]);
 
 		if (intersects.length > 0) {
 			// console.log("plane collision: " + intersects.length);
@@ -318,7 +318,7 @@ THREE.Car = function() {
 
 	function isColliding(position, focusX, focusZ) {
 		var raycaster = new THREE.Raycaster(position, new THREE.Vector3(focusX, 0, focusZ), 0, 4);
-		var intersects = raycaster.intersectObject(colliderBuildings);
+		var intersects = raycaster.intersectObject(oulu.colliders[0]);
 		if (intersects.length > 0) {
 			return true;
 		}

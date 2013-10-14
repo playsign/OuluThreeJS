@@ -13,14 +13,16 @@ var flyMode = false;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var time = Date.now();
-var car, oulu, colliderBuildings, colliderGround;
+var car;
+var oulu = new GRID.Block();
+var gridManager = new GRID.Manager();
 var ouluClones = [];
 var clonePosition = {
 	x: 0,
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 1;
+var cloneAmount = 3;
 var debugMode = false;
 
 var controlsCar = {
@@ -118,6 +120,11 @@ function init() {
 	////////////
 	// CUSTOM //
 	////////////
+
+	// GRID
+
+
+	//JSON
 
 	// Note: if imported model appears too dark,
 	//   add an ambient light in this file
@@ -260,8 +267,8 @@ function addModelToScene(geometry, materials, type) {
 			console.log("loading", realTextures.length, "textures");
 			var nchanged = 0;
 			for (var i = 0; i < realTextures.length; i++) {
-				// oulu.material.materials[i].map = loadTexture(realTextures[key]);
-				var m = oulu.material.materials[i];
+				// oulu.mesh.material.materials[i].map = loadTexture(realTextures[key]);
+				var m = oulu.mesh.material.materials[i];
 				if (m === undefined)
 					console.log("material", i, "was undefined");
 				else if (realTextures[i] !== undefined) {
@@ -275,12 +282,10 @@ function addModelToScene(geometry, materials, type) {
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
 
-		if (oulu === undefined) {
-			oulu = newMesh;
+		if (oulu.mesh === undefined || oulu.mesh === null) {
+			oulu.mesh = newMesh;
 		} else {
 			clonePosition = getNextClonePosition(clonePosition);
-			// console.log("clonePosition: " + oulu);
-			// console.log(clonePosition);
 
 			newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
 			ouluClones.push(newMesh);
@@ -289,22 +294,22 @@ function addModelToScene(geometry, materials, type) {
 		}
 
 
-		// oulu.castShadow = true;
-		// oulu.receiveShadow = true;
+		// oulu.mesh.castShadow = true;
+		// oulu.mesh.receiveShadow = true;
 	} else if (type == "colliderbuildings") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
 		if (debugMode == false) {
 			newMesh.visible = false;
 		}
-		colliderBuildings = newMesh;
+		oulu.colliders[0] = newMesh;
 	} else if (type == "colliderground") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
 		if (debugMode == false) {
 			newMesh.visible = false;
 		}
-		colliderGround = newMesh;
+		oulu.colliders[1] = newMesh;
 	}
 
 	newMesh.scale.set(1.5, 1.5, 1.5);
