@@ -1,11 +1,12 @@
 /* -*- js-indent-level: 8 -*- */
-/*jslint white: true */
+/* jslint white: true */
+/* globals window, console, document, THREEx, THREE, Stats, Detector, requestAnimationFrame */
 /*
 	OuluThreeJS
 	Author: Playsign
 	Date: 2013
 */
-
+"use strict";
 // MAIN
 
 var container, scene, carCamera, flyCamera, renderer, controls, flyControls, stats, rendererStats, directionalLight;
@@ -20,7 +21,7 @@ var clonePosition = {
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 1;
+var cloneAmount = 3;
 var debugMode = false;
 
 var controlsCar = {
@@ -34,7 +35,7 @@ var controlsCar = {
 init();
 animate();
 
-// FUNCTIONS 		
+// FUNCTIONS	
 
 function init() {
 
@@ -164,7 +165,7 @@ function init() {
 
 	car.WHEEL_ANGULAR_ACCELERATION = 1; //1.5
 
-	car.FRONT_DECCELERATION = 0.5 //10
+	car.FRONT_DECCELERATION = 0.5; //10
 	car.WHEEL_ANGULAR_DECCELERATION = 1; //1.0
 
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
@@ -207,7 +208,7 @@ function loadTexture(path) {
 }
 
 function addModelToScene(geometry, materials, type) {
-	var material, newMesh;
+	var material, newMesh, map;
 	var basicMaterial;
 	allGeometries.push(geometry);
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
@@ -255,7 +256,7 @@ function addModelToScene(geometry, materials, type) {
 				if (texcache.hasOwnProperty(key))
 					texcache[key].dispose();
 				// console.log("done");
-		}
+		};
 		doLoadTextures = function() {
 			console.log("loading", realTextures.length, "textures");
 			var nchanged = 0;
@@ -271,7 +272,7 @@ function addModelToScene(geometry, materials, type) {
 				}
 			}
 			console.log("done", nchanged);
-		}
+		};
 		material = new THREE.MeshFaceMaterial(newMaterials);
 		newMesh = new THREE.Mesh(geometry, material);
 
@@ -294,14 +295,14 @@ function addModelToScene(geometry, materials, type) {
 	} else if (type == "colliderbuildings") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		if (debugMode == false) {
+		if (debugMode === false) {
 			newMesh.visible = false;
 		}
 		colliderBuildings = newMesh;
 	} else if (type == "colliderground") {
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		if (debugMode == false) {
+		if (debugMode === false) {
 			newMesh.visible = false;
 		}
 		colliderGround = newMesh;
@@ -326,7 +327,7 @@ function setFlyMode(flying) {
 		flyControls.enabled = flying;
 		flying === true ? THREEx.WindowResize(renderer, flyCamera) : THREEx.WindowResize(renderer, carCamera);
 	} else {
-		console.log("setFlyMode illegal parameter")
+		console.log("setFlyMode illegal parameter");
 	}
 }
 
@@ -452,7 +453,7 @@ function onKeyUp(event) {
 			break;
 	}
 
-};
+}
 
 function getNextClonePosition(pos) {
 	/* 
@@ -479,4 +480,4 @@ function getNextClonePosition(pos) {
 	}
 
 	return pos;
-};
+}
