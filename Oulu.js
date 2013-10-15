@@ -21,7 +21,7 @@ var clonePosition = {
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 3;
+var cloneAmount = 2;
 var debugMode = false;
 
 var controlsCar = {
@@ -125,19 +125,27 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+	var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
+
+	jsonLoader.load(masterscene_file, function(geometry, material) {
+		console.log("load 1st scene");
 		addOuluModelToScene(geometry, material, "oulu");
+
+		for (var i = 0; i < cloneAmount; i++) {
+			window.setTimeout(function() {
+				jsonLoader = new THREE.JSONLoader();
+				console.log("unloading prev assets before loading new clone");
+				unloadAssets();
+				jsonLoader.load(masterscene_file, function(geometry, material) {
+					addOuluModelToScene(geometry, material, "oulu");
+				});
+			}, 5000*(i+1));
+
+		}
+
 	});
 
 
-	for (var i = 0; i < cloneAmount; i++) {
-		jsonLoader = new THREE.JSONLoader();
-		jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
-			addOuluModelToScene(geometry, material, "oulu");
-		});
-
-
-	}
 
 
 	// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
@@ -191,8 +199,6 @@ function addCar(object, x, y, z, s) {
 
 var texcache = {};
 var useTexcache = true;
-var allMaterials = [];
-var allGeometries = [];
 var unloadAssets, doLoadAssets;
 var loadAssetsAtStartup = true;
 
@@ -210,7 +216,6 @@ function loadTexture(path) {
 function addColliderModelToScene(geometry, origMaterials, type) {
 	var faceMaterial, newMesh, map;
 	var basicMaterial;
-	allGeometries.push(geometry);
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	faceMaterial = new THREE.MeshFaceMaterial(origMaterials);
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
@@ -229,13 +234,20 @@ function addColliderModelToScene(geometry, origMaterials, type) {
 }
 
 function addOuluModelToScene(geometry, origMaterials) {
+	var disposables = [];
 	var newMesh, newTexture;
 	var basicMaterial;
-	allGeometries.push(geometry);
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	var newMaterials = [];
 	var realTextures = [];
+	function regDisposable(x) {
+		if (typeof(x.dispose) !== "function")
+			throw("doesn't have a .dispose(): " + x);
+		disposables.push(x);
+	};
+	regDisposable(geometry);
 	for (var i = 0; i < origMaterials.length; i++) {
+		regDisposable(origMaterials[i]);
 		if (origMaterials[i].map) {
 			//  JPG TO DDS
 			var ddsName = origMaterials[i].map.sourceFile.substr(0, origMaterials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
@@ -257,23 +269,49 @@ function addOuluModelToScene(geometry, origMaterials) {
 					map: placeholderTexture,
 				});
 			}
+			regDisposable(basicMaterial);
 			newMaterials.push(basicMaterial);
-			allMaterials.push(basicMaterial);
 		} else {
 			newMaterials.push(origMaterials[i]);
-			allMaterials.push(origMaterials[i]);
 			// console.log("png: " + i);
 		}
 	}
+	var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
+	newMesh = new THREE.Mesh(geometry, faceMaterial);
+	if (oulu === undefined) {
+		oulu = newMesh;
+	} else {
+		clonePosition = getNextClonePosition(clonePosition);
+		// console.log("clonePosition: " + oulu);
+		// console.log(clonePosition);
+
+		newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
+		ouluClones.push(newMesh);
+
+
+	}
+
 	unloadAssets = function() {
-		// console.log("unloading textures");
-		for (var i = 0; i < allMaterials.length; i++)
-			allMaterials[i].dispose();
-		for (var i = 0; i < allGeometries.length; i++)
-			allGeometries[i].dispose();
+		// note: this code currently works only when loadAssetsAtStartup is on
+		scene.remove(newMesh);
+		for (var i = 0; i < disposables.length; i++) {
+			var d = disposables[i];
+			d.dispose();
+			if (d instanceof THREE.Geometry) {
+				console.log("after dispose with geom, faces", d.faces.length, "uvs", d.faceVertexUvs.length);
+				d.faces.length = 0;
+				d.vertices.length = 0;
+				d.faceVertexUvs.length = 0;
+			}
+		}
+		disposables.length = 0; // yes, really the way to clear js arrays
 		for (var key in texcache)
-			if (texcache.hasOwnProperty(key))
+			if (texcache.hasOwnProperty(key)) {
 				texcache[key].dispose();
+				delete texcache[key].image;
+				delete texcache[key].mimpaps;
+				delete texcache[key];
+			}
 		// console.log("done");
 	};
 	doLoadAssets = function() {
@@ -292,22 +330,6 @@ function addOuluModelToScene(geometry, origMaterials) {
 		}
 		console.log("done", nchanged);
 	};
-	var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
-	newMesh = new THREE.Mesh(geometry, faceMaterial);
-
-	if (oulu === undefined) {
-		oulu = newMesh;
-	} else {
-		clonePosition = getNextClonePosition(clonePosition);
-		// console.log("clonePosition: " + oulu);
-		// console.log(clonePosition);
-
-		newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
-		ouluClones.push(newMesh);
-
-
-	}
-
 
 	// oulu.castShadow = true;
 	// oulu.receiveShadow = true;
