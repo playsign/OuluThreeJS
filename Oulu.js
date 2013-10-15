@@ -1,10 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
-/*jslint white: true */
 /*
-	OuluThreeJS
-	Author: Playsign
-	Date: 2013
-*/
+ * 	OuluThreeJS
+ * 	@author Tapani Jamsa
+ * 	@author Erno Kuusela
+ * 	Date: 2013
+ */
 
 // MAIN
 
@@ -36,7 +36,7 @@ var controlsCar = {
 init();
 animate();
 
-// FUNCTIONS 		
+// FUNCTIONS
 
 function init() {
 
@@ -121,9 +121,6 @@ function init() {
 	// CUSTOM //
 	////////////
 
-	// GRID
-
-
 	//JSON
 
 	// Note: if imported model appears too dark,
@@ -181,6 +178,9 @@ function init() {
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
+
+	// GRID
+	gridManager.setTarget(car.root.position);
 
 
 }

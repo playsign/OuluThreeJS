@@ -1,5 +1,6 @@
 /**
- * @author alteredq / http://alteredqualia.com/  Modified by Playsign
+ * @author alteredq / http://alteredqualia.com/ 
+ * @author Tapani Jamsa
  */
 
 THREE.Car = function() {
