@@ -16,14 +16,15 @@ var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
+var tester = new GRID.Tester();
 var ouluClones = [];
 var clonePosition = {
 	x: 0,
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 3;
-var debugMode = false;
+var cloneAmount = 0;
+var debugMode = true;
 
 var controlsCar = {
 	moveForward: false,
@@ -33,8 +34,8 @@ var controlsCar = {
 
 };
 
-init();
-animate();
+// init();
+// animate();
 
 // FUNCTIONS
 
@@ -180,8 +181,8 @@ function init() {
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
 
 	// GRID
-	gridManager.setTarget(car.root.position);
-
+	// gridManager.setTarget(car.root.position);
+	gridManager.target = car.root.position;
 
 }
 
