@@ -22,7 +22,7 @@ GRID.Manager = function() {
 		this.visibleBlocks[a] = [];
 	}
 
-	this.size = 100; // length of a side of the block
+	this.size = 500; // length of a side of the block
 	this.buffer = 1; // blocks in the scene at any one time
 
 	// this.setTarget = function(targetPosition) {
@@ -92,6 +92,18 @@ GRID.Manager.prototype = {
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
 		newBlock.mesh = true;
+
+
+		// Oulu
+		var jsonLoader = new THREE.JSONLoader();
+
+
+		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+			addModelToScene(geometry, material, "colliderbuildings", newBlock.gridPosition);
+		});
+		jsonLoader.load("ColliderGround.js", function(geometry, material) {
+			addModelToScene(geometry, material, "colliderground", newBlock.gridPosition);
+		});
 
 		return newBlock;
 	},
@@ -185,13 +197,13 @@ GRID.Manager.prototype = {
 		var rows = [];
 		var rowAmount = 7;
 		var offset = 3;
-	
+
 		for (var z = 0; z < rowAmount; z++) {
 			rows.push(" ");
 			for (var x = 0; x < rowAmount; x++) {
 				var blockGridPosition = {
-					x: x-offset,
-					z: z-offset
+					x: x - offset,
+					z: z - offset
 				};
 
 				if (this.isOccupied(blockGridPosition)) {
@@ -247,7 +259,7 @@ GRID.Tester = function() {
 	this.gm.init();
 
 	this.move = function(direction, distance) {
-		if(distance > 1){
+		if (distance > 1) {
 			console.log("movement distance must be below 1");
 			return;
 		}

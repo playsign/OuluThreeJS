@@ -128,28 +128,28 @@ function init() {
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
-	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
-		addModelToScene(geometry, material, "oulu");
-	});
+	// var jsonLoader = new THREE.JSONLoader();
+	// jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "oulu");
+	// });
 
 
-	for (var i = 0; i < cloneAmount; i++) {
-		jsonLoader = new THREE.JSONLoader();
-		jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
-			addModelToScene(geometry, material, "oulu");
-		});
+	// for (var i = 0; i < cloneAmount; i++) {
+	// 	jsonLoader = new THREE.JSONLoader();
+	// 	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+	// 		addModelToScene(geometry, material, "oulu");
+	// 	});
 
 
-	}
+	// }
 
 
-	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-		addModelToScene(geometry, material, "colliderbuildings");
-	});
-	jsonLoader.load("ColliderGround.js", function(geometry, material) {
-		addModelToScene(geometry, material, "colliderground");
-	});
+	// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "colliderbuildings");
+	// });
+	// jsonLoader.load("ColliderGround.js", function(geometry, material) {
+	// 	addModelToScene(geometry, material, "colliderground");
+	// });
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
@@ -183,8 +183,12 @@ function init() {
 	// GRID
 	// gridManager.setTarget(car.root.position);
 	gridManager.target = {
-		x: function(){return car.root.position.x},
-		z: function(){return car.root.position.z}
+		x: function() {
+			return car.root.position.x
+		},
+		z: function() {
+			return car.root.position.z
+		}
 	};
 	gridManager.init();
 
@@ -218,7 +222,7 @@ function loadTexture(path) {
 	return tex;
 }
 
-function addModelToScene(geometry, materials, type) {
+function addModelToScene(geometry, materials, type, modelPosition) {
 	var material, newMesh;
 	var basicMaterial;
 	allGeometries.push(geometry);
@@ -294,23 +298,27 @@ function addModelToScene(geometry, materials, type) {
 
 			newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
 			ouluClones.push(newMesh);
-
-
 		}
 
 
 		// oulu.mesh.castShadow = true;
 		// oulu.mesh.receiveShadow = true;
 	} else if (type == "colliderbuildings") {
+		console.log("add colliderbuildings");
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
+		newMesh.position.set(modelPosition.x * gridManager.size, 0, modelPosition.z * gridManager.size);
+		newMesh.rotation.y = 45 * Math.PI / 180;
 		if (debugMode == false) {
 			newMesh.visible = false;
 		}
 		oulu.colliders[0] = newMesh;
 	} else if (type == "colliderground") {
+		console.log("add colliderground");
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
+		newMesh.position.set(modelPosition.x * gridManager.size, 0, modelPosition.z * gridManager.size);
+		newMesh.rotation.y = 45 * Math.PI / 180;
 		if (debugMode == false) {
 			newMesh.visible = false;
 		}
