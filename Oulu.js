@@ -162,9 +162,9 @@ function init() {
 	car.modelScale = 0.8;
 	car.backWheelOffset = 0.02;
 
-	car.MAX_SPEED = 0.9; //25
+	car.MAX_SPEED = 3; //0
 	car.MAX_REVERSE_SPEED = -0.5; //-15
-	car.FRONT_ACCELERATION = 0.4; //12
+	car.FRONT_ACCELERATION = 2.4; // 0.4
 	car.BACK_ACCELERATION = 0.5; //15
 
 	car.WHEEL_ANGULAR_ACCELERATION = 1; //1.5
@@ -222,7 +222,7 @@ function loadTexture(path) {
 	return tex;
 }
 
-function addModelToScene(geometry, materials, type, modelPosition) {
+function addModelToScene(geometry, materials, type, newBlock) {
 	var material, newMesh;
 	var basicMaterial;
 	allGeometries.push(geometry);
@@ -307,7 +307,8 @@ function addModelToScene(geometry, materials, type, modelPosition) {
 		console.log("add colliderbuildings");
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		newMesh.position.set(modelPosition.x * gridManager.size, 0, modelPosition.z * gridManager.size);
+		newBlock.mesh = newMesh;
+		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
 		newMesh.rotation.y = 45 * Math.PI / 180;
 		if (debugMode == false) {
 			newMesh.visible = false;
@@ -317,7 +318,8 @@ function addModelToScene(geometry, materials, type, modelPosition) {
 		console.log("add colliderground");
 		material = new THREE.MeshFaceMaterial(materials);
 		newMesh = new THREE.Mesh(geometry, material);
-		newMesh.position.set(modelPosition.x * gridManager.size, 0, modelPosition.z * gridManager.size);
+		newBlock.secondaryMesh = newMesh;
+		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
 		newMesh.rotation.y = 45 * Math.PI / 180;
 		if (debugMode == false) {
 			newMesh.visible = false;
@@ -373,6 +375,7 @@ function update() {
 		car.updateCarModel(delta, controlsCar);
 	}
 
+	gridManager.update();
 	stats.update();
 	rendererStats.update(renderer);
 }

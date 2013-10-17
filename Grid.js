@@ -58,13 +58,14 @@ GRID.Manager.prototype = {
 	},
 
 	getGridPosition: function(targetPosition, blockSize) {
+		// console.log("getGridPosition");
 		// debugger;
 		var gridPosition = {
 			x: Math.round(targetPosition.x() / blockSize),
 			z: Math.round(targetPosition.z() / blockSize),
 		};
-		console.log("gridPosition: ");
-		console.log(gridPosition);
+		// console.log("gridPosition: ");
+		// console.log(gridPosition);
 
 		return gridPosition;
 
@@ -73,6 +74,7 @@ GRID.Manager.prototype = {
 	},
 
 	init: function() {
+		// console.log("init");
 		var newGridPosition = this.getGridPosition(this.target, this.size);
 
 		for (var x = 0; x < this.blockCount; x++) {
@@ -88,10 +90,12 @@ GRID.Manager.prototype = {
 	},
 
 	generateBlock: function(gridPosition) {
+		// console.log("generateBlock");
 		var newBlock = new GRID.Block();
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
 		newBlock.mesh = true;
+		newBlock.secondaryMesh = true;
 
 
 		// Oulu
@@ -99,10 +103,10 @@ GRID.Manager.prototype = {
 
 
 		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-			addModelToScene(geometry, material, "colliderbuildings", newBlock.gridPosition);
+			addModelToScene(geometry, material, "colliderbuildings", newBlock);
 		});
 		jsonLoader.load("ColliderGround.js", function(geometry, material) {
-			addModelToScene(geometry, material, "colliderground", newBlock.gridPosition);
+			addModelToScene(geometry, material, "colliderground", newBlock);
 		});
 
 		return newBlock;
@@ -113,7 +117,7 @@ GRID.Manager.prototype = {
 	// remove the un needed cells and re generate the grid array with the
 	// correct blocks.
 	cull: function(gridPosition) {
-
+		// console.log("cull");
 		var i = 0,
 			j = 0;
 		var newBlocks = [this.blockCount];
@@ -129,10 +133,13 @@ GRID.Manager.prototype = {
 				// this.visibleBlocks[buffer - buffer * gridPosition.x, i] = null;
 				// newBlocks[i] = Generateblock(targetGridPosition.x + buffer * gridPosition.x + gridPosition.x, targetGridPosition.z - buffer + i);
 				// console.log("mesh false: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
-				console.log("null: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i]);
-				console.log("generateBlock: x:" + this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x + "z: " + this.targetGridPosition.z - this.buffer + i);
+				// console.log("null: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i]);
+				// console.log("generateBlock: x:" + this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x + "z: " + this.targetGridPosition.z - this.buffer + i);
 
+				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
+				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].secondaryMesh);
 				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh = false;
+				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].secondaryMesh = false;
 				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i] = undefined;
 
 				var blockGridPosition = {
@@ -151,7 +158,10 @@ GRID.Manager.prototype = {
 				// console.log("null: " + this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z]);
 				// console.log("generateBlock: x:" + this.targetGridPosition.x - this.buffer + i + "z: " + this.targetGridPosition.z + this.buffer * gridPosition.z + gridPosition.z);
 
+				scene.remove(this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].mesh);
+				scene.remove(this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].secondaryMesh);
 				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].mesh = false;
+				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].secondaryMesh = false;
 				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
 
 				var blockGridPosition = {
@@ -282,6 +292,7 @@ GRID.Tester = function() {
 };
 
 GRID.Block = function() {
+	console.log("Block");
 
 	this.gridPosition = {
 		x: 0,
