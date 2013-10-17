@@ -22,7 +22,7 @@ GRID.Manager = function() {
 		this.visibleBlocks[a] = [];
 	}
 
-	this.size = 1; // length of a side of the block
+	this.size = 100; // length of a side of the block
 	this.buffer = 1; // blocks in the scene at any one time
 
 	// this.setTarget = function(targetPosition) {
@@ -58,10 +58,13 @@ GRID.Manager.prototype = {
 	},
 
 	getGridPosition: function(targetPosition, blockSize) {
+		// debugger;
 		var gridPosition = {
-			x: Math.round(targetPosition.x / blockSize),
-			z: Math.round(targetPosition.z / blockSize),
+			x: Math.round(targetPosition.x() / blockSize),
+			z: Math.round(targetPosition.z() / blockSize),
 		};
+		console.log("gridPosition: ");
+		console.log(gridPosition);
 
 		return gridPosition;
 
@@ -74,6 +77,7 @@ GRID.Manager.prototype = {
 
 		for (var x = 0; x < this.blockCount; x++) {
 			for (var z = 0; z < this.blockCount; z++) {
+				// debugger;
 				var blockGridPosition = {
 					x: newGridPosition.x - this.buffer + x,
 					z: newGridPosition.z - this.buffer + z
@@ -172,6 +176,60 @@ GRID.Manager.prototype = {
 		// set the current map to the new array.
 		this.visibleBlocks = newVisibleBlocks;
 	},
+
+
+	debugDrawGrid: function() {
+		this.update();
+
+		// Roguelike presentation
+		var rows = [];
+		var rowAmount = 7;
+		var offset = 3;
+	
+		for (var z = 0; z < rowAmount; z++) {
+			rows.push(" ");
+			for (var x = 0; x < rowAmount; x++) {
+				var blockGridPosition = {
+					x: x-offset,
+					z: z-offset
+				};
+
+				if (this.isOccupied(blockGridPosition)) {
+					rows[z] += "#";
+				} else {
+					rows[z] += ".";
+				}
+			}
+		}
+
+		// rows.push(" #######");
+		// rows.push(" #######");
+		// rows.push(" ##...##");
+		// rows.push(" ##.@.##");
+		// rows.push(" ##...##");
+		// rows.push(" #######");
+		// rows.push(" #######");
+		rows.push("-3210123+");
+		// console.clear();
+
+		for (var i = 0; i < rows.length; i++) {
+			var pos = " ";
+			(i - 3) < 4 ? pos = i - 3 : pos = " ";
+			console.log(rows[i] + " " + pos);
+		}
+	},
+
+	isOccupied: function(gridPosition) {
+		// debugger;
+		for (var x = 0; x < this.visibleBlocks.length; x++) {
+			for (var z = 0; z < this.visibleBlocks.length; z++) {
+				if (this.visibleBlocks[x][z].gridPosition.x === gridPosition.x && this.visibleBlocks[x][z].gridPosition.z === gridPosition.z) {
+					return true;
+				}
+			}
+		}
+		return false;
+	},
 }
 
 GRID.Tester = function() {
@@ -205,59 +263,9 @@ GRID.Tester = function() {
 		} else {
 			console.log("invalid direction");
 		}
-		this.gm.update();
-		this.drawGrid();
+		this.gm.debugDrawGrid();
 	};
 
-	this.drawGrid = function() {
-
-		// Roguelike presentation
-		var rows = [];
-		var rowAmount = 7;
-		var offset = 3;
-	
-		for (var z = 0; z < rowAmount; z++) {
-			rows.push(" ");
-			for (var x = 0; x < rowAmount; x++) {
-				var blockGridPosition = {
-					x: x-offset,
-					z: z-offset
-				};
-				if (this.positionOccupied(blockGridPosition)) {
-					rows[z] += "#";
-				} else {
-					rows[z] += ".";
-				}
-			}
-		}
-
-		// rows.push(" #######");
-		// rows.push(" #######");
-		// rows.push(" ##...##");
-		// rows.push(" ##.@.##");
-		// rows.push(" ##...##");
-		// rows.push(" #######");
-		// rows.push(" #######");
-		rows.push("-3210123+");
-		console.clear();
-
-		for (var i = 0; i < rows.length; i++) {
-			var pos = " ";
-			(i - 3) < 4 ? pos = i - 3 : pos = " ";
-			console.log(rows[i] + " " + pos);
-		}
-	};
-
-	this.positionOccupied = function(gridPosition) {
-		for (var x = 0; x < this.gm.visibleBlocks.length; x++) {
-			for (var z = 0; z < this.gm.visibleBlocks.length; z++) {
-				if (this.gm.visibleBlocks[x][z].gridPosition.x === gridPosition.x && this.gm.visibleBlocks[x][z].gridPosition.z === gridPosition.z) {
-					return true;
-				}
-			}
-		}
-		return false;
-	};
 
 };
 
@@ -271,37 +279,4 @@ GRID.Block = function() {
 	this.mesh = null;
 	this.colliders = [];
 
-	// this.setMesh = function(newMesh){
-
-	// };
-
-	// this.setVisible = function(enable) {
-
-	// 	for (var i = 0; i < this.meshes.length; i++) {
-
-	// 		this.meshes[i].visible = enable;
-	// 		this.meshes[i].visible = enable;
-
-	// 	}
-
-	// };
-
-	// this.loadPartsJSON = function(bodyURL, wheelURL) {
-
-	// 	var loader = new THREE.JSONLoader();
-
-	// 	loader.load(bodyURL, createBody);
-	// 	// loader.load(wheelURL, createWheels);
-
-	// };
-
-
-	// function isColliding(position, focusX, focusZ) {
-	// 	var raycaster = new THREE.Raycaster(position, new THREE.Vector3(focusX, 0, focusZ), 0, 4);
-	// 	var intersects = raycaster.intersectObject(colliderBuildings);
-	// 	if (intersects.length > 0) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
 };

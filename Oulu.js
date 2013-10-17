@@ -16,14 +16,14 @@ var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
-var tester = new GRID.Tester();
+// var tester = new GRID.Tester();
 var ouluClones = [];
 var clonePosition = {
 	x: 0,
 	z: 0
 };
 var cloneOffset = 370;
-var cloneAmount = 0;
+var cloneAmount = 1;
 var debugMode = true;
 
 var controlsCar = {
@@ -34,8 +34,8 @@ var controlsCar = {
 
 };
 
-// init();
-// animate();
+init();
+animate();
 
 // FUNCTIONS
 
@@ -144,12 +144,12 @@ function init() {
 	}
 
 
-	// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-	// 	addModelToScene(geometry, material, "colliderbuildings");
-	// });
-	// jsonLoader.load("ColliderGround.js", function(geometry, material) {
-	// 	addModelToScene(geometry, material, "colliderground");
-	// });
+	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+		addModelToScene(geometry, material, "colliderbuildings");
+	});
+	jsonLoader.load("ColliderGround.js", function(geometry, material) {
+		addModelToScene(geometry, material, "colliderground");
+	});
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
@@ -175,14 +175,18 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
 
 	car.callback = function(object) {
-		addCar(object, 142, 15, -20, 1); //10
+		addCar(object, 0, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
 
 	// GRID
 	// gridManager.setTarget(car.root.position);
-	gridManager.target = car.root.position;
+	gridManager.target = {
+		x: function(){return car.root.position.x},
+		z: function(){return car.root.position.z}
+	};
+	gridManager.init();
 
 }
 
