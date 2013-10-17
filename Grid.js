@@ -189,6 +189,11 @@ GRID.Tester = function() {
 	this.gm.init();
 
 	this.move = function(direction, distance) {
+		if(distance > 1){
+			console.log("movement distance must be below 1");
+			return;
+		}
+
 		if (direction == "d") {
 			this.position.z += distance;
 		} else if (direction == "u") {
