@@ -108,14 +108,14 @@ GRID.Manager.prototype = {
 		// Oulu
 		var jsonLoader = new THREE.JSONLoader();
 
-		// jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
-		// 	addOuluModelToScene(geometry, material, newBlock);
-		// });
+		jsonLoader.load("Masterscene.js", function(geometry, material) {
+			addOuluModelToScene(geometry, material, newBlock);
+		});
 
 		// first model
 		// if (oulu.mesh === null) {
 		// 	console.log("oulu undfined");
-		// 	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+		// 	jsonLoader.load("Masterscene.js", function(geometry, material) {
 		// 		addOuluModelToScene(geometry, material, newBlock);
 		// 	});
 		// } else {
@@ -124,19 +124,19 @@ GRID.Manager.prototype = {
 		// 		jsonLoader = new THREE.JSONLoader();
 		// 		console.log("unloading prev assets before loading new clone");
 		// 		unloadAssets();
-		// 		jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+		// 		jsonLoader.load("Masterscene.js", function(geometry, material) {
 		// 			addOuluModelToScene(geometry, material, newBlock);
 		// 		});
 		// 	}, 5000); // * (i + 1));
 		// }
 
 		// Colliders
-		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-			addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
-		});
-		jsonLoader.load("ColliderGround.js", function(geometry, material) {
-			addColliderModelToScene(geometry, material, "colliderground", newBlock);
-		});
+		// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+		// 	addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
+		// });
+		// jsonLoader.load("ColliderGround.js", function(geometry, material) {
+		// 	addColliderModelToScene(geometry, material, "colliderground", newBlock);
+		// });
 
 		return newBlock;
 	},
@@ -164,6 +164,9 @@ GRID.Manager.prototype = {
 				// console.log("mesh false: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
 				// console.log("null: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i]);
 				// console.log("generateBlock: x:" + this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x + "z: " + this.targetGridPosition.z - this.buffer + i);
+
+				console.log("unloading prev assets before loading new clone");
+				unloadAssets();
 
 				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
 				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].secondaryMesh);

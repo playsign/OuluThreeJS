@@ -129,7 +129,7 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	// var jsonLoader = new THREE.JSONLoader();
-	var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
+	var masterscene_file = "Masterscene.js";
 
 	// jsonLoader.load(masterscene_file, function(geometry, material) {
 	// 	console.log("load 1st scene");
