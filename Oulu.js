@@ -13,7 +13,7 @@ var container, scene, carCamera, flyCamera, renderer, flyControls, stats, render
 var flyMode = false;
 var clock = new THREE.Clock();
 var time = Date.now();
-var car, colliderBuildings, colliderGround;
+var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
 // var tester = new GRID.Tester();
@@ -24,7 +24,9 @@ var ouluClones = [];
 // };
 // var cloneOffset = 370;
 // var cloneAmount = 2;
-var debugMode = true;
+
+// Debug draw colliders
+var debugMode = false;
 
 var controlsCar = {
 	moveForward: false,
@@ -149,8 +151,6 @@ function init() {
 
 	// });
 
-
-
 	// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 	// 	addColliderModelToScene(geometry, material, "colliderbuildings");
 	// });
@@ -169,9 +169,9 @@ function init() {
 	car.modelScale = 0.8;
 	car.backWheelOffset = 0.02;
 
-	car.MAX_SPEED = 3; //0
+	car.MAX_SPEED = 0.9; //25
 	car.MAX_REVERSE_SPEED = -0.5; //-15
-	car.FRONT_ACCELERATION = 2.4; // 0.4
+	car.FRONT_ACCELERATION = 0.4; //12
 	car.BACK_ACCELERATION = 0.5; //15
 
 	car.WHEEL_ANGULAR_ACCELERATION = 1; //1.5
@@ -182,7 +182,7 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
 
 	car.callback = function(object) {
-		addCar(object, 0, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
+		addCar(object, 142, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
@@ -198,6 +198,7 @@ function init() {
 		}
 	};
 	gridManager.init();
+
 
 }
 
@@ -242,14 +243,12 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 		newMesh.visible = false;
 	}
 	if (type == "colliderbuildings") {
-		colliderBuildings = newMesh;
 		if (newBlock) {
-			newBlock.mesh = newMesh;
+			newBlock.colliders[0] = newMesh;
 		}
 	} else if (type == "colliderground") {
-		colliderGround = newMesh;
 		if (newBlock) {
-			newBlock.secondaryMesh = newMesh
+			newBlock.colliders[1] = newMesh
 		}
 	}
 

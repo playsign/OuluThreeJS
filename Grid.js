@@ -18,16 +18,9 @@ GRID.Manager = function() {
 	this.blocks = [];
 	// 2D array of blocks currently on screen
 	this.visibleBlocks = [];
-	// for (var a = 0; a < this.blockCount; a++) {
-	// 	this.visibleBlocks[a] = [];
-	// }
 
 	this.size = 500; // length of a side of the block
-	this.buffer = 0; // blocks in the scene at any one time
-
-	// this.setTarget = function(targetPosition) {
-	// 	this.target = targetPosition;
-	// };
+	this.buffer = 0; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
 
 };
 
@@ -59,7 +52,6 @@ GRID.Manager.prototype = {
 
 	getGridPosition: function(targetPosition, blockSize) {
 		// console.log("getGridPosition");
-		// debugger;
 		var gridPosition = {
 			x: Math.round(targetPosition.x() / blockSize),
 			z: Math.round(targetPosition.z() / blockSize),
@@ -102,7 +94,6 @@ GRID.Manager.prototype = {
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
 		newBlock.mesh = true;
-		newBlock.secondaryMesh = true;
 
 
 		// Oulu
@@ -112,31 +103,13 @@ GRID.Manager.prototype = {
 			addOuluModelToScene(geometry, material, newBlock);
 		});
 
-		// first model
-		// if (oulu.mesh === null) {
-		// 	console.log("oulu undfined");
-		// 	jsonLoader.load("Masterscene.js", function(geometry, material) {
-		// 		addOuluModelToScene(geometry, material, newBlock);
-		// 	});
-		// } else {
-		// 	console.log("jsonloader");
-		// 	window.setTimeout(function() {
-		// 		jsonLoader = new THREE.JSONLoader();
-		// 		console.log("unloading prev assets before loading new clone");
-		// 		unloadAssets();
-		// 		jsonLoader.load("Masterscene.js", function(geometry, material) {
-		// 			addOuluModelToScene(geometry, material, newBlock);
-		// 		});
-		// 	}, 5000); // * (i + 1));
-		// }
-
 		// Colliders
-		// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-		// 	addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
-		// });
-		// jsonLoader.load("ColliderGround.js", function(geometry, material) {
-		// 	addColliderModelToScene(geometry, material, "colliderground", newBlock);
-		// });
+		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+			addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
+		});
+		jsonLoader.load("ColliderGround.js", function(geometry, material) {
+			addColliderModelToScene(geometry, material, "colliderground", newBlock);
+		});
 
 		return newBlock;
 	},
@@ -158,48 +131,31 @@ GRID.Manager.prototype = {
 		// populate a temporary array with the newly made blocks.
 		if (gridPosition.x !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// Destroy(this.visibleBlocks[buffer - buffer * gridPosition.x, i].gameObject);
-				// this.visibleBlocks[buffer - buffer * gridPosition.x, i] = null;
-				// newBlocks[i] = Generateblock(targetGridPosition.x + buffer * gridPosition.x + gridPosition.x, targetGridPosition.z - buffer + i);
-				// console.log("mesh false: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
-				// console.log("null: " + this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i]);
-				// console.log("generateBlock: x:" + this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x + "z: " + this.targetGridPosition.z - this.buffer + i);
+				var newBlock = this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i];
 
-				console.log("unloading prev assets before loading new clone");
-				unloadAssets();
-
-				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh);
-				scene.remove(this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].secondaryMesh);
-				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].mesh = false;
-				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].secondaryMesh = false;
+				this.resetBlock(newBlock);
 				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i] = undefined;
 
 				var blockGridPosition = {
 					x: this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x,
 					z: this.targetGridPosition.z - this.buffer + i
 				};
+
 				newBlocks[i] = this.generateBlock(blockGridPosition);
 			}
 		}
 		if (gridPosition.z !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// Destroy(this.visibleBlocks[i, buffer - buffer * gridPosition.z].gameblock);
-				// this.visibleBlocks[i, buffer - buffer * gridPosition.z] = null;
-				// newBlocks[i] = Generateblock(targetGridPosition.x - buffer + i, targetGridPosition.z + buffer * gridPosition.z + gridPosition.z);
-				// console.log("destroy: " + this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z]);
-				// console.log("null: " + this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z]);
-				// console.log("generateBlock: x:" + this.targetGridPosition.x - this.buffer + i + "z: " + this.targetGridPosition.z + this.buffer * gridPosition.z + gridPosition.z);
+				var newBlock = this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z];
 
-				scene.remove(this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].mesh);
-				scene.remove(this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].secondaryMesh);
-				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].mesh = false;
-				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z].secondaryMesh = false;
-				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
+				this.resetBlock(newBlock);
+				 this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
 
 				var blockGridPosition = {
 					x: this.targetGridPosition.x - this.buffer + i,
 					z: this.targetGridPosition.z + this.buffer * gridPosition.z + gridPosition.z
 				};
+
 				newBlocks[i] = this.generateBlock(blockGridPosition);
 			}
 		}
@@ -216,7 +172,10 @@ GRID.Manager.prototype = {
 			for (j = 0; j < this.blockCount; j++) {
 				var t = this.visibleBlocks[i][j];
 				if (t !== undefined) {
-					newVisibleBlocks[-this.targetGridPosition.x - gridPosition.x + this.buffer + t.gridPosition.x][-this.targetGridPosition.z - gridPosition.z + this.buffer + t.gridPosition.z] = t;
+					var indX = -this.targetGridPosition.x - gridPosition.x + this.buffer + t.gridPosition.x;
+					var indY = -this.targetGridPosition.z - gridPosition.z + this.buffer + t.gridPosition.z;
+					console.log("x: " + indX + " y: " + indY);
+					newVisibleBlocks[indX][indY] = t;
 				}
 			}
 		}
@@ -229,6 +188,18 @@ GRID.Manager.prototype = {
 
 		// set the current map to the new array.
 		this.visibleBlocks = newVisibleBlocks;
+	},
+
+	resetBlock: function(b) {
+		console.log("unloading prev assets before loading new clone");
+		unloadAssets();
+
+		scene.remove(b.mesh);
+		for (var i = 0; i < b.colliders.length; i++) {
+			scene.remove(b.colliders[i]);
+		}
+		b.mesh = false;
+
 	},
 
 

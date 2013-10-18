@@ -1,5 +1,5 @@
 /**
- * @author alteredq / http://alteredqualia.com/ 
+ * @author alteredq / http://alteredqualia.com/
  * @author Tapani Jamsa
  */
 
@@ -254,7 +254,7 @@ THREE.Car = function() {
 		}
 		// car update
 		else {
-			forwardDelta = this.speed ;
+			forwardDelta = this.speed;
 		}
 
 		this.carOrientation += (forwardDelta * this.STEERING_RADIUS_RATIO) * this.wheelOrientation;
@@ -262,18 +262,23 @@ THREE.Car = function() {
 		// Ground collider
 		var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y + 50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
 
-		var intersects = raycaster.intersectObject(oulu.colliders[1]);
+		for (var x = 0; x < gridManager.visibleBlocks.length; x++) {
+			for (var z = 0; z < gridManager.visibleBlocks.length; z++) {
+				var intersects = raycaster.intersectObject(gridManager.visibleBlocks[x][z].colliders[1]);
 
-		if (intersects.length > 0) {
-			// console.log("plane collision: " + intersects.length);
-			// console.log(intersects[0]);
-			// console.log(intersects[0].point);
-			// this begin = this.root.position.y;
-			// var target = intersects[0].point.y + 1;
+				if (intersects.length > 0) {
+					// console.log("plane collision: " + intersects.length);
+					// console.log(intersects[0]);
+					// console.log(intersects[0].point);
+					// this begin = this.root.position.y;
+					// var target = intersects[0].point.y + 1;
 
-			this.root.position.y = this.lerp(this.root.position.y, intersects[0].point.y + 0.8, delta);
+					this.root.position.y = this.lerp(this.root.position.y, intersects[0].point.y + 0.8, delta);
 
-			// this.root.position.y = intersects[0].point.y + 1;
+					// this.root.position.y = intersects[0].point.y + 1;
+					break;
+				}
+			}
 		}
 
 		// displacement
@@ -290,8 +295,8 @@ THREE.Car = function() {
 
 		if (this.loaded) {
 
-			this.bodyMesh.rotation.z = this.MAX_TILT_SIDES * this.wheelOrientation * ( this.speed / this.MAX_SPEED );
-			this.bodyMesh.rotation.x = - this.MAX_TILT_FRONTBACK * this.acceleration;
+			this.bodyMesh.rotation.z = this.MAX_TILT_SIDES * this.wheelOrientation * (this.speed / this.MAX_SPEED);
+			this.bodyMesh.rotation.x = -this.MAX_TILT_FRONTBACK * this.acceleration;
 
 		}
 
@@ -318,10 +323,14 @@ THREE.Car = function() {
 	}
 
 	function isColliding(position, focusX, focusZ) {
-		var raycaster = new THREE.Raycaster(position, new THREE.Vector3(focusX, 0, focusZ), 0, 4);
-		var intersects = raycaster.intersectObject(oulu.colliders[0]);
-		if (intersects.length > 0) {
-			return true;
+		var raycaster = new THREE.Raycaster(position, new THREE.Vector3(focusX, position.y, focusZ), 0, 4);
+		for (var x = 0; x < gridManager.visibleBlocks.length; x++) {
+			for (var z = 0; z < gridManager.visibleBlocks.length; z++) {
+				var intersects = raycaster.intersectObject(gridManager.visibleBlocks[x][z].colliders[0]);
+				if (intersects.length > 0) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}
