@@ -1,5 +1,4 @@
 /* -*- js-indent-level: 8 -*- */
-/* jslint white: true */
 /* globals window, console, document, THREEx, THREE, Stats, Detector, requestAnimationFrame */
 /*
  * 	OuluThreeJS
@@ -10,22 +9,21 @@
 "use strict";
 // MAIN
 
-var container, scene, carCamera, flyCamera, renderer, controls, flyControls, stats, rendererStats, directionalLight;
+var container, scene, carCamera, flyCamera, renderer, flyControls, stats, rendererStats, directionalLight;
 var flyMode = false;
-var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var time = Date.now();
-var car;
+var car, colliderBuildings, colliderGround;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
 // var tester = new GRID.Tester();
 var ouluClones = [];
-var clonePosition = {
-	x: 0,
-	z: 0
-};
-var cloneOffset = 370;
-var cloneAmount = 2;
+// var clonePosition = {
+// 	x: 0,
+// 	z: 0
+// };
+// var cloneOffset = 370;
+// var cloneAmount = 2;
 var debugMode = true;
 
 var controlsCar = {
@@ -130,27 +128,26 @@ function init() {
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
-	var jsonLoader = new THREE.JSONLoader();
-	var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
+	// var jsonLoader = new THREE.JSONLoader();
+	// var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
 
-	jsonLoader.load(masterscene_file, function(geometry, material) {
-		console.log("load 1st scene");
-		addOuluModelToScene(geometry, material, "oulu");
+	// jsonLoader.load(masterscene_file, function(geometry, material) {
+	// 	console.log("load 1st scene");
+	// 	addOuluModelToScene(geometry, material, "oulu");
 
-		for (var i = 0; i < cloneAmount; i++) {
-			window.setTimeout(function() {
-				jsonLoader = new THREE.JSONLoader();
-				console.log("unloading prev assets before loading new clone");
-				unloadAssets();
-				jsonLoader.load(masterscene_file, function(geometry, material) {
-					addOuluModelToScene(geometry, material, "oulu");
-				});
-			}, 5000*(i+1));
+	// 	for (var i = 0; i < cloneAmount; i++) {
+	// 		window.setTimeout(function() {
+	// 			jsonLoader = new THREE.JSONLoader();
+	// 			console.log("unloading prev assets before loading new clone");
+	// 			unloadAssets();
+	// 			jsonLoader.load(masterscene_file, function(geometry, material) {
+	// 				addOuluModelToScene(geometry, material, "oulu");
+	// 			});
+	// 		}, 5000*(i+1));
 
-		}
+	// 	}
 
-	});
-
+	// });
 
 
 
@@ -230,19 +227,30 @@ function loadTexture(path) {
 	return tex;
 }
 
-function addColliderModelToScene(geometry, origMaterials, type) {
-	var faceMaterial, newMesh, map;
-	var basicMaterial;
+function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
+	var faceMaterial, newMesh;
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	faceMaterial = new THREE.MeshFaceMaterial(origMaterials);
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
+
+	// Todo refactor this
+	if (newBlock) {
+		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
+		newMesh.rotation.y = 45 * Math.PI / 180;
+	}
 	if (debugMode === false) {
 		newMesh.visible = false;
 	}
 	if (type == "colliderbuildings") {
 		colliderBuildings = newMesh;
+		if (newBlock) {
+			newBlock.mesh = newMesh;
+		}
 	} else if (type == "colliderground") {
 		colliderGround = newMesh;
+		if (newBlock) {
+			newBlock.secondaryMesh = newMesh
+		}
 	}
 
 	newMesh.scale.set(1.5, 1.5, 1.5);
@@ -257,11 +265,12 @@ function addOuluModelToScene(geometry, origMaterials) {
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	var newMaterials = [];
 	var realTextures = [];
+
 	function regDisposable(x) {
 		if (typeof(x.dispose) !== "function")
-			throw("doesn't have a .dispose(): " + x);
+			throw ("doesn't have a .dispose(): " + x);
 		disposables.push(x);
-	};
+	}
 	regDisposable(geometry);
 	for (var i = 0; i < origMaterials.length; i++) {
 		regDisposable(origMaterials[i]);
@@ -329,7 +338,7 @@ function addOuluModelToScene(geometry, origMaterials) {
 				delete texcache[key].mimpaps;
 				delete texcache[key];
 			}
-		// console.log("done");
+			// console.log("done");
 	};
 	doLoadAssets = function() {
 		console.log("loading", realTextures.length, "textures");
@@ -368,7 +377,11 @@ function setFlyMode(flying) {
 		flyMode = flying;
 		flyControls.dragging = false;
 		flyControls.enabled = flying;
-		flying === true ? THREEx.WindowResize(renderer, flyCamera) : THREEx.WindowResize(renderer, carCamera);
+		if (flying === true) {
+			THREEx.WindowResize(renderer, flyCamera);
+		} else {
+			THREEx.WindowResize(renderer, carCamera);
+		}
 	} else {
 		console.log("setFlyMode illegal parameter");
 	}
@@ -405,7 +418,11 @@ function update() {
 }
 
 function render() {
-	flyMode ? renderer.render(scene, flyCamera) : renderer.render(scene, carCamera);
+	if (flyMode) {
+		renderer.render(scene, flyCamera);
+	} else {
+		renderer.render(scene, carCamera);
+	}
 }
 
 function onKeyDown(event) {
@@ -454,7 +471,7 @@ function onKeyDown(event) {
 
 	}
 
-};
+}
 
 function onKeyUp(event) {
 

@@ -103,10 +103,10 @@ GRID.Manager.prototype = {
 
 
 		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-			addModelToScene(geometry, material, "colliderbuildings", newBlock);
+			addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
 		});
 		jsonLoader.load("ColliderGround.js", function(geometry, material) {
-			addModelToScene(geometry, material, "colliderground", newBlock);
+			addColliderModelToScene(geometry, material, "colliderground", newBlock);
 		});
 
 		return newBlock;
@@ -292,7 +292,7 @@ GRID.Tester = function() {
 };
 
 GRID.Block = function() {
-	console.log("Block");
+	// console.log("Block");
 
 	this.gridPosition = {
 		x: 0,
