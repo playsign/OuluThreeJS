@@ -129,7 +129,7 @@ function init() {
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	// var jsonLoader = new THREE.JSONLoader();
-	// var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
+	var masterscene_file = "MastersceneTrees_NoCityhall_NoSkydome_90degree.js";
 
 	// jsonLoader.load(masterscene_file, function(geometry, material) {
 	// 	console.log("load 1st scene");
@@ -258,7 +258,8 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 	scene.add(newMesh);
 }
 
-function addOuluModelToScene(geometry, origMaterials) {
+function addOuluModelToScene(geometry, origMaterials, newBlock) {
+	console.log("addOuluModelToScene");
 	var disposables = [];
 	var newMesh, newTexture;
 	var basicMaterial;
@@ -304,17 +305,25 @@ function addOuluModelToScene(geometry, origMaterials) {
 	}
 	var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
-	if (oulu === undefined) {
-		oulu = newMesh;
-	} else {
-		clonePosition = getNextClonePosition(clonePosition);
-		// console.log("clonePosition: " + oulu);
-		// console.log(clonePosition);
+	// if (oulu === undefined) {
+	// 	oulu = newMesh;
+	// } else {
+	// 	clonePosition = getNextClonePosition(clonePosition);
+	// 	// console.log("clonePosition: " + oulu);
+	// 	// console.log(clonePosition);
 
-		newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
-		ouluClones.push(newMesh);
+	// 	newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
+	// 	ouluClones.push(newMesh);
 
 
+	// }
+	// Todo refactor this
+	if (newBlock) {
+		console.log("newBlock: ");
+		console.log(newBlock);
+		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
+		newMesh.rotation.y = 45 * Math.PI / 180;
+		newBlock.mesh = newMesh;
 	}
 
 	unloadAssets = function() {

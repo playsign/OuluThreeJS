@@ -14,16 +14,16 @@ GRID.Manager = function() {
 		z: 0
 	};
 
-	this.blockCount = 3; // block count is the amount of blocks in a single row (buffer * 2 + 1)
+	this.blockCount = null; // Don't modify. block count is the amount of blocks in a single row (buffer * 2 + 1)
 	this.blocks = [];
 	// 2D array of blocks currently on screen
 	this.visibleBlocks = [];
-	for (var a = 0; a < this.blockCount; a++) {
-		this.visibleBlocks[a] = [];
-	}
+	// for (var a = 0; a < this.blockCount; a++) {
+	// 	this.visibleBlocks[a] = [];
+	// }
 
 	this.size = 500; // length of a side of the block
-	this.buffer = 1; // blocks in the scene at any one time
+	this.buffer = 0; // blocks in the scene at any one time
 
 	// this.setTarget = function(targetPosition) {
 	// 	this.target = targetPosition;
@@ -75,6 +75,11 @@ GRID.Manager.prototype = {
 
 	init: function() {
 		// console.log("init");
+		this.blockCount = this.buffer * 2 + 1;
+		this.visibleBlocks = new Array(this.blockCount);
+		for (var a = 0; a < this.blockCount; a++) {
+			this.visibleBlocks[a] = new Array(this.blockCount);
+		}
 		var newGridPosition = this.getGridPosition(this.target, this.size);
 
 		for (var x = 0; x < this.blockCount; x++) {
@@ -91,6 +96,8 @@ GRID.Manager.prototype = {
 
 	generateBlock: function(gridPosition) {
 		// console.log("generateBlock");
+		// console.log("gridPosition: ");
+		// console.log(gridPosition);
 		var newBlock = new GRID.Block();
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
@@ -101,7 +108,29 @@ GRID.Manager.prototype = {
 		// Oulu
 		var jsonLoader = new THREE.JSONLoader();
 
+		// jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+		// 	addOuluModelToScene(geometry, material, newBlock);
+		// });
 
+		// first model
+		// if (oulu.mesh === null) {
+		// 	console.log("oulu undfined");
+		// 	jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+		// 		addOuluModelToScene(geometry, material, newBlock);
+		// 	});
+		// } else {
+		// 	console.log("jsonloader");
+		// 	window.setTimeout(function() {
+		// 		jsonLoader = new THREE.JSONLoader();
+		// 		console.log("unloading prev assets before loading new clone");
+		// 		unloadAssets();
+		// 		jsonLoader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree.js", function(geometry, material) {
+		// 			addOuluModelToScene(geometry, material, newBlock);
+		// 		});
+		// 	}, 5000); // * (i + 1));
+		// }
+
+		// Colliders
 		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 			addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
 		});
@@ -120,8 +149,8 @@ GRID.Manager.prototype = {
 		// console.log("cull");
 		var i = 0,
 			j = 0;
-		var newBlocks = [this.blockCount];
-		var newVisibleBlocks = [];
+		var newBlocks = new Array(this.blockCount);
+		var newVisibleBlocks = new Array(this.blockCount);
 		for (var a = 0; a < this.blockCount; a++) {
 			newVisibleBlocks[a] = [];
 		}
@@ -262,7 +291,6 @@ GRID.Tester = function() {
 	};
 
 	this.gm = new GRID.Manager();
-	this.gm.blockCount = 3;
 	this.gm.size = 1;
 	this.gm.buffer = 1;
 	this.gm.target = this.position;
