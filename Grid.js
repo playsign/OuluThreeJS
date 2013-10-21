@@ -98,11 +98,11 @@ GRID.Manager.prototype = {
 		var blockId = "block-" + gridPosition.x + "_" + gridPosition.y + ".js";
 
 		// Oulu
-		var jsonLoader = new THREE.JSONLoader();
+		// var jsonLoader = new THREE.JSONLoader();
 
-		jsonLoader.load("Masterscene.js", function(geometry, material) {
-			addOuluModelToScene(geometry, material, newBlock);
-		});
+		// jsonLoader.load("Masterscene.js", function(geometry, material) {
+		// 	addOuluModelToScene(geometry, material, newBlock);
+		// });
 
 		// // Colliders
 		// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
@@ -111,6 +111,65 @@ GRID.Manager.prototype = {
 		// jsonLoader.load("ColliderGround.js", function(geometry, material) {
 		// 	addColliderModelToScene(geometry, material, "colliderground", newBlock);
 		// });
+
+		// CTM
+		// var loader = new THREE.CTMLoader();
+
+		// loader.load("MastersceneTrees_NoCityhall_NoSkydome_90degree_pieces.ctm", function(geometry) {
+
+		// 	var material = new THREE.MeshLambertMaterial({
+		// 		color: 0xffffff
+		// 	});
+		// 	// var material2 = new THREE.MeshPhongMaterial({
+		// 	// 	color: 0xff4400,
+		// 	// 	specular: 0x333333,
+		// 	// 	shininess: 100
+		// 	// });
+		// 	// var material3 = new THREE.MeshPhongMaterial({
+		// 	// 	color: 0x00ff44,
+		// 	// 	specular: 0x333333,
+		// 	// 	shininess: 100
+		// 	// });
+
+		// 	// callbackModel(geometry, 5, material1, -200, 0, -50, 0, 0, newBlock);
+		// 	// callbackModel(geometry, 2, material2, 100, 0, 125, 0, 0);
+		// 	// callbackModel(geometry, 2, material3, -100, 0, 125, 0, 0);
+
+		// 	addOuluModelToScene(geometry, material, newBlock);
+
+		// }, {
+		// 	useWorker: true
+		// });
+
+
+		//CTM LOAD PARTS
+		var loaderCTM = new THREE.CTMLoader(true);
+		// document.body.appendChild(loaderCTM.statusDomElement);
+
+		var position = new THREE.Vector3(-105, -78, -40);
+		// var scale = new THREE.Vector3(30, 30, 30);
+
+		loaderCTM.loadParts("BlockCTM.js", function(geometries, materials) {
+
+			// hackMaterials(materials);
+
+			for (var i = 0; i < geometries.length; i++) {
+				var mesh = new THREE.Mesh(geometries[i], materials[i]);
+				// mesh.position = position;
+				mesh.scale = scale;
+				scene.add(mesh);
+
+			}
+
+			loaderCTM.statusDomElement.style.display = "none";
+
+			// var end = Date.now();
+
+			// console.log("load time:", end - start, "ms");
+
+		}, {
+			useWorker: true
+		});
 
 		return newBlock;
 	},
@@ -150,7 +209,7 @@ GRID.Manager.prototype = {
 				var newBlock = this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z];
 
 				this.resetBlock(newBlock);
-				 this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
+				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
 
 				var blockGridPosition = {
 					x: this.targetGridPosition.x - this.buffer + i,
@@ -192,8 +251,8 @@ GRID.Manager.prototype = {
 	},
 
 	resetBlock: function(b) {
-		console.log("unloading prev assets before loading new clone");
-		unloadAssets();
+		// console.log("unloading prev assets before loading new clone");
+		// unloadAssets();
 
 		scene.remove(b.mesh);
 		for (var i = 0; i < b.colliders.length; i++) {

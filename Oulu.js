@@ -261,9 +261,9 @@ function addOuluModelToScene(geometry, origMaterials, newBlock) {
 	console.log("addOuluModelToScene");
 	var disposables = [];
 	var newMesh, newTexture;
-	var basicMaterial;
-	var placeholderTexture = loadTexture("images/balconieRailings.dds");
-	var newMaterials = [];
+	// var basicMaterial;
+	// var placeholderTexture = loadTexture("images/balconieRailings.dds");
+	// var newMaterials = [];
 	var realTextures = [];
 
 	function regDisposable(x) {
@@ -272,38 +272,38 @@ function addOuluModelToScene(geometry, origMaterials, newBlock) {
 		disposables.push(x);
 	}
 	regDisposable(geometry);
-	for (var i = 0; i < origMaterials.length; i++) {
-		regDisposable(origMaterials[i]);
-		if (origMaterials[i].map) {
-			//  JPG TO DDS
-			var ddsName = origMaterials[i].map.sourceFile.substr(0, origMaterials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
-			// console.log("ddsName: " + ddsName);
-			var texpath = "./images/" + ddsName;
-			if (loadAssetsAtStartup) {
-				if (useTexcache && texcache.hasOwnProperty(texpath))
-					newTexture = texcache[texpath];
-				else
-					newTexture = texcache[texpath] = loadTexture(texpath);
+	// for (var i = 0; i < origMaterials.length; i++) {
+	// 	regDisposable(origMaterials[i]);
+	// 	if (origMaterials[i].map) {
+	// 		//  JPG TO DDS
+	// 		var ddsName = origMaterials[i].map.sourceFile.substr(0, origMaterials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
+	// 		// console.log("ddsName: " + ddsName);
+	// 		var texpath = "./images/" + ddsName;
+	// 		if (loadAssetsAtStartup) {
+	// 			if (useTexcache && texcache.hasOwnProperty(texpath))
+	// 				newTexture = texcache[texpath];
+	// 			else
+	// 				newTexture = texcache[texpath] = loadTexture(texpath);
 
-				basicMaterial = new THREE.MeshBasicMaterial({
-					map: newTexture
-				});
-			} else {
-				realTextures[i] = texpath;
-				basicMaterial = new THREE.MeshBasicMaterial({
-					//color: 0xaabbcc,
-					map: placeholderTexture,
-				});
-			}
-			regDisposable(basicMaterial);
-			newMaterials.push(basicMaterial);
-		} else {
-			newMaterials.push(origMaterials[i]);
-			// console.log("png: " + i);
-		}
-	}
-	var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
-	newMesh = new THREE.Mesh(geometry, faceMaterial);
+	// 			basicMaterial = new THREE.MeshBasicMaterial({
+	// 				map: newTexture
+	// 			});
+	// 		} else {
+	// 			realTextures[i] = texpath;
+	// 			basicMaterial = new THREE.MeshBasicMaterial({
+	// 				//color: 0xaabbcc,
+	// 				map: placeholderTexture,
+	// 			});
+	// 		}
+	// 		regDisposable(basicMaterial);
+	// 		newMaterials.push(basicMaterial);
+	// 	} else {
+	// 		newMaterials.push(origMaterials[i]);
+	// 		// console.log("png: " + i);
+	// 	}
+	// }
+	// var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
+	newMesh = new THREE.Mesh(geometry, origMaterials);
 	// if (oulu === undefined) {
 	// 	oulu = newMesh;
 	// } else {
@@ -550,3 +550,67 @@ function getNextClonePosition(pos) {
 
 	return pos;
 }
+
+// function hackMaterials(materials) {
+
+// 	for (var i = 0; i < materials.length; i++) {
+
+// 		var m = materials[i];
+
+// 		if (m.name.indexOf("Body") !== -1) {
+
+// 			var mm = new THREE.MeshPhongMaterial({
+// 				map: m.map
+// 			});
+
+// 			mm.envMap = textureCube;
+// 			mm.combine = THREE.MixOperation;
+// 			mm.reflectivity = 0.75;
+
+// 			materials[i] = mm;
+
+// 		} else if (m.name.indexOf("mirror") !== -1) {
+
+// 			var mm = new THREE.MeshPhongMaterial({
+// 				map: m.map
+// 			});
+
+// 			mm.envMap = textureCube;
+// 			mm.combine = THREE.MultiplyOperation;
+
+// 			materials[i] = mm;
+
+// 		} else if (m.name.indexOf("glass") !== -1) {
+
+// 			var mm = new THREE.MeshPhongMaterial({
+// 				map: m.map
+// 			});
+
+// 			mm.envMap = textureCube;
+// 			mm.color.copy(m.color);
+// 			mm.combine = THREE.MixOperation;
+// 			mm.reflectivity = 0.25;
+// 			mm.opacity = m.opacity;
+// 			mm.transparent = true;
+
+// 			materials[i] = mm;
+
+// 		} else if (m.name.indexOf("Material.001") !== -1) {
+
+// 			var mm = new THREE.MeshPhongMaterial({
+// 				map: m.map
+// 			});
+
+// 			mm.shininess = 30;
+// 			mm.color.setHex(0x404040);
+// 			mm.metal = true;
+
+// 			materials[i] = mm;
+
+// 		}
+
+// 		materials[i].side = THREE.DoubleSide;
+
+// 	}
+
+// }
