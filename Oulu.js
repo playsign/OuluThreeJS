@@ -321,32 +321,32 @@ function addOuluModelToScene(geometry, origMaterials, newBlock) {
 		console.log("newBlock: ");
 		console.log(newBlock);
 		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
-		newMesh.rotation.y = 45 * Math.PI / 180;
+		// newMesh.rotation.y = 45 * Math.PI / 180;
 		newBlock.mesh = newMesh;
 	}
 
 	unloadAssets = function() {
-		// note: this code currently works only when loadAssetsAtStartup is on
-		scene.remove(newMesh);
-		for (var i = 0; i < disposables.length; i++) {
-			var d = disposables[i];
-			d.dispose();
-			if (d instanceof THREE.Geometry) {
-				console.log("after dispose with geom, faces", d.faces.length, "uvs", d.faceVertexUvs.length);
-				d.faces.length = 0;
-				d.vertices.length = 0;
-				d.faceVertexUvs.length = 0;
-			}
-		}
-		disposables.length = 0; // yes, really the way to clear js arrays
-		for (var key in texcache)
-			if (texcache.hasOwnProperty(key)) {
-				texcache[key].dispose();
-				delete texcache[key].image;
-				delete texcache[key].mimpaps;
-				delete texcache[key];
-			}
-			// console.log("done");
+		// // note: this code currently works only when loadAssetsAtStartup is on
+		// scene.remove(newMesh);
+		// for (var i = 0; i < disposables.length; i++) {
+		// 	var d = disposables[i];
+		// 	d.dispose();
+		// 	if (d instanceof THREE.Geometry) {
+		// 		console.log("after dispose with geom, faces", d.faces.length, "uvs", d.faceVertexUvs.length);
+		// 		d.faces.length = 0;
+		// 		d.vertices.length = 0;
+		// 		d.faceVertexUvs.length = 0;
+		// 	}
+		// }
+		// disposables.length = 0; // yes, really the way to clear js arrays
+		// for (var key in texcache)
+		// 	if (texcache.hasOwnProperty(key)) {
+		// 		texcache[key].dispose();
+		// 		delete texcache[key].image;
+		// 		delete texcache[key].mimpaps;
+		// 		delete texcache[key];
+		// 	}
+		// 	// console.log("done");
 	};
 	doLoadAssets = function() {
 		console.log("loading", realTextures.length, "textures");

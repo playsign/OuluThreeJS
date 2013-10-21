@@ -19,8 +19,8 @@ GRID.Manager = function() {
 	// 2D array of blocks currently on screen
 	this.visibleBlocks = [];
 
-	this.size = 500; // length of a side of the block
-	this.buffer = 0; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
+	this.size = 166; //500 // length of a side of the block
+	this.buffer = 1; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
 
 };
 
@@ -95,6 +95,7 @@ GRID.Manager.prototype = {
 		newBlock.gridPosition.z = gridPosition.z;
 		newBlock.mesh = true;
 
+		var blockId = "block-" + gridPosition.x + "_" + gridPosition.y + ".js";
 
 		// Oulu
 		var jsonLoader = new THREE.JSONLoader();
@@ -103,13 +104,13 @@ GRID.Manager.prototype = {
 			addOuluModelToScene(geometry, material, newBlock);
 		});
 
-		// Colliders
-		jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
-			addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
-		});
-		jsonLoader.load("ColliderGround.js", function(geometry, material) {
-			addColliderModelToScene(geometry, material, "colliderground", newBlock);
-		});
+		// // Colliders
+		// jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+		// 	addColliderModelToScene(geometry, material, "colliderbuildings", newBlock);
+		// });
+		// jsonLoader.load("ColliderGround.js", function(geometry, material) {
+		// 	addColliderModelToScene(geometry, material, "colliderground", newBlock);
+		// });
 
 		return newBlock;
 	},
