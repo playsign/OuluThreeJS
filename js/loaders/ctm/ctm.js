@@ -65,8 +65,6 @@ CTM.FileBody = function(header){
       a = header.vertexCount * 4,
       j = 0;
 
-  var arrlen = (i + v + n + (u * header.uvMapCount) + (a * header.attrMapCount) ) * 4
-  console.log(arrlen);
   var data = new ArrayBuffer(
     (i + v + n + (u * header.uvMapCount) + (a * header.attrMapCount) ) * 4);
 

@@ -182,7 +182,7 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
 
 	car.callback = function(object) {
-		addCar(object, 142, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
+		addCar(object, 0, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
@@ -257,72 +257,73 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 	scene.add(newMesh);
 }
 
-function addOuluModelToScene(geometry, origMaterials, newBlock) {
+function addOuluModelToScene(group, newBlock) {
 	console.log("addOuluModelToScene");
 	var disposables = [];
 	var newMesh, newTexture;
-	// var basicMaterial;
-	// var placeholderTexture = loadTexture("images/balconieRailings.dds");
-	// var newMaterials = [];
+	var basicMaterial;
+	var placeholderTexture = loadTexture("images/balconieRailings.dds");
+	var newMaterials = [];
 	var realTextures = [];
 
-	function regDisposable(x) {
-		if (typeof(x.dispose) !== "function")
-			throw ("doesn't have a .dispose(): " + x);
-		disposables.push(x);
+	// function regDisposable(x) {
+
+	// loop children[i].geometry for group
+
+	// if (typeof(x.dispose) !== "function")
+	// 	throw ("doesn't have a .dispose(): " + x);
+	// disposables.push(x);
+	// }
+	// regDisposable(newMesh.geometry);
+
+	for (var i = 0; i < group.children.length; i++) {
+		// for (var i = 0; i < group.children[k].material.length; i++) {
+		// regDisposable(group.children[k].material[i]);
+		// debugger;
+		if (group.children[i].material.map) {
+			// debugger;
+			//  JPG TO DDS
+			var ddsName = group.children[i].material.map.sourceFile.substr(0, group.children[i].material.map.sourceFile.lastIndexOf(".")) + ".dds";
+			console.log("ddsName: " + ddsName);
+			var texpath = "./images/" + ddsName;
+			if (loadAssetsAtStartup) {
+				if (useTexcache && texcache.hasOwnProperty(texpath))
+					newTexture = texcache[texpath];
+				else
+					newTexture = texcache[texpath] = loadTexture(texpath);
+
+				basicMaterial = new THREE.MeshBasicMaterial({
+					map: newTexture
+				});
+			} else {
+				realTextures[i] = texpath;
+				basicMaterial = new THREE.MeshBasicMaterial({
+					//color: 0xaabbcc,
+					map: placeholderTexture,
+				});
+			}
+			// regDisposable(basicMaterial);
+			newMaterials.push(basicMaterial);
+		} else {
+			newMaterials.push(group.children[i].material);
+			// console.log("png: " + i);
+		}
+		// }
+		var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
+		console.log("faceMaterial");
+		console.log(faceMaterial);
+		group.children[i] = new THREE.Mesh(group.children[i].geometry, faceMaterial);
+
+
 	}
-	regDisposable(geometry);
-	// for (var i = 0; i < origMaterials.length; i++) {
-	// 	regDisposable(origMaterials[i]);
-	// 	if (origMaterials[i].map) {
-	// 		//  JPG TO DDS
-	// 		var ddsName = origMaterials[i].map.sourceFile.substr(0, origMaterials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
-	// 		// console.log("ddsName: " + ddsName);
-	// 		var texpath = "./images/" + ddsName;
-	// 		if (loadAssetsAtStartup) {
-	// 			if (useTexcache && texcache.hasOwnProperty(texpath))
-	// 				newTexture = texcache[texpath];
-	// 			else
-	// 				newTexture = texcache[texpath] = loadTexture(texpath);
-
-	// 			basicMaterial = new THREE.MeshBasicMaterial({
-	// 				map: newTexture
-	// 			});
-	// 		} else {
-	// 			realTextures[i] = texpath;
-	// 			basicMaterial = new THREE.MeshBasicMaterial({
-	// 				//color: 0xaabbcc,
-	// 				map: placeholderTexture,
-	// 			});
-	// 		}
-	// 		regDisposable(basicMaterial);
-	// 		newMaterials.push(basicMaterial);
-	// 	} else {
-	// 		newMaterials.push(origMaterials[i]);
-	// 		// console.log("png: " + i);
-	// 	}
-	// }
-	// var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
-	newMesh = new THREE.Mesh(geometry, origMaterials);
-	// if (oulu === undefined) {
-	// 	oulu = newMesh;
-	// } else {
-	// 	clonePosition = getNextClonePosition(clonePosition);
-	// 	// console.log("clonePosition: " + oulu);
-	// 	// console.log(clonePosition);
-
-	// 	newMesh.position.set(clonePosition.x * 500, 0, clonePosition.z * 500);
-	// 	ouluClones.push(newMesh);
-
-
-	// }
 	// Todo refactor this
-	if (newBlock) {
-		console.log("newBlock: ");
-		console.log(newBlock);
-		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
+	if (group) {
+
+		group.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
 		// newMesh.rotation.y = 45 * Math.PI / 180;
-		newBlock.mesh = newMesh;
+		newBlock.mesh = group;
+		console.log("group: ");
+		console.log(group);
 	}
 
 	unloadAssets = function() {
@@ -368,9 +369,9 @@ function addOuluModelToScene(geometry, origMaterials, newBlock) {
 	// oulu.castShadow = true;
 	// oulu.receiveShadow = true;
 
-	newMesh.scale.set(1.5, 1.5, 1.5);
+	group.scale.set(1.5, 1.5, 1.5);
 
-	scene.add(newMesh);
+	scene.add(group);
 }
 
 
