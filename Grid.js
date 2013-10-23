@@ -20,7 +20,7 @@ GRID.Manager = function() {
 	this.visibleBlocks = [];
 
 	this.size = 166; //500 // length of a side of the block
-	this.buffer = 0; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
+	this.buffer = 1; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
 
 	this.debugGroup = null;
 
@@ -88,6 +88,7 @@ GRID.Manager.prototype = {
 		}
 	},
 
+
 	generateBlock: function(gridPosition) {
 		console.log("generateBlock");
 		// console.log("gridPosition: ");
@@ -146,23 +147,26 @@ GRID.Manager.prototype = {
 
 		//CTM LOAD PARTS
 		var loaderCTM = new THREE.CTMLoader(true);
-		var group = new THREE.Object3D();//create an empty container
+		var group = new THREE.Object3D(); //create an empty container
 		// document.body.appendChild(loaderCTM.statusDomElement);
 
 		// var position = new THREE.Vector3(-105, -78, -40);
 		// var scale = new THREE.Vector3(30, 30, 30);
 
 		loaderCTM.loadParts("BlockCTM.js", function(geometries, materials) {
+			console.log("geometries");
+			console.log(geometries);
 
-			// hackMaterials(materials);
+			hackMaterials(materials);
 
 			for (var i = 0; i < geometries.length; i++) {
 				console.log("add mesh");
+				materials[i].materialIndex = i;
 				var mesh = new THREE.Mesh(geometries[i], materials[i]);
 				// mesh.position = position;
 				// mesh.scale = scale;
 				// scene.add(mesh);
-				group.add( mesh );//add a mesh with geometry to it
+				group.add(mesh); //add a mesh with geometry to it
 
 			}
 

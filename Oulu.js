@@ -276,46 +276,46 @@ function addOuluModelToScene(group, newBlock) {
 	// }
 	// regDisposable(newMesh.geometry);
 
-	for (var i = 0; i < group.children.length; i++) {
-		// for (var i = 0; i < group.children[k].material.length; i++) {
-		// regDisposable(group.children[k].material[i]);
-		// debugger;
-		if (group.children[i].material.map) {
-			// debugger;
-			//  JPG TO DDS
-			var ddsName = group.children[i].material.map.sourceFile.substr(0, group.children[i].material.map.sourceFile.lastIndexOf(".")) + ".dds";
-			console.log("ddsName: " + ddsName);
-			var texpath = "./images/" + ddsName;
-			if (loadAssetsAtStartup) {
-				if (useTexcache && texcache.hasOwnProperty(texpath))
-					newTexture = texcache[texpath];
-				else
-					newTexture = texcache[texpath] = loadTexture(texpath);
+	// for (var i = 0; i < group.children.length; i++) {
+	// 	// for (var i = 0; i < group.children[k].material.length; i++) {
+	// 	// regDisposable(group.children[k].material[i]);
+	// 	// debugger;
+	// 	if (group.children[i].material.map) {
+	// 		// debugger;
+	// 		//  JPG TO DDS
+	// 		var ddsName = group.children[i].material.map.sourceFile.substr(0, group.children[i].material.map.sourceFile.lastIndexOf(".")) + ".dds";
+	// 		console.log("ddsName: " + ddsName);
+	// 		var texpath = "./images/" + ddsName;
+	// 		if (loadAssetsAtStartup) {
+	// 			if (useTexcache && texcache.hasOwnProperty(texpath))
+	// 				newTexture = texcache[texpath];
+	// 			else
+	// 				newTexture = texcache[texpath] = loadTexture(texpath);
 
-				basicMaterial = new THREE.MeshBasicMaterial({
-					map: newTexture
-				});
-			} else {
-				realTextures[i] = texpath;
-				basicMaterial = new THREE.MeshBasicMaterial({
-					//color: 0xaabbcc,
-					map: placeholderTexture,
-				});
-			}
-			// regDisposable(basicMaterial);
-			newMaterials.push(basicMaterial);
-		} else {
-			newMaterials.push(group.children[i].material);
-			// console.log("png: " + i);
-		}
-		// }
-		var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
-		console.log("faceMaterial");
-		console.log(faceMaterial);
-		group.children[i] = new THREE.Mesh(group.children[i].geometry, faceMaterial);
+	// 			basicMaterial = new THREE.MeshBasicMaterial({
+	// 				map: newTexture
+	// 			});
+	// 		} else {
+	// 			realTextures[i] = texpath;
+	// 			basicMaterial = new THREE.MeshBasicMaterial({
+	// 				//color: 0xaabbcc,
+	// 				map: placeholderTexture,
+	// 			});
+	// 		}
+	// 		// regDisposable(basicMaterial);
+	// 		newMaterials.push(basicMaterial);
+	// 	} else {
+	// 		newMaterials.push(group.children[i].material);
+	// 		// console.log("png: " + i);
+	// 	}
+	// 	// }
+	// 	var faceMaterial = new THREE.MeshFaceMaterial(newMaterials);
+	// 	console.log("faceMaterial");
+	// 	console.log(faceMaterial);
+	// 	group.children[i] = new THREE.Mesh(group.children[i].geometry, faceMaterial);
 
 
-	}
+	// }
 	// Todo refactor this
 	if (group) {
 
@@ -552,66 +552,51 @@ function getNextClonePosition(pos) {
 	return pos;
 }
 
-// function hackMaterials(materials) {
 
-// 	for (var i = 0; i < materials.length; i++) {
+function hackMaterials(origMaterials) {
+	var basicMaterial;
+	var placeholderTexture = loadTexture("images/balconieRailings.dds");
+	var newMaterials = [];
+	var newTexture;
+	var realTextures = [];
 
-// 		var m = materials[i];
+	for (var i = 0; i < origMaterials.length; i++) {
 
-// 		if (m.name.indexOf("Body") !== -1) {
+		var m = origMaterials[i];
 
-// 			var mm = new THREE.MeshPhongMaterial({
-// 				map: m.map
-// 			});
+			// regDisposable(origMaterials[i]);
+			if (m.map) {
+				//  JPG TO DDS
+				var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
+				console.log("ddsName: " + ddsName);
+				var texpath = "./images/" + ddsName;
+				if (loadAssetsAtStartup) {
+					if (useTexcache && texcache.hasOwnProperty(texpath))
+						newTexture = texcache[texpath];
+					else
+						newTexture = texcache[texpath] = loadTexture(texpath);
 
-// 			mm.envMap = textureCube;
-// 			mm.combine = THREE.MixOperation;
-// 			mm.reflectivity = 0.75;
+					basicMaterial = new THREE.MeshBasicMaterial({
+						map: newTexture
+					});
+				} else {
+					realTextures[i] = texpath;
+					basicMaterial = new THREE.MeshBasicMaterial({
+						//color: 0xaabbcc,
+						map: placeholderTexture,
+					});
+				}
+				// regDisposable(basicMaterial);
+				newMaterials.push(basicMaterial);
+			} else {
+				newMaterials.push(m);
+				console.log("png: " + i);
+			}
 
-// 			materials[i] = mm;
+		origMaterials[ i ] = new THREE.MeshFaceMaterial(newMaterials);
 
-// 		} else if (m.name.indexOf("mirror") !== -1) {
+		origMaterials[ i ].side = THREE.DoubleSide;
 
-// 			var mm = new THREE.MeshPhongMaterial({
-// 				map: m.map
-// 			});
+	}
 
-// 			mm.envMap = textureCube;
-// 			mm.combine = THREE.MultiplyOperation;
-
-// 			materials[i] = mm;
-
-// 		} else if (m.name.indexOf("glass") !== -1) {
-
-// 			var mm = new THREE.MeshPhongMaterial({
-// 				map: m.map
-// 			});
-
-// 			mm.envMap = textureCube;
-// 			mm.color.copy(m.color);
-// 			mm.combine = THREE.MixOperation;
-// 			mm.reflectivity = 0.25;
-// 			mm.opacity = m.opacity;
-// 			mm.transparent = true;
-
-// 			materials[i] = mm;
-
-// 		} else if (m.name.indexOf("Material.001") !== -1) {
-
-// 			var mm = new THREE.MeshPhongMaterial({
-// 				map: m.map
-// 			});
-
-// 			mm.shininess = 30;
-// 			mm.color.setHex(0x404040);
-// 			mm.metal = true;
-
-// 			materials[i] = mm;
-
-// 		}
-
-// 		materials[i].side = THREE.DoubleSide;
-
-// 	}
-
-// }
+}
