@@ -258,7 +258,9 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 }
 
 function addOuluModelToScene(group, newBlock) {
-	console.log("addOuluModelToScene");
+	// console.log("addOuluModelToScene");
+	// console.log(newBlock);
+	// console.log(group);
 	var disposables = [];
 	var newMesh, newTexture;
 	var basicMaterial;
@@ -322,8 +324,8 @@ function addOuluModelToScene(group, newBlock) {
 		group.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
 		// newMesh.rotation.y = 45 * Math.PI / 180;
 		newBlock.mesh = group;
-		console.log("group: ");
-		console.log(group);
+		// console.log("group: ");
+		// console.log(group);
 	}
 
 	unloadAssets = function() {
@@ -421,7 +423,7 @@ function update() {
 		car.updateCarModel(delta, controlsCar);
 	}
 
-	gridManager.update();
+	gridManager.update(delta);
 	stats.update();
 	rendererStats.update(renderer);
 }
@@ -568,7 +570,7 @@ function hackMaterials(origMaterials) {
 			if (m.map) {
 				//  JPG TO DDS
 				var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
-				console.log("ddsName: " + ddsName);
+				// console.log("ddsName: " + ddsName);
 				var texpath = "./images/" + ddsName;
 				if (loadAssetsAtStartup) {
 					if (useTexcache && texcache.hasOwnProperty(texpath))
@@ -590,7 +592,7 @@ function hackMaterials(origMaterials) {
 				newMaterials.push(basicMaterial);
 			} else {
 				newMaterials.push(m);
-				console.log("png: " + i);
+				// console.log("png: " + i);
 			}
 
 		origMaterials[ i ] = new THREE.MeshFaceMaterial(newMaterials);
