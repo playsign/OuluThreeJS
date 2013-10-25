@@ -29,6 +29,7 @@ GRID.Manager = function() {
 	this.cullCooldown = 3; // seconds
 	this.orphanBlocks = [];
 
+
 };
 
 GRID.Manager.prototype = {
@@ -174,6 +175,8 @@ GRID.Manager.prototype = {
 			// console.log(geometries);
 
 			hackMaterials(materials);
+
+
 
 			for (var i = 0; i < geometries.length; i++) {
 				// console.log("add mesh");

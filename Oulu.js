@@ -28,6 +28,7 @@ var ouluClones = [];
 // Debug draw colliders
 var debugMode = false;
 
+
 var controlsCar = {
 	moveForward: false,
 	moveBackward: false,
