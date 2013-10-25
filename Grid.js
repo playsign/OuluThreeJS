@@ -22,32 +22,48 @@ GRID.Manager = function() {
 	this.size = 166; //500 // length of a side of the block
 	this.buffer = 1; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
 
+	// Culling cooldown. Prevents excessive block generating
+	this.cullTimer = 0;
+	this.cullCooldown = 3; // seconds
+	this.orphanBlocks = [];
 };
 
 GRID.Manager.prototype = {
 
 	constructor: GRID.Manager,
 
-	update: function() {
+	update: function(deltaTime) {
 		var newGridPosition = this.getGridPosition(this.target, this.size);
 
-		if (newGridPosition.x !== this.targetGridPosition.x) {
-			var cullPosition = {
-				x: newGridPosition.x - this.targetGridPosition.x,
-				z: 0
-			};
-			this.cull(cullPosition);
-			this.targetGridPosition.x = newGridPosition.x;
+		if (this.orphanBlocks.length !== 0) {
+			// console.log("We have orphan blocks! array length: " + this.orphanBlocks.length);
+			for (var i = 0; i < this.orphanBlocks.length; i++) {
+				this.resetBlock(this.orphanBlocks[i], i);
+			}
+			// debugger;
+		} else if (this.cullCooldown <= this.cullTimer && this.orphanBlocks.length === 0) {
+			if (newGridPosition.x !== this.targetGridPosition.x) {
+				var cullPosition = {
+					x: newGridPosition.x - this.targetGridPosition.x,
+					z: 0
+				};
+				this.cull(cullPosition);
+				this.targetGridPosition.x = newGridPosition.x;
+				this.cullTimer = 0;
+			}
+
+			if (newGridPosition.z !== this.targetGridPosition.z) {
+				var cullPosition = {
+					x: 0,
+					z: newGridPosition.z - this.targetGridPosition.z
+				};
+				this.cull(cullPosition);
+				this.targetGridPosition.z = newGridPosition.z;
+				this.cullTimer = 0;
+			}
 		}
 
-		if (newGridPosition.z !== this.targetGridPosition.z) {
-			var cullPosition = {
-				x: 0,
-				z: newGridPosition.z - this.targetGridPosition.z
-			};
-			this.cull(cullPosition);
-			this.targetGridPosition.z = newGridPosition.z;
-		}
+		this.cullTimer += deltaTime;
 	},
 
 	getGridPosition: function(targetPosition, blockSize) {
@@ -93,7 +109,6 @@ GRID.Manager.prototype = {
 		var newBlock = new GRID.Block();
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
-		newBlock.mesh = true;
 
 		var blockId = "block-" + gridPosition.x + "_" + gridPosition.y + ".js";
 
@@ -150,7 +165,7 @@ GRID.Manager.prototype = {
 				var newBlock = this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z];
 
 				this.resetBlock(newBlock);
-				 this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
+				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
 
 				var blockGridPosition = {
 					x: this.targetGridPosition.x - this.buffer + i,
@@ -175,7 +190,7 @@ GRID.Manager.prototype = {
 				if (t !== undefined) {
 					var indX = -this.targetGridPosition.x - gridPosition.x + this.buffer + t.gridPosition.x;
 					var indY = -this.targetGridPosition.z - gridPosition.z + this.buffer + t.gridPosition.z;
-					console.log("x: " + indX + " y: " + indY);
+					// console.log("x: " + indX + " y: " + indY);
 					newVisibleBlocks[indX][indY] = t;
 				}
 			}
@@ -191,15 +206,40 @@ GRID.Manager.prototype = {
 		this.visibleBlocks = newVisibleBlocks;
 	},
 
-	resetBlock: function(b) {
-		console.log("unloading prev assets before loading new clone");
-		unloadAssets();
+	resetBlock: function(b, orphanIndex) {
+		// console.clear();
+		// console.log("resetBlock: ");
+		// console.log(b);
+		// console.log(b.mesh);
+		if (b.mesh === null) {
+			// console.log("Can't remove the block because the scene is still adding the mesh!");
 
-		scene.remove(b.mesh);
-		for (var i = 0; i < b.colliders.length; i++) {
-			scene.remove(b.colliders[i]);
+			if (!b.orphan) {
+				b.orphan = true;
+				this.orphanBlocks.push(b);
+				b.orphanID = this.orphanBlocks.length - 1;
+			}
+			// debugger;
+		} else {
+
+			// console.log("unloading prev assets before loading new clone");
+			unloadAssets();
+
+			scene.remove(b.mesh);
+			for (var i = 0; i < b.colliders.length; i++) {
+				scene.remove(b.colliders[i]);
+			}
+
+			if (b.orphan) {
+				// debugger;
+				b.orphan = false;
+
+				this.orphanBlocks.splice(orphanIndex, 1);
+				b.mesh = null;
+
+			}
+			// b.mesh = null;
 		}
-		b.mesh = false;
 
 	},
 
@@ -304,5 +344,6 @@ GRID.Block = function() {
 
 	this.mesh = null;
 	this.colliders = [];
-
+	this.orphan = false;
+	this.orphanID = 0;
 };

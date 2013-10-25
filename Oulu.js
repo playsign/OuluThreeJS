@@ -318,8 +318,8 @@ function addOuluModelToScene(geometry, origMaterials, newBlock) {
 	// }
 	// Todo refactor this
 	if (newBlock) {
-		console.log("newBlock: ");
-		console.log(newBlock);
+		// console.log("newBlock: ");
+		// console.log(newBlock);
 		newMesh.position.set(newBlock.gridPosition.x * gridManager.size, 0, newBlock.gridPosition.z * gridManager.size);
 		// newMesh.rotation.y = 45 * Math.PI / 180;
 		newBlock.mesh = newMesh;
@@ -420,7 +420,7 @@ function update() {
 		car.updateCarModel(delta, controlsCar);
 	}
 
-	gridManager.update();
+	gridManager.update(delta);
 	stats.update();
 	rendererStats.update(renderer);
 }
