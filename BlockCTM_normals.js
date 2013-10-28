@@ -1,7 +1,7 @@
 {
 "data" : "joined_normals.ctm",
 
-"offsets": [ 0, 14825, 54352, 57628, 69626, 122824 ],
+"offsets": [ 0,122824 ,69626, 14825,   57628,54352 ],
 
 	"materials" : [	{
 		"DbgColor" : 15658734,
