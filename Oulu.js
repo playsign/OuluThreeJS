@@ -170,7 +170,7 @@ function init() {
 	car.modelScale = 0.8;
 	car.backWheelOffset = 0.02;
 
-	car.MAX_SPEED = 0.9; //25
+	car.MAX_SPEED = 0.6; //0.9 , 25
 	car.MAX_REVERSE_SPEED = -0.5; //-15
 	car.FRONT_ACCELERATION = 0.4; //12
 	car.BACK_ACCELERATION = 0.5; //15
