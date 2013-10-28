@@ -557,6 +557,7 @@ function getNextClonePosition(pos) {
 
 
 function hackMaterials(origMaterials) {
+	var stime = performance.now();
 	var basicMaterial;
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	var newMaterials = [];
@@ -599,7 +600,8 @@ function hackMaterials(origMaterials) {
 		origMaterials[ i ] = new THREE.MeshFaceMaterial(newMaterials);
 
 		origMaterials[ i ].side = THREE.DoubleSide;
-
+		
 	}
-
+	var etime = performance.now();
+	console.log("materials took", etime-stime, "ms");
 }

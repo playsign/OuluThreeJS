@@ -1,4 +1,5 @@
-/**
+/* -*- js-indent-level: 8 -*-
+ * 
  * @author Tapani Jamsa
  */
 "use strict";
@@ -170,13 +171,11 @@ GRID.Manager.prototype = {
 		// var position = new THREE.Vector3(-105, -78, -40);
 		// var scale = new THREE.Vector3(30, 30, 30);
 
-		loaderCTM.loadParts("BlockCTM.js", function(geometries, materials) {
-			// console.log("geometries");
-			// console.log(geometries);
+		loaderCTM.loadParts("BlockCTM_normals.js", function(geometries, materials) {
+			console.log("geometries");
+			console.log(geometries);
 
 			hackMaterials(materials);
-
-
 
 			for (var i = 0; i < geometries.length; i++) {
 				// console.log("add mesh");

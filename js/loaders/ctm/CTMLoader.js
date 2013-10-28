@@ -103,16 +103,23 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 
 				var binaryData = xhr.responseText;
 
-				//var s = Date.now();
+				var s = performance.now();
 
 				if ( parameters.useWorker ) {
 
 					var worker = new Worker( "js/loaders/ctm/CTMWorker.js" );
+				    var worker_start = 0;
 
 					worker.onmessage = function( event ) {
-
 						var files = event.data;
-
+					        s = performance.now();
+					    if (event.data === "foo") {
+						worker_start = s;
+						return;
+					    } else if (worker_start !== 0) {
+						console.log("2 between worker messages:", worker_start-s, "ms");
+						worker_start = 0;
+					    }
 						for ( var i = 0; i < files.length; i ++ ) {
 
 							var ctmFile = files[ i ];
@@ -129,8 +136,8 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 
 						}
 
-						//var e = Date.now();
-						//console.log( "CTM data parse time [worker]: " + (e-s) + " ms" );
+						var e = performance.now();
+					    console.log( "CTM data parse time [worker]: " + (e-s) + " ms with", files.length, "files" );
 
 					};
 
@@ -157,7 +164,7 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 
 					}
 
-					//var e = Date.now();
+					//var e = performance.now();
 					//console.log( "CTM data parse time [inline]: " + (e-s) + " ms" );
 
 				}
@@ -199,11 +206,12 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 
 THREE.CTMLoader.prototype.createModelBuffers = function ( file, callback ) {
 
+    var s = performance.now();
 	var Model = function ( ) {
 
 		var scope = this;
 
-		var reorderVertices = true;
+		var reorderVertices = false;
 
 		scope.materials = [];
 
@@ -404,7 +412,9 @@ THREE.CTMLoader.prototype.createModelBuffers = function ( file, callback ) {
 	}
 
 	Model.prototype = Object.create( THREE.BufferGeometry.prototype );
-
+    
+						var e = performance.now();
+    console.log( "cmb time before MODEL: " + (e-s) + " ms");
 	var geometry = new Model();
 
 	// compute vertex normals if not present in the CTM model
@@ -412,10 +422,13 @@ THREE.CTMLoader.prototype.createModelBuffers = function ( file, callback ) {
 	if ( geometry.attributes[ "normal" ] === undefined ) {
 
 		geometry.computeVertexNormals();
+	    e = performance.now();
+	    console.log( "cmb time before after computeVertexNormals: " + (e-s) + " ms");
 
 	}
-
 	callback( geometry );
+    e = performance.now();
+    console.log( "cmb time after callback: " + (e-s) + " ms");
 
 };
 
