@@ -183,7 +183,7 @@ function init() {
 	car.STEERING_RADIUS_RATIO = 0.23; //0.23
 
 	car.callback = function(object) {
-		addCar(object, 0, 15, 0, 1); //addCar(object, 142, 15, -20, 1);
+		addCar(object, -75, 11.5, 0, 1); //addCar(object, 142, 15, -20, 1);
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
