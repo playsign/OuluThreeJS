@@ -1,5 +1,5 @@
 /* -*- js-indent-level: 8 -*-
- * 
+ *
  * @author Tapani Jamsa
  */
 "use strict";
@@ -22,6 +22,7 @@ GRID.Manager = function() {
 
 	this.size = 166; //500 // length of a side of the block
 	this.buffer = 1; // how many extra blocks you will see to any direction. buffer0 == 1block, buffer1 = 9blocks, buffer2 = 25blocks
+	this.lodBuffer = 1;
 
 	this.debugGroup = null;
 
@@ -88,7 +89,8 @@ GRID.Manager.prototype = {
 
 	init: function() {
 		// console.log("init");
-		this.blockCount = this.buffer * 2 + 1;
+		var pos = this.buffer + this.lodBuffer;
+		this.blockCount = pos * 2 + 1;
 		this.visibleBlocks = new Array(this.blockCount);
 		for (var a = 0; a < this.blockCount; a++) {
 			this.visibleBlocks[a] = new Array(this.blockCount);
@@ -98,17 +100,27 @@ GRID.Manager.prototype = {
 		for (var x = 0; x < this.blockCount; x++) {
 			for (var z = 0; z < this.blockCount; z++) {
 				// debugger;
+
 				var blockGridPosition = {
-					x: newGridPosition.x - this.buffer + x,
-					z: newGridPosition.z - this.buffer + z
+					x: newGridPosition.x - pos + x,
+					z: newGridPosition.z - pos + z
 				};
-				this.visibleBlocks[x][z] = this.generateBlock(blockGridPosition);
+				var enableTextures = false;
+
+				var posX = x - pos;
+				var posZ = z - pos;
+				if (posX >= -this.buffer && posX <= this.buffer && posZ >= -this.buffer && posZ <= this.buffer) {
+					enableTextures = true;
+				}
+
+				this.visibleBlocks[x][z] = this.generateBlock(blockGridPosition, enableTextures);
+
 			}
 		}
 	},
 
 
-	generateBlock: function(gridPosition) {
+	generateBlock: function(gridPosition, enableTextures) {
 		// console.log("generateBlock");
 		// console.log("gridPosition: ");
 		// console.log(gridPosition);
@@ -175,12 +187,25 @@ GRID.Manager.prototype = {
 			console.log("geometries");
 			console.log(geometries);
 
-			hackMaterials(materials);
+			if (enableTextures) {
+				hackMaterials(materials);
+			} else {
+
+				var materials = new THREE.MeshLambertMaterial({
+					color: 0x8888ff
+				});
+			}
 
 			for (var i = 0; i < geometries.length; i++) {
 				// console.log("add mesh");
-				materials[i].materialIndex = i;
-				var mesh = new THREE.Mesh(geometries[i], materials[i]);
+				var mesh = null;
+				if (enableTextures) {
+					materials[i].materialIndex = i;
+					mesh = new THREE.Mesh(geometries[i], materials[i]);
+				} else {
+					mesh = new THREE.Mesh(geometries[i], materials);
+				}
+
 				// mesh.position = position;
 				// mesh.scale = scale;
 				// scene.add(mesh);
@@ -222,36 +247,47 @@ GRID.Manager.prototype = {
 		// populate a temporary array with the newly made blocks.
 		if (gridPosition.x !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				var newBlock = this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i];
+				// OUTER (geometry)
+				var pos = this.buffer + this.lodBuffer;
+				var newBlock = this.visibleBlocks[pos - pos * gridPosition.x][i];
 
 				this.resetBlock(newBlock);
-				this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i] = undefined;
+				this.visibleBlocks[pos - pos * gridPosition.x][i] = undefined;
 
 				var blockGridPosition = {
-					x: this.targetGridPosition.x + this.buffer * gridPosition.x + gridPosition.x,
-					z: this.targetGridPosition.z - this.buffer + i
+					x: this.targetGridPosition.x + pos * gridPosition.x + gridPosition.x,
+					z: this.targetGridPosition.z - pos + i
 				};
 
 				newBlocks[i] = this.generateBlock(blockGridPosition);
+
+				// INNER (textures)
+				// this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].texturesEnabled = true;
+
 			}
 		}
 		if (gridPosition.z !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				var newBlock = this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z];
+				// OUTER (geometry)
+				var pos = this.buffer + this.lodBuffer;
+				var newBlock = this.visibleBlocks[i][pos - pos * gridPosition.z];
 
 				this.resetBlock(newBlock);
-				this.visibleBlocks[i][this.buffer - this.buffer * gridPosition.z] = undefined;
+				this.visibleBlocks[i][pos - pos * gridPosition.z] = undefined;
 
 				var blockGridPosition = {
-					x: this.targetGridPosition.x - this.buffer + i,
-					z: this.targetGridPosition.z + this.buffer * gridPosition.z + gridPosition.z
+					x: this.targetGridPosition.x - pos + i,
+					z: this.targetGridPosition.z + pos * gridPosition.z + gridPosition.z
 				};
 
 				newBlocks[i] = this.generateBlock(blockGridPosition);
+
+				// INNER (textures)
+				// this.visibleBlocks[this.buffer - this.buffer * gridPosition.x][i].texturesEnabled = true;
 			}
 		}
 		// make a copy of the old visibleblocks to reference when creating the new block map.
-		// Array.Copy(visibleblocks, newVisibleblocks, blockCount * blockCount);
+		Array.Copy(visibleblocks, newVisibleblocks, blockCount * blockCount);
 		for (var k = 0; k < this.visibleBlocks; k++) {
 			// Deep copy
 			newVisibleBlocks.push(jQuery.extend(true, {}, this.visibleBlocks[k]));
@@ -421,5 +457,6 @@ GRID.Block = function() {
 	this.colliders = [];
 	this.orphan = false;
 	this.orphanID = 0;
+	// this.texturesEnabled = false;
 
 };
