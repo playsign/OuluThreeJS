@@ -209,77 +209,77 @@ THREE.Car = function() {
 
 		var forwardDelta;
 
-		// COLLISION
-		var foundCollision = true;
+		// // COLLISION
+		// var foundCollision = true;
 
-		// Building colliders
+		// // Building colliders
 
-		// left back
-		var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000); // Using a little trigonometry calculate a point in space 1000 units in front of our character
-		var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
-		var focusX = this.root.position.x + deltaX; // Calculate where this collision focus point is in relation to our character position
-		var focusZ = this.root.position.z + deltaZ;
-		if (isColliding(this.root.position, focusX, focusZ) == false) {
-			// right back
-			var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
-			var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
-			var focusX = this.root.position.x + deltaX;
-			var focusZ = this.root.position.z + deltaZ;
+		// // left back
+		// var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000); // Using a little trigonometry calculate a point in space 1000 units in front of our character
+		// var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
+		// var focusX = this.root.position.x + deltaX; // Calculate where this collision focus point is in relation to our character position
+		// var focusZ = this.root.position.z + deltaZ;
+		// if (isColliding(this.root.position, focusX, focusZ) == false) {
+		// 	// right back
+		// 	var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
+		// 	var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
+		// 	var focusX = this.root.position.x + deltaX;
+		// 	var focusZ = this.root.position.z + deltaZ;
 
-			if (isColliding(this.root.position, focusX, focusZ) == false) {
-				// right front
-				var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000);
-				var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
-				var focusX = this.root.position.x - deltaX;
-				var focusZ = this.root.position.z - deltaZ;
+		// 	if (isColliding(this.root.position, focusX, focusZ) == false) {
+		// 		// right front
+		// 		var deltaX = Math.floor(Math.sin(this.root.rotation.y - 10) * 1000);
+		// 		var deltaZ = Math.floor(Math.cos(this.root.rotation.y - 10) * 1000);
+		// 		var focusX = this.root.position.x - deltaX;
+		// 		var focusZ = this.root.position.z - deltaZ;
 
-				if (isColliding(this.root.position, focusX, focusZ) == false) {
-					// left front
-					var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
-					var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
-					var focusX = this.root.position.x - deltaX;
-					var focusZ = this.root.position.z - deltaZ;
+		// 		if (isColliding(this.root.position, focusX, focusZ) == false) {
+		// 			// left front
+		// 			var deltaX = Math.floor(Math.sin(this.root.rotation.y + 10) * 1000);
+		// 			var deltaZ = Math.floor(Math.cos(this.root.rotation.y + 10) * 1000);
+		// 			var focusX = this.root.position.x - deltaX;
+		// 			var focusZ = this.root.position.z - deltaZ;
 
-					if (isColliding(this.root.position, focusX, focusZ) == false) {
-						foundCollision = false;
-					}
-				}
-			}
-		}
+		// 			if (isColliding(this.root.position, focusX, focusZ) == false) {
+		// 				foundCollision = false;
+		// 			}
+		// 		}
+		// 	}
+		// }
 
-		if (foundCollision) {
-			forwardDelta = this.speed * -3;
-			this.speed *= -0.25;
-			// this.acceleration = 0;
-		}
-		// car update
-		else {
+		// if (foundCollision) {
+		// 	forwardDelta = this.speed * -3;
+		// 	this.speed *= -0.25;
+		// 	// this.acceleration = 0;
+		// }
+		// // car update
+		// else {
 			forwardDelta = this.speed;
-		}
+		// }
 
 		this.carOrientation += (forwardDelta * this.STEERING_RADIUS_RATIO) * this.wheelOrientation;
 
-		// Ground collider
-		var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y + 50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
+		// // Ground collider
+		// var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y + 50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
 
-		for (var x = 0; x < gridManager.visibleBlocks.length; x++) {
-			for (var z = 0; z < gridManager.visibleBlocks.length; z++) {
-				var intersects = raycaster.intersectObject(gridManager.visibleBlocks[x][z].colliders[1]);
+		// for (var x = 0; x < gridManager.visibleBlocks.length; x++) {
+		// 	for (var z = 0; z < gridManager.visibleBlocks.length; z++) {
+		// 		var intersects = raycaster.intersectObject(gridManager.visibleBlocks[x][z].colliders[1]);
 
-				if (intersects.length > 0) {
-					// console.log("plane collision: " + intersects.length);
-					// console.log(intersects[0]);
-					// console.log(intersects[0].point);
-					// this begin = this.root.position.y;
-					// var target = intersects[0].point.y + 1;
+		// 		if (intersects.length > 0) {
+		// 			// console.log("plane collision: " + intersects.length);
+		// 			// console.log(intersects[0]);
+		// 			// console.log(intersects[0].point);
+		// 			// this begin = this.root.position.y;
+		// 			// var target = intersects[0].point.y + 1;
 
-					this.root.position.y = this.lerp(this.root.position.y, intersects[0].point.y + 0.8, delta);
+		// 			this.root.position.y = this.lerp(this.root.position.y, intersects[0].point.y + 0.8, delta);
 
-					// this.root.position.y = intersects[0].point.y + 1;
-					break;
-				}
-			}
-		}
+		// 			// this.root.position.y = intersects[0].point.y + 1;
+		// 			break;
+		// 		}
+		// 	}
+		// }
 
 		// displacement
 

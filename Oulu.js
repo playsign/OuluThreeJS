@@ -564,44 +564,54 @@ function hackMaterials(origMaterials) {
 	var newTexture;
 	var realTextures = [];
 
+	if (origMaterials.origMaterials) {
+		// debugger;
+		origMaterials = origMaterials.origMaterials;
+		console.log("origMaterials found");
+
+	}
+
 	for (var i = 0; i < origMaterials.length; i++) {
 
 		var m = origMaterials[i];
 
-			// regDisposable(origMaterials[i]);
-			if (m.map) {
-				//  JPG TO DDS
-				var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
-				// console.log("ddsName: " + ddsName);
-				var texpath = "./images/" + ddsName;
-				if (loadAssetsAtStartup) {
-					if (useTexcache && texcache.hasOwnProperty(texpath))
-						newTexture = texcache[texpath];
-					else
-						newTexture = texcache[texpath] = loadTexture(texpath);
+		// regDisposable(origMaterials[i]);
+		if (m.map) {
+			//  JPG TO DDS
+			var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
+			// console.log("ddsName: " + ddsName);
+			var texpath = "./images/" + ddsName;
+			if (loadAssetsAtStartup) {
+				if (useTexcache && texcache.hasOwnProperty(texpath))
+					newTexture = texcache[texpath];
+				else
+					newTexture = texcache[texpath] = loadTexture(texpath);
 
-					basicMaterial = new THREE.MeshBasicMaterial({
-						map: newTexture
-					});
-				} else {
-					realTextures[i] = texpath;
-					basicMaterial = new THREE.MeshBasicMaterial({
-						//color: 0xaabbcc,
-						map: placeholderTexture,
-					});
-				}
-				// regDisposable(basicMaterial);
-				newMaterials.push(basicMaterial);
+				basicMaterial = new THREE.MeshBasicMaterial({
+					map: newTexture
+				});
 			} else {
-				newMaterials.push(m);
-				// console.log("png: " + i);
+				realTextures[i] = texpath;
+				basicMaterial = new THREE.MeshBasicMaterial({
+					//color: 0xaabbcc,
+					map: placeholderTexture,
+				});
 			}
+			// regDisposable(basicMaterial);
+			newMaterials.push(basicMaterial);
+		} else {
+			newMaterials.push(m);
+			// console.log("png: " + i);
+		}
 
-		origMaterials[ i ] = new THREE.MeshFaceMaterial(newMaterials);
+		origMaterials[i] = new THREE.MeshFaceMaterial(newMaterials);
 
-		origMaterials[ i ].side = THREE.DoubleSide;
-		
+		origMaterials[i].side = THREE.DoubleSide;
+
+
 	}
 	var etime = performance.now();
-	console.log("materials took", etime-stime, "ms");
+	// console.log("materials took", etime - stime, "ms");
+
+	return origMaterials;
 }

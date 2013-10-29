@@ -117,7 +117,7 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 						worker_start = s;
 						return;
 					    } else if (worker_start !== 0) {
-						console.log("2 between worker messages:", worker_start-s, "ms");
+						// console.log("2 between worker messages:", worker_start-s, "ms");
 						worker_start = 0;
 					    }
 						for ( var i = 0; i < files.length; i ++ ) {
@@ -137,7 +137,7 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 						}
 
 						var e = performance.now();
-					    console.log( "CTM data parse time [worker]: " + (e-s) + " ms with", files.length, "files" );
+					    // console.log( "CTM data parse time [worker]: " + (e-s) + " ms with", files.length, "files" );
 
 					};
 
@@ -414,7 +414,7 @@ THREE.CTMLoader.prototype.createModelBuffers = function ( file, callback ) {
 	Model.prototype = Object.create( THREE.BufferGeometry.prototype );
     
 						var e = performance.now();
-    console.log( "cmb time before MODEL: " + (e-s) + " ms");
+    // console.log( "cmb time before MODEL: " + (e-s) + " ms");
 	var geometry = new Model();
 
 	// compute vertex normals if not present in the CTM model
@@ -423,12 +423,12 @@ THREE.CTMLoader.prototype.createModelBuffers = function ( file, callback ) {
 
 		geometry.computeVertexNormals();
 	    e = performance.now();
-	    console.log( "cmb time before after computeVertexNormals: " + (e-s) + " ms");
+	    // console.log( "cmb time before after computeVertexNormals: " + (e-s) + " ms");
 
 	}
 	callback( geometry );
     e = performance.now();
-    console.log( "cmb time after callback: " + (e-s) + " ms");
+    // console.log( "cmb time after callback: " + (e-s) + " ms");
 
 };
 
