@@ -13,7 +13,6 @@ self.onmessage = function( event ) {
 
 	}
 
-    self.postMessage("foo");
 	self.postMessage( files );
 	self.close();
 
