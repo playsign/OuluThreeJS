@@ -608,6 +608,8 @@ function hackMaterials(origMaterials) {
 
 		origMaterials[i].side = THREE.DoubleSide;
 
+		origMaterials[i].materialIndex = i;
+
 
 	}
 	var etime = performance.now();
