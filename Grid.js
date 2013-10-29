@@ -192,9 +192,23 @@ GRID.Manager.prototype = {
 			} else {
 				var origMaterials = materials;
 
-				var materials = new THREE.MeshLambertMaterial({
-					color: 0x8888ff,
-				});
+				// var lambertMaterial = [];
+				// lambertMaterial.push(new THREE.MeshLambertMaterial({
+				// 	color: 0x8888ff,
+				// }));
+
+				var basicMaterial = [];
+				var placeholderTexture = loadTexture("images/balconieRailings.dds");
+				basicMaterial.push(new THREE.MeshBasicMaterial({
+					//color: 0xaabbcc,
+					map: placeholderTexture,
+				}));
+
+				basicMaterial.materialIndex = 0;
+
+				materials = new THREE.MeshFaceMaterial(basicMaterial);
+
+				materials.materialIndex = 0;
 				materials.origMaterials = origMaterials;
 
 				//map.sourceFile.lastIndexOf(".")) + ".dds";
@@ -284,7 +298,7 @@ GRID.Manager.prototype = {
 					z: this.targetGridPosition.z + this.totalBuffer * gridPosition.z + gridPosition.z
 				};
 
-				console.log("remove geometry x:"+i+" z:"+indZ);
+				console.log("remove geometry x:" + i + " z:" + indZ);
 
 				newBlocks[i] = this.generateBlock(blockGridPosition);
 
@@ -292,17 +306,24 @@ GRID.Manager.prototype = {
 				// indZ = this.buffer - this.buffer * gridPosition.z;
 				indZ = this.blockCount - this.lodBuffer;
 				if (i > this.lodBuffer - 1 && i < this.blockCount - this.lodBuffer) {
-					for(var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++){
+					for (var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++) {
 						var newMaterial = hackMaterials(this.visibleBlocks[i][indZ].mesh.children[j].material);
 						// console.log("newMaterial: ");
 						// console.log(newMaterial);
-						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial;
-						this.visibleBlocks[i][indZ].mesh.children[j].material.needsUpdate = true;
+
+
+						// newMaterial = new THREE.MeshLambertMaterial({
+						// 	color: 0x1111ff,
+						// });
+
+
+						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[0];
+						// this.visibleBlocks[i][indZ].mesh.children[j].material.needsUpdate = true;
 					}
 
 
 
-					console.log("new texture x:"+i+" z:"+indZ);
+					console.log("new texture x:" + i + " z:" + indZ);
 				}
 			}
 		}
