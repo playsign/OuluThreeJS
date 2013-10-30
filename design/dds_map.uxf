@@ -12,7 +12,7 @@
     <panel_attributes>generateBlock: loadParts (geometries, materials[lamb,lamb,lamb,lamb,lamb,lamb,lamb,lamb,lamb])
 --
 (new)materials.ctmMaterials = materials
-placeholderMaterial.ctmMaterials</panel_attributes>
+placeholderMaterial.ctmMaterials x 6</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -54,10 +54,10 @@ face{
     </coordinates>
     <panel_attributes>cull()
 --
-for(this.visibleBlocks[x][z].mesh.children[i]) //length == 6 pieces of block
 oldMaterial = this.visibleBlocks[x][z].mesh.children[i].material === face;
 var ctmMaterials = this.visibleBlocks[x][z].mesh.children[i].material.ctmMaterials;
-newMaterial = ???? face</panel_attributes>
+for(this.visibleBlocks[x][z].mesh.children[i]) //length == 6 pieces of block
+this.visibleBlocks[x][z].mesh.children[i].material = newMaterial[j];</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

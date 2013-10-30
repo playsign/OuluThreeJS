@@ -265,23 +265,40 @@ GRID.Manager.prototype = {
 		// populate a temporary array with the newly made blocks.
 		if (gridPosition.x !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// // OUTER (geometry)
-				// var newBlock = this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i];
+				// OUTER (geometry)
+				var indX = this.totalBuffer - this.totalBuffer * gridPosition.x;
+				var newBlock = this.visibleBlocks[indX][i];
 
-				// this.resetBlock(newBlock);
-				// this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i] = undefined;
+				this.resetBlock(newBlock);
+				this.visibleBlocks[indX][i] = undefined;
 
-				// var blockGridPosition = {
-				// 	x: this.targetGridPosition.x + this.totalBuffer * gridPosition.x + gridPosition.x,
-				// 	z: this.targetGridPosition.z - this.totalBuffer + i
-				// };
+				var blockGridPosition = {
+					x: this.targetGridPosition.x + this.totalBuffer * gridPosition.x + gridPosition.x,
+					z: this.targetGridPosition.z - this.totalBuffer + i
+				};
 
-				// newBlocks[i] = this.generateBlock(blockGridPosition);
+				console.log("remove geometry x:" + indX + " z:" + i);
 
-				// // INNER (textures)
+				newBlocks[i] = this.generateBlock(blockGridPosition);
+
+				// INNER (textures)
 				// var indX = this.buffer - this.buffer * gridPosition.x;
+				indX = this.blockCount - this.lodBuffer;
 				// hackMaterials(this.visibleBlocks[indX][i].mesh.material);
 
+				if (i > this.lodBuffer - 1 && i < this.blockCount - this.lodBuffer) {
+
+					// Get ctm materials reference from the first child
+					var ctmMaterials = this.visibleBlocks[indX][i].mesh.children[0].material.ctmMaterials;
+					// Hack a dds version of it
+					var newMaterial = hackMaterials(ctmMaterials);
+
+					for (var j = 0; j < this.visibleBlocks[indX][i].mesh.children.length; j++) {
+						this.visibleBlocks[indX][i].mesh.children[j].material = newMaterial[j];
+					}
+
+					console.log("new texture x:" + indX + " z:" + i);
+				}
 			}
 		}
 		if (gridPosition.z !== 0) {
@@ -313,28 +330,8 @@ GRID.Manager.prototype = {
 					var newMaterial = hackMaterials(ctmMaterials);
 
 					for (var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++) {
-						// var oldMaterial = this.visibleBlocks[i][indZ].mesh.children[j].material;
-						// var newMaterial = hackMaterials(this.visibleBlocks[i][indZ].mesh.children[j].material);
-						// console.log("newMaterial: ");
-						// console.log(newMaterial);
-
-
-						// newMaterial = new THREE.MeshLambertMaterial({
-						// 	color: 0x1111ff,
-						// });
-
-
-						// this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[0];
-						// this.visibleBlocks[i][indZ].mesh.children[j].material.needsUpdate = true;
-
-
-						// this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial;
-						// this.visibleBlocks[i][indZ].mesh.children[j].material = this.visibleBlocks[2][2].mesh.children[j].material;
-
 						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[j];
 					}
-
-
 
 					console.log("new texture x:" + i + " z:" + indZ);
 				}
