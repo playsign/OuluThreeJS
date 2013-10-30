@@ -117,6 +117,7 @@ GRID.Manager.prototype = {
 
 			}
 		}
+
 	},
 
 
@@ -206,10 +207,13 @@ GRID.Manager.prototype = {
 
 				basicMaterial.materialIndex = 0;
 
+				resManager.regDisposable(basicMaterial[0]);
+
 				materials = new THREE.MeshFaceMaterial(basicMaterial);
 
 				materials.materialIndex = 0;
 				materials.ctmMaterials = ctmMaterials;
+
 
 				//map.sourceFile.lastIndexOf(".")) + ".dds";
 			}
@@ -228,6 +232,7 @@ GRID.Manager.prototype = {
 				// mesh.scale = scale;
 				// scene.add(mesh);
 				group.add(mesh); //add a mesh with geometry to it
+				resManager.regDisposable(mesh.geometry);
 
 			}
 
@@ -384,7 +389,7 @@ GRID.Manager.prototype = {
 		} else {
 
 			// console.log("unloading prev assets before loading new clone");
-			// unloadAssets();
+			// resManager.unloadAssets();
 
 			scene.remove(b.mesh);
 			for (var i = 0; i < b.colliders.length; i++) {

@@ -16,6 +16,7 @@ var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
+var resManager = new ResourceManager();
 // var tester = new GRID.Tester();
 var ouluClones = [];
 // var clonePosition = {
@@ -142,7 +143,7 @@ function init() {
 	// 		window.setTimeout(function() {
 	// 			jsonLoader = new THREE.JSONLoader();
 	// 			console.log("unloading prev assets before loading new clone");
-	// 			unloadAssets();
+	// 			resManager.unloadAssets();
 	// 			jsonLoader.load(masterscene_file, function(geometry, material) {
 	// 				addOuluModelToScene(geometry, material, "oulu");
 	// 			});
@@ -213,11 +214,6 @@ function addCar(object, x, y, z, s) {
 	// object.root.receiveShadow = true;
 }
 
-var texcache = {};
-var useTexcache = false;
-var unloadAssets, doLoadAssets;
-var loadAssetsAtStartup = true;
-
 function loadTexture(path) {
 	if (typeof(path) !== "string")
 		throw ("bad path " + path);
@@ -233,7 +229,12 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 	var faceMaterial, newMesh;
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	faceMaterial = new THREE.MeshFaceMaterial(origMaterials);
+
+	resManager.regDisposable(faceMaterial);
+
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
+
+	resManager.regDisposable(newMesh);
 
 	// Todo refactor this
 	if (newBlock) {
@@ -258,26 +259,21 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 	scene.add(newMesh);
 }
 
+
+
 function addOuluModelToScene(group, newBlock) {
 	// console.log("addOuluModelToScene");
 	// console.log(newBlock);
 	// console.log(group);
-	var disposables = [];
-	var newMesh, newTexture;
-	var basicMaterial;
-	var placeholderTexture = loadTexture("images/balconieRailings.dds");
-	var newMaterials = [];
-	var realTextures = [];
 
-	// function regDisposable(x) {
+	// var newMesh, newTexture;
+	// var basicMaterial;
+	// var placeholderTexture = loadTexture("images/balconieRailings.dds");
+	// var newMaterials = [];
 
-	// loop children[i].geometry for group
 
-	// if (typeof(x.dispose) !== "function")
-	// 	throw ("doesn't have a .dispose(): " + x);
-	// disposables.push(x);
-	// }
-	// regDisposable(newMesh.geometry);
+
+	// resManager.regDisposable(newMesh.geometry);
 
 	// for (var i = 0; i < group.children.length; i++) {
 	// 	// for (var i = 0; i < group.children[k].material.length; i++) {
@@ -289,11 +285,11 @@ function addOuluModelToScene(group, newBlock) {
 	// 		var ddsName = group.children[i].material.map.sourceFile.substr(0, group.children[i].material.map.sourceFile.lastIndexOf(".")) + ".dds";
 	// 		console.log("ddsName: " + ddsName);
 	// 		var texpath = "./images/" + ddsName;
-	// 		if (loadAssetsAtStartup) {
-	// 			if (useTexcache && texcache.hasOwnProperty(texpath))
-	// 				newTexture = texcache[texpath];
+	// 		if (resManager.loadAssetsAtStartup) {
+	// 			if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath))
+	// 				newTexture = resManager.texcache[texpath];
 	// 			else
-	// 				newTexture = texcache[texpath] = loadTexture(texpath);
+	// 				newTexture = resManager.texcache[texpath] = loadTexture(texpath);
 
 	// 			basicMaterial = new THREE.MeshBasicMaterial({
 	// 				map: newTexture
@@ -305,7 +301,7 @@ function addOuluModelToScene(group, newBlock) {
 	// 				map: placeholderTexture,
 	// 			});
 	// 		}
-	// 		// regDisposable(basicMaterial);
+	// 		// resManager.regDisposable(basicMaterial);
 	// 		newMaterials.push(basicMaterial);
 	// 	} else {
 	// 		newMaterials.push(group.children[i].material);
@@ -328,46 +324,6 @@ function addOuluModelToScene(group, newBlock) {
 		// console.log("group: ");
 		// console.log(group);
 	}
-
-	unloadAssets = function() {
-		// // note: this code currently works only when loadAssetsAtStartup is on
-		// scene.remove(newMesh);
-		// for (var i = 0; i < disposables.length; i++) {
-		// 	var d = disposables[i];
-		// 	d.dispose();
-		// 	if (d instanceof THREE.Geometry) {
-		// 		console.log("after dispose with geom, faces", d.faces.length, "uvs", d.faceVertexUvs.length);
-		// 		d.faces.length = 0;
-		// 		d.vertices.length = 0;
-		// 		d.faceVertexUvs.length = 0;
-		// 	}
-		// }
-		// disposables.length = 0; // yes, really the way to clear js arrays
-		// for (var key in texcache)
-		// 	if (texcache.hasOwnProperty(key)) {
-		// 		texcache[key].dispose();
-		// 		delete texcache[key].image;
-		// 		delete texcache[key].mimpaps;
-		// 		delete texcache[key];
-		// 	}
-		// 	// console.log("done");
-	};
-	doLoadAssets = function() {
-		console.log("loading", realTextures.length, "textures");
-		var nchanged = 0;
-		for (var i = 0; i < realTextures.length; i++) {
-			// oulu.material.materials[i].map = loadTexture(realTextures[key]);
-			var m = oulu.material.materials[i];
-			if (m === undefined)
-				console.log("material", i, "was undefined");
-			else if (realTextures[i] !== undefined) {
-				m.map = loadTexture(realTextures[i]);
-				m.needsUpdate = true;
-				nchanged++;
-			}
-		}
-		console.log("done", nchanged);
-	};
 
 	// oulu.castShadow = true;
 	// oulu.receiveShadow = true;
@@ -575,17 +531,16 @@ function hackMaterials(origMaterials) {
 
 		var m = origMaterials[i];
 
-		// regDisposable(origMaterials[i]);
 		if (m.map) {
 			//  JPG TO DDS
 			var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
 			// console.log("ddsName: " + ddsName);
 			var texpath = "./images/" + ddsName;
-			if (loadAssetsAtStartup) {
-				if (useTexcache && texcache.hasOwnProperty(texpath))
-					newTexture = texcache[texpath];
+			if (resManager.loadAssetsAtStartup) {
+				if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath))
+					newTexture = resManager.texcache[texpath];
 				else
-					newTexture = texcache[texpath] = loadTexture(texpath);
+					newTexture = resManager.texcache[texpath] = loadTexture(texpath);
 
 				basicMaterial = new THREE.MeshBasicMaterial({
 					map: newTexture
@@ -597,7 +552,7 @@ function hackMaterials(origMaterials) {
 					map: placeholderTexture,
 				});
 			}
-			// regDisposable(basicMaterial);
+			resManager.regDisposable(basicMaterial);
 			newMaterials.push(basicMaterial);
 		} else {
 			newMaterials.push(m);
