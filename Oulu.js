@@ -564,9 +564,9 @@ function hackMaterials(origMaterials) {
 	var newTexture;
 	var realTextures = [];
 
-	if (origMaterials.origMaterials) {
+	if (origMaterials.ctmMaterials) {
 		// debugger;
-		origMaterials = origMaterials.origMaterials;
+		origMaterials = origMaterials.ctmMaterials;
 		console.log("origMaterials found");
 
 	}

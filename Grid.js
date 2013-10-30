@@ -190,7 +190,7 @@ GRID.Manager.prototype = {
 			if (enableTextures) {
 				hackMaterials(materials);
 			} else {
-				var origMaterials = materials;
+				var ctmMaterials = materials;
 
 				// var lambertMaterial = [];
 				// lambertMaterial.push(new THREE.MeshLambertMaterial({
@@ -209,7 +209,7 @@ GRID.Manager.prototype = {
 				materials = new THREE.MeshFaceMaterial(basicMaterial);
 
 				materials.materialIndex = 0;
-				materials.origMaterials = origMaterials;
+				materials.ctmMaterials = ctmMaterials;
 
 				//map.sourceFile.lastIndexOf(".")) + ".dds";
 			}
@@ -265,22 +265,22 @@ GRID.Manager.prototype = {
 		// populate a temporary array with the newly made blocks.
 		if (gridPosition.x !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// OUTER (geometry)
-				var newBlock = this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i];
+				// // OUTER (geometry)
+				// var newBlock = this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i];
 
-				this.resetBlock(newBlock);
-				this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i] = undefined;
+				// this.resetBlock(newBlock);
+				// this.visibleBlocks[this.totalBuffer - this.totalBuffer * gridPosition.x][i] = undefined;
 
-				var blockGridPosition = {
-					x: this.targetGridPosition.x + this.totalBuffer * gridPosition.x + gridPosition.x,
-					z: this.targetGridPosition.z - this.totalBuffer + i
-				};
+				// var blockGridPosition = {
+				// 	x: this.targetGridPosition.x + this.totalBuffer * gridPosition.x + gridPosition.x,
+				// 	z: this.targetGridPosition.z - this.totalBuffer + i
+				// };
 
-				newBlocks[i] = this.generateBlock(blockGridPosition);
+				// newBlocks[i] = this.generateBlock(blockGridPosition);
 
-				// INNER (textures)
-				var indX = this.buffer - this.buffer * gridPosition.x;
-				hackMaterials(this.visibleBlocks[indX][i].mesh.material);
+				// // INNER (textures)
+				// var indX = this.buffer - this.buffer * gridPosition.x;
+				// hackMaterials(this.visibleBlocks[indX][i].mesh.material);
 
 			}
 		}
@@ -306,8 +306,15 @@ GRID.Manager.prototype = {
 				// indZ = this.buffer - this.buffer * gridPosition.z;
 				indZ = this.blockCount - this.lodBuffer;
 				if (i > this.lodBuffer - 1 && i < this.blockCount - this.lodBuffer) {
+
+					// Get ctm materials reference from the first child
+					var ctmMaterials = this.visibleBlocks[i][indZ].mesh.children[0].material.ctmMaterials;
+					// Hack a dds version of it
+					var newMaterial = hackMaterials(ctmMaterials);
+
 					for (var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++) {
-						var newMaterial = hackMaterials(this.visibleBlocks[i][indZ].mesh.children[j].material);
+						// var oldMaterial = this.visibleBlocks[i][indZ].mesh.children[j].material;
+						// var newMaterial = hackMaterials(this.visibleBlocks[i][indZ].mesh.children[j].material);
 						// console.log("newMaterial: ");
 						// console.log(newMaterial);
 
@@ -317,8 +324,14 @@ GRID.Manager.prototype = {
 						// });
 
 
-						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[0];
+						// this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[0];
 						// this.visibleBlocks[i][indZ].mesh.children[j].material.needsUpdate = true;
+
+
+						// this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial;
+						// this.visibleBlocks[i][indZ].mesh.children[j].material = this.visibleBlocks[2][2].mesh.children[j].material;
+
+						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[j];
 					}
 
 
