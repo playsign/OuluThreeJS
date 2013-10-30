@@ -214,7 +214,7 @@ function addCar(object, x, y, z, s) {
 }
 
 var texcache = {};
-var useTexcache = true;
+var useTexcache = false;
 var unloadAssets, doLoadAssets;
 var loadAssetsAtStartup = true;
 
