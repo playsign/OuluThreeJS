@@ -517,15 +517,16 @@ function hackMaterials(origMaterials) {
 	var basicMaterial;
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	var newMaterials = [];
+	var newFaceMaterials = [];
 	var newTexture;
 	var realTextures = [];
 
-	if (origMaterials.ctmMaterials) {
-		// debugger;
-		origMaterials = origMaterials.ctmMaterials;
-		console.log("origMaterials found");
+	// if (origMaterials.ctmMaterials) {
+	// 	// debugger;
+	// 	origMaterials = origMaterials.ctmMaterials;
+	// 	console.log("origMaterials found");
 
-	}
+	// }
 
 	for (var i = 0; i < origMaterials.length; i++) {
 
@@ -559,16 +560,19 @@ function hackMaterials(origMaterials) {
 			// console.log("png: " + i);
 		}
 
-		origMaterials[i] = new THREE.MeshFaceMaterial(newMaterials);
+		// origMaterials[i] = new THREE.MeshFaceMaterial(newMaterials);
+		// origMaterials[i].side = THREE.DoubleSide;
+		// origMaterials[i].materialIndex = i;
 
-		origMaterials[i].side = THREE.DoubleSide;
-
-		origMaterials[i].materialIndex = i;
+		var newFM = new THREE.MeshFaceMaterial(newMaterials);
+		newFM.side = THREE.DoubleSide;
+		newFM.materialIndex = i;
+		newFaceMaterials.push(newFM);
 
 
 	}
 	var etime = performance.now();
 	// console.log("materials took", etime - stime, "ms");
 
-	return origMaterials;
+	return newFaceMaterials;
 }
