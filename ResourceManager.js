@@ -6,9 +6,9 @@
 /* jshint -W097, -W040 */
 
 function ResourceManager() {
-	this.disposables = [];
-	this.texcache = {};
-	this.useTexcache = false;
+	// this.disposables = [];
+	// this.texcache = {};
+	// this.useTexcache = false;
 	// var unloadAssets, doLoadAssets;
 	this.loadAssetsAtStartup = true;
 	this.realTextures = [];
@@ -19,23 +19,25 @@ ResourceManager.prototype = {
 
 	constructor: ResourceManager,
 
-	unloadAssets: function() {
+	unloadAssets: function(disposables) {
 
-		// test
-		for (var x = 0; x < gridManager.blockCount; x++) {
-			for (var z = 0; z < gridManager.blockCount; z++) {
-				console.log("remove block: " + x + " " + z);
-				scene.remove(gridManager.visibleBlocks[x][z].mesh);
-			}
-		}
+		// // test
+		// for (var x = 0; x < gridManager.blockCount; x++) {
+		// 	for (var z = 0; z < gridManager.blockCount; z++) {
+		// 		console.log("remove block: " + x + " " + z);
+		// 		scene.remove(gridManager.visibleBlocks[x][z].mesh);
+		// 	}
+		// }
 
 		console.log("unloadAssets");
 
 		// note: this code currently works only when loadAssetsAtStartup is on
 		// scene.remove(newMesh);
-		for (var i = 0; i < this.disposables.length; i++) {
-			var d = this.disposables[i];
+		for (var i = 0; i < disposables.length; i++) {
+			var d = disposables[i];
+			// dispose geometry, material etc.
 			d.dispose();
+
 			if (d instanceof THREE.Geometry) {
 				console.log("after dispose with geom, faces", d.faces.length, "uvs", d.faceVertexUvs.length);
 				d.faces.length = 0;
@@ -44,17 +46,19 @@ ResourceManager.prototype = {
 				console.log("geometry unloaded");
 			}
 		}
-		this.disposables.length = 0; // yes, really the way to clear js arrays
-		for (var key in this.texcache)
-			if (this.texcache.hasOwnProperty(key)) {
-				this.texcache[key].dispose();
-				delete this.texcache[key].image;
-				delete this.texcache[key].mimpaps;
-				delete this.texcache[key];
+		disposables.length = 0; // yes, really the way to clear js arrays
 
-				console.log("material unloaded");
-			}
-			// console.log("done");
+		// // TexCache
+		// for (var key in this.texcache)
+		// 	if (this.texcache.hasOwnProperty(key)) {
+		// 		this.texcache[key].dispose();
+		// 		delete this.texcache[key].image;
+		// 		delete this.texcache[key].mimpaps;
+		// 		delete this.texcache[key];
+
+		// 		console.log("material unloaded");
+		// 	}
+		// 	// console.log("done");
 
 
 	},
@@ -77,13 +81,13 @@ ResourceManager.prototype = {
 		console.log("done", nchanged);
 	},
 
-	regDisposable: function(x) {
+	regDisposable: function(disposable, disposables) {
 		console.log("regDisposable");
 
-		// loop children[i].geometry for group
+		// loop children[i].geometry for group? (non bufferedGeometry)
 
-		if (typeof(x.dispose) !== "function")
+		if (typeof(disposable.dispose) !== "function")
 			throw ("doesn't have a .dispose(): " + x);
-		this.disposables.push(x);
+		disposables.push(disposable);
 	},
 };

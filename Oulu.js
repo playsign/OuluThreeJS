@@ -230,11 +230,9 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
 	faceMaterial = new THREE.MeshFaceMaterial(origMaterials);
 
-	resManager.regDisposable(faceMaterial);
-
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
 
-	resManager.regDisposable(newMesh);
+	// resManager.regDisposable(newMesh, newBlock.outerDisposables);
 
 	// Todo refactor this
 	if (newBlock) {
@@ -512,7 +510,7 @@ function getNextClonePosition(pos) {
 }
 
 
-function hackMaterials(origMaterials) {
+function hackMaterials(origMaterials, disposables) {
 	var stime = performance.now();
 	var basicMaterial;
 	var placeholderTexture = loadTexture("images/balconieRailings.dds");
@@ -538,10 +536,13 @@ function hackMaterials(origMaterials) {
 			// console.log("ddsName: " + ddsName);
 			var texpath = "./images/" + ddsName;
 			if (resManager.loadAssetsAtStartup) {
-				if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath))
-					newTexture = resManager.texcache[texpath];
-				else
-					newTexture = resManager.texcache[texpath] = loadTexture(texpath);
+				// if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath)){
+				// 	newTexture = resManager.texcache[texpath];
+				// }
+				// else{
+					// newTexture = resManager.texcache[texpath] = loadTexture(texpath);
+					newTexture = loadTexture(texpath);
+				// }
 
 				basicMaterial = new THREE.MeshBasicMaterial({
 					map: newTexture
@@ -553,7 +554,7 @@ function hackMaterials(origMaterials) {
 					map: placeholderTexture,
 				});
 			}
-			resManager.regDisposable(basicMaterial);
+			resManager.regDisposable(basicMaterial, disposables);
 			newMaterials.push(basicMaterial);
 		} else {
 			newMaterials.push(m);
