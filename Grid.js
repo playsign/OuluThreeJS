@@ -248,7 +248,7 @@ GRID.Manager.prototype = {
 				// mesh.scale = scale;
 				// scene.add(mesh);
 				group.add(mesh); //add a mesh with geometry to it
-				// resManager.regDisposable(mesh.geometry, innerDisposables);
+				// resManager.regDisposable(mesh.geometry, newBlock.outerDisposables); // causes minus geometry count
 
 			}
 
