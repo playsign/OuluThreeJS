@@ -269,6 +269,78 @@ GRID.Manager.prototype = {
 		return newBlock;
 	},
 
+	cullBlock: function(i, gridPositionChange, newBlocks) {
+		var indX, indZ, distanceToNewBlock;
+		// OUTER (geometry)
+		if (gridPositionChange.z !== 0) {
+			indZ = this.totalBuffer - this.totalBuffer * gridPositionChange.z;
+			indX = i;
+		} else {
+			indX = this.totalBuffer - this.totalBuffer * gridPositionChange.x;
+			indZ = i;
+		}
+
+		var newBlock = this.visibleBlocks[indX][indZ];
+
+		this.destroyBlock(newBlock);
+		this.visibleBlocks[indX][indZ] = undefined;
+
+		var blockGridPosition = {
+			x: 0,
+			z: 0
+		};
+
+		if (gridPositionChange.z !== 0) {
+			blockGridPosition.x = this.targetGridPosition.x - this.totalBuffer + i;
+			blockGridPosition.z = this.targetGridPosition.z + this.totalBuffer * gridPositionChange.z + gridPositionChange.z;
+		} else {
+			blockGridPosition.x = this.targetGridPosition.x + this.totalBuffer * gridPositionChange.x + gridPositionChange.x;
+			blockGridPosition.z = this.targetGridPosition.z - this.totalBuffer + i;
+		}
+
+		// console.log("remove geometry x:" + indX + " z:" + indZ);
+
+		newBlocks[i] = this.generateBlock(blockGridPosition);
+
+		// INNER (textures)
+
+		if (i > this.outerBuffer - 1 && i < this.blockCount - this.outerBuffer) {
+			// REMOVE textures from the back row
+			if (gridPositionChange.z !== 0) {
+				indZ = this.totalBuffer - this.innerBuffer * gridPositionChange.z;
+				distanceToNewBlock = gridPositionChange.z * this.innerBuffer + gridPositionChange.z;
+			} else {
+				indX = this.totalBuffer - this.innerBuffer * gridPositionChange.x;
+				distanceToNewBlock = gridPositionChange.x * this.innerBuffer + gridPositionChange.x;
+			}
+
+			for (var j = 0; j < this.visibleBlocks[indX][indZ].mesh.children.length; j++) {
+				this.visibleBlocks[indX][indZ].mesh.children[j].material = this.visibleBlocks[indX][indZ].lodMaterial;
+			}
+			// dispose
+			resManager.unloadAssets(this.visibleBlocks[indX][indZ].innerDisposables);
+
+			// ADD textures to the front row
+			var offset = this.totalBuffer;
+			if (gridPositionChange.z !== 0) {
+				indZ = distanceToNewBlock + offset;
+			} else {
+				indX = distanceToNewBlock + offset;
+			}
+
+			// Get ctm materials
+			var ctmMaterials = this.visibleBlocks[indX][indZ].ctmMaterials;
+			// Create a dds version
+			var newMaterial = hackMaterials(ctmMaterials, this.visibleBlocks[indX][indZ].outerDisposables);
+
+			for (var j = 0; j < this.visibleBlocks[indX][indZ].mesh.children.length; j++) {
+				this.visibleBlocks[indX][indZ].mesh.children[j].material = newMaterial[j];
+			}
+
+			// console.log("new texture x:" + indX + " z:" + indZ);
+		}
+	},
+
 	// this function could possibly be optimized, but is a proof of concept.
 	// by recording the gridPosition.x and gridPosition.z (as -1 or 1) we can
 	// remove the un needed cells and re generate the grid array with the
@@ -286,95 +358,12 @@ GRID.Manager.prototype = {
 		// populate a temporary array with the newly made blocks.
 		if (gridPositionChange.x !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// OUTER (geometry)
-				var indX = this.totalBuffer - this.totalBuffer * gridPositionChange.x;
-				var newBlock = this.visibleBlocks[indX][i];
-
-				this.destroyBlock(newBlock);
-				this.visibleBlocks[indX][i] = undefined;
-
-				var blockGridPosition = {
-					x: this.targetGridPosition.x + this.totalBuffer * gridPositionChange.x + gridPositionChange.x,
-					z: this.targetGridPosition.z - this.totalBuffer + i
-				};
-
-				console.log("remove geometry x:" + indX + " z:" + i);
-
-				newBlocks[i] = this.generateBlock(blockGridPosition);
-
-				// INNER (textures)
-				if (i > this.outerBuffer - 1 && i < this.blockCount - this.outerBuffer) {
-					// REMOVE textures from the back row
-					indX = this.totalBuffer - this.innerBuffer * gridPositionChange.x;
-					for (var j = 0; j < this.visibleBlocks[indX][i].mesh.children.length; j++) {
-						this.visibleBlocks[indX][i].mesh.children[j].material = this.visibleBlocks[indX][i].lodMaterial;
-					}
-					// dispose
-					resManager.unloadAssets(this.visibleBlocks[indX][i].innerDisposables);
-
-					// ADD textures to the front row
-					var distanceToNewBlock = gridPositionChange.x * this.innerBuffer + gridPositionChange.x;
-					var offset = this.totalBuffer;
-					indX = distanceToNewBlock + offset;
-
-					// Get ctm materials
-					var ctmMaterials = this.visibleBlocks[indX][i].ctmMaterials;
-					// Create a dds version
-					var newMaterial = hackMaterials(ctmMaterials, this.visibleBlocks[indX][i].outerDisposables);
-
-					for (var j = 0; j < this.visibleBlocks[indX][i].mesh.children.length; j++) {
-						this.visibleBlocks[indX][i].mesh.children[j].material = newMaterial[j];
-					}
-
-					console.log("new texture x:" + indX + " z:" + i);
-				}
+				this.cullBlock(i, gridPositionChange, newBlocks);
 			}
 		}
 		if (gridPositionChange.z !== 0) {
 			for (i = 0; i < this.blockCount; i++) {
-				// OUTER (geometry)
-				var indZ = this.totalBuffer - this.totalBuffer * gridPositionChange.z;
-				var newBlock = this.visibleBlocks[i][indZ];
-
-				this.destroyBlock(newBlock);
-				this.visibleBlocks[i][indZ] = undefined;
-
-				var blockGridPosition = {
-					x: this.targetGridPosition.x - this.totalBuffer + i,
-					z: this.targetGridPosition.z + this.totalBuffer * gridPositionChange.z + gridPositionChange.z
-				};
-
-				console.log("remove geometry x:" + i + " z:" + indZ);
-
-				newBlocks[i] = this.generateBlock(blockGridPosition);
-
-				// INNER (textures)
-
-				if (i > this.outerBuffer - 1 && i < this.blockCount - this.outerBuffer) {
-					// REMOVE textures from the back row
-					indZ = this.totalBuffer - this.innerBuffer * gridPositionChange.z;
-					for (var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++) {
-						this.visibleBlocks[i][indZ].mesh.children[j].material = this.visibleBlocks[i][indZ].lodMaterial;
-					}
-					// dispose
-					resManager.unloadAssets(this.visibleBlocks[i][indZ].innerDisposables);
-
-					// ADD textures to the front row
-					var distanceToNewBlock = gridPositionChange.z * this.innerBuffer + gridPositionChange.z;
-					var offset = this.totalBuffer;
-					indZ = distanceToNewBlock + offset;
-
-					// Get ctm materials
-					var ctmMaterials = this.visibleBlocks[i][indZ].ctmMaterials;
-					// Create a dds version
-					var newMaterial = hackMaterials(ctmMaterials, this.visibleBlocks[i][indZ].outerDisposables);
-
-					for (var j = 0; j < this.visibleBlocks[i][indZ].mesh.children.length; j++) {
-						this.visibleBlocks[i][indZ].mesh.children[j].material = newMaterial[j];
-					}
-
-					console.log("new texture x:" + i + " z:" + indZ);
-				}
+				this.cullBlock(i, gridPositionChange, newBlocks);
 			}
 		}
 
@@ -390,9 +379,9 @@ GRID.Manager.prototype = {
 				var t = this.visibleBlocks[i][j];
 				if (t !== undefined) {
 					var indX = -this.targetGridPosition.x - gridPositionChange.x + this.totalBuffer + t.gridPosition.x;
-					var indY = -this.targetGridPosition.z - gridPositionChange.z + this.totalBuffer + t.gridPosition.z;
-					// console.log("x: " + indX + " y: " + indY);
-					newVisibleBlocks[indX][indY] = t;
+					var indZ = -this.targetGridPosition.z - gridPositionChange.z + this.totalBuffer + t.gridPosition.z;
+					// console.log("x: " + indX + " y: " + indZ);
+					newVisibleBlocks[indX][indZ] = t;
 				}
 			}
 		}
