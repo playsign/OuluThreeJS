@@ -217,7 +217,7 @@ GRID.Manager.prototype = {
 
 
 			if (enableTextures) {
-				newBlock.texturedMaterials = hackMaterials(newBlock.ctmMaterials, newBlock.outerDisposables);
+				newBlock.texturedMaterials = hackMaterials(newBlock.ctmMaterials, newBlock.outerDisposables, newBlock.myself);
 			} else {
 				// var ctmMaterials = materials;
 
@@ -331,11 +331,11 @@ GRID.Manager.prototype = {
 			// Get ctm materials
 			var ctmMaterials = this.visibleBlocks[indX][indZ].ctmMaterials;
 			// Create a dds version
-			var newMaterial = hackMaterials(ctmMaterials, this.visibleBlocks[indX][indZ].outerDisposables);
+			this.visibleBlocks[indX][indZ].texturedMaterials = hackMaterials(ctmMaterials, this.visibleBlocks[indX][indZ].outerDisposables, this.visibleBlocks[indX][indZ].myself);
 
-			for (var j = 0; j < this.visibleBlocks[indX][indZ].mesh.children.length; j++) {
-				this.visibleBlocks[indX][indZ].mesh.children[j].material = newMaterial[j];
-			}
+			// for (var j = 0; j < this.visibleBlocks[indX][indZ].mesh.children.length; j++) {
+			// 	this.visibleBlocks[indX][indZ].mesh.children[j].material = this.visibleBlocks[indX][indZ].texturedMaterials[j];
+			// }
 
 			// console.log("new texture x:" + indX + " z:" + indZ);
 		}
@@ -512,7 +512,7 @@ GRID.Tester = function() {
 			this.position.x -= distance;
 		} else {
 			console.log("invalid direction");
-		}
+		}	
 		this.gm.debugDrawGrid();
 	};
 
@@ -524,6 +524,7 @@ GRID.Block = function() {
 		x: 0,
 		z: 0
 	};
+	this.myself = this;
 
 	this.mesh = null;
 	this.colliders = [];
@@ -538,4 +539,10 @@ GRID.Block = function() {
 	// Disposables
 	this.innerDisposables = [];
 	this.outerDisposables = [];
+};
+
+GRID.Block.prototype.enableTexturedMaterials = function() {
+	for (var j = 0; j < this.mesh.children.length; j++) {
+		this.mesh.children[j].material = this.texturedMaterials[j];
+	}
 };

@@ -214,10 +214,22 @@ function addCar(object, x, y, z, s) {
 	// object.root.receiveShadow = true;
 }
 
-function loadTexture(path) {
+function loadTexture(path, block) {
 	if (typeof(path) !== "string")
 		throw ("bad path " + path);
-	var tex = THREE.ImageUtils.loadCompressedTexture(path);
+
+	var tex = null;
+
+	if (block) {
+		var callbackFunction = function(xhr) {
+			block.myself.enableTexturedMaterials();
+			render();
+		};
+
+		tex = THREE.ImageUtils.loadCompressedTexture(path, undefined, undefined, undefined, callbackFunction);
+	} else {
+		tex = THREE.ImageUtils.loadCompressedTexture(path);
+	}
 	tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
 	tex.repeat.set(1, 1);
 	tex.minFilter = tex.magFilter = THREE.LinearFilter;
@@ -510,10 +522,10 @@ function getNextClonePosition(pos) {
 }
 
 
-function hackMaterials(origMaterials, disposables) {
+function hackMaterials(origMaterials, disposables, block) {
 	var stime = performance.now();
 	var basicMaterial;
-	var placeholderTexture = loadTexture("images/balconieRailings.dds");
+	var placeholderTexture = loadTexture("images/balconieRailings.dds", block);
 	var newMaterials = [];
 	var newFaceMaterials = [];
 	var newTexture;
@@ -540,9 +552,14 @@ function hackMaterials(origMaterials, disposables) {
 				// 	newTexture = resManager.texcache[texpath];
 				// }
 				// else{
-					// newTexture = resManager.texcache[texpath] = loadTexture(texpath);
+				// newTexture = resManager.texcache[texpath] = loadTexture(texpath, block);
+				if (i === origMaterials.length - 2) {
+					newTexture = loadTexture(texpath, block);
+				} else {
 					newTexture = loadTexture(texpath);
+				}
 				// }
+
 
 				basicMaterial = new THREE.MeshBasicMaterial({
 					map: newTexture

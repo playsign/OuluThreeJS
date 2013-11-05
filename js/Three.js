@@ -26746,7 +26746,7 @@ THREE.ImageUtils = {
 
 	},
 
-	loadCompressedTexture: function ( url, mapping, onLoad, onError ) {
+	loadCompressedTexture: function ( url, mapping, onLoad, onError, onLoadEnd ) {
 
 		var texture = new THREE.CompressedTexture();
 		texture.mapping = mapping;
@@ -26774,6 +26774,10 @@ THREE.ImageUtils = {
 
 			if ( onLoad ) onLoad( texture );
 
+		}
+
+		request.onloadend = function () {
+			if(onLoadEnd) onLoadEnd();
 		}
 
 		request.onerror = onError;
