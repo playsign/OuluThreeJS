@@ -16,7 +16,7 @@ var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
-var resManager = new ResourceManager();
+var resManager = new AssetDisposer();
 // var tester = new GRID.Tester();
 var ouluClones = [];
 // var clonePosition = {
