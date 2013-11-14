@@ -50,8 +50,10 @@ GRID.Manager.prototype = {
 			}
 			// debugger;
 		} else if (this.cullCooldown <= this.cullTimer && this.orphanBlocks.length === 0) {
+			var cullPosition = null;
+
 			if (newGridPosition.x !== this.targetGridPosition.x) {
-				var cullPosition = {
+				 cullPosition = {
 					x: newGridPosition.x - this.targetGridPosition.x,
 					z: 0
 				};
@@ -61,7 +63,7 @@ GRID.Manager.prototype = {
 			}
 
 			if (newGridPosition.z !== this.targetGridPosition.z) {
-				var cullPosition = {
+				cullPosition = {
 					x: 0,
 					z: newGridPosition.z - this.targetGridPosition.z
 				};
@@ -434,7 +436,6 @@ GRID.Manager.prototype = {
 
 
 	debugDrawGrid: function() {
-		this.update();
 
 		// Roguelike presentation
 		var rows = [];
@@ -462,7 +463,11 @@ GRID.Manager.prototype = {
 
 		for (var i = 0; i < rows.length; i++) {
 			var pos = " ";
-			(i - 3) < 4 ? pos = i - 3 : pos = " ";
+			if ((i - 3) < 4) {
+				pos = i - 3;
+			} else {
+				pos = " ";
+			}
 			console.log(rows[i] + " " + pos);
 		}
 	},
@@ -478,7 +483,7 @@ GRID.Manager.prototype = {
 		}
 		return false;
 	},
-}
+};
 
 GRID.Tester = function() {
 
