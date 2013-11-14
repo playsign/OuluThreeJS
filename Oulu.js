@@ -153,6 +153,7 @@ function init() {
 
 		console.log(object);
 		object.position.y = -80;
+		oulu = object;
 		scene.add(object);
 
 	});
