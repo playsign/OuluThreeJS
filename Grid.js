@@ -123,14 +123,11 @@ GRID.Manager.prototype = {
 
 
 	generateBlock: function(gridPosition, enableTextures) {
-		// console.log("generateBlock");
-		// console.log("gridPosition: ");
-		// console.log(gridPosition);
 		var newBlock = new GRID.Block();
 		newBlock.gridPosition.x = gridPosition.x;
 		newBlock.gridPosition.z = gridPosition.z;
 
-		var blockId = "block-" + gridPosition.x + "_" + gridPosition.y + ".js";
+		//var blockId = "block-" + gridPosition.x + "_" + gridPosition.y + ".js";
 
 		// Oulu
 		// var jsonLoader = new THREE.JSONLoader();
@@ -199,7 +196,7 @@ GRID.Manager.prototype = {
 
 			basicMaterial.materialIndex = 0;
 
-			resManager.regDisposable(basicMaterial[0], newBlock.outerDisposables);
+			disposer.regDisposable(basicMaterial[0], newBlock.outerDisposables);
 
 			newBlock.lodMaterial = new THREE.MeshFaceMaterial(basicMaterial);
 			newBlock.lodMaterial.materialIndex = 0;
@@ -248,7 +245,7 @@ GRID.Manager.prototype = {
 				// mesh.scale = scale;
 				// scene.add(mesh);
 				group.add(mesh); //add a mesh with geometry to it
-				// resManager.regDisposable(mesh.geometry, newBlock.outerDisposables); // causes minus geometry count
+				// disposer.regDisposable(mesh.geometry, newBlock.outerDisposables); // causes minus geometry count
 
 			}
 
@@ -318,7 +315,7 @@ GRID.Manager.prototype = {
 				this.visibleBlocks[indX][indZ].mesh.children[j].material = this.visibleBlocks[indX][indZ].lodMaterial;
 			}
 			// dispose
-			resManager.unloadAssets(this.visibleBlocks[indX][indZ].innerDisposables);
+			disposer.unloadAssets(this.visibleBlocks[indX][indZ].innerDisposables);
 
 			// ADD textures to the front row
 			var offset = this.totalBuffer;
@@ -412,7 +409,7 @@ GRID.Manager.prototype = {
 			// debugger;
 		} else {
 			// dispose
-			resManager.unloadAssets(b.outerDisposables);
+			disposer.unloadAssets(b.outerDisposables);
 			// remove from the scene
 			scene.remove(b.mesh);
 

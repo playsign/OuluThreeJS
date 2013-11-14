@@ -16,7 +16,7 @@ var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
-var resManager = new AssetDisposer();
+var disposer = new AssetDisposer();
 // var tester = new GRID.Tester();
 var ouluClones = [];
 // var clonePosition = {
@@ -143,7 +143,7 @@ function init() {
 	// 		window.setTimeout(function() {
 	// 			jsonLoader = new THREE.JSONLoader();
 	// 			console.log("unloading prev assets before loading new clone");
-	// 			resManager.unloadAssets();
+	// 			disposer.unloadAssets();
 	// 			jsonLoader.load(masterscene_file, function(geometry, material) {
 	// 				addOuluModelToScene(geometry, material, "oulu");
 	// 			});
@@ -232,7 +232,7 @@ function addColliderModelToScene(geometry, origMaterials, type, newBlock) {
 
 	newMesh = new THREE.Mesh(geometry, faceMaterial);
 
-	// resManager.regDisposable(newMesh, newBlock.outerDisposables);
+	// disposer.regDisposable(newMesh, newBlock.outerDisposables);
 
 	// Todo refactor this
 	if (newBlock) {
@@ -271,7 +271,7 @@ function addOuluModelToScene(group, newBlock) {
 
 
 
-	// resManager.regDisposable(newMesh.geometry);
+	// disposer.regDisposable(newMesh.geometry);
 
 	// for (var i = 0; i < group.children.length; i++) {
 	// 	// for (var i = 0; i < group.children[k].material.length; i++) {
@@ -283,11 +283,11 @@ function addOuluModelToScene(group, newBlock) {
 	// 		var ddsName = group.children[i].material.map.sourceFile.substr(0, group.children[i].material.map.sourceFile.lastIndexOf(".")) + ".dds";
 	// 		console.log("ddsName: " + ddsName);
 	// 		var texpath = "./images/" + ddsName;
-	// 		if (resManager.loadAssetsAtStartup) {
-	// 			if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath))
-	// 				newTexture = resManager.texcache[texpath];
+	// 		if (disposer.loadAssetsAtStartup) {
+	// 			if (disposer.useTexcache && disposer.texcache.hasOwnProperty(texpath))
+	// 				newTexture = disposer.texcache[texpath];
 	// 			else
-	// 				newTexture = resManager.texcache[texpath] = loadTexture(texpath);
+	// 				newTexture = disposer.texcache[texpath] = loadTexture(texpath);
 
 	// 			basicMaterial = new THREE.MeshBasicMaterial({
 	// 				map: newTexture
@@ -299,7 +299,7 @@ function addOuluModelToScene(group, newBlock) {
 	// 				map: placeholderTexture,
 	// 			});
 	// 		}
-	// 		// resManager.regDisposable(basicMaterial);
+	// 		// disposer.regDisposable(basicMaterial);
 	// 		newMaterials.push(basicMaterial);
 	// 	} else {
 	// 		newMaterials.push(group.children[i].material);
@@ -535,12 +535,12 @@ function hackMaterials(origMaterials, disposables) {
 			var ddsName = m.map.sourceFile.substr(0, m.map.sourceFile.lastIndexOf(".")) + ".dds";
 			// console.log("ddsName: " + ddsName);
 			var texpath = "./images/" + ddsName;
-			if (resManager.loadAssetsAtStartup) {
-				// if (resManager.useTexcache && resManager.texcache.hasOwnProperty(texpath)){
-				// 	newTexture = resManager.texcache[texpath];
+			if (disposer.loadAssetsAtStartup) {
+				// if (disposer.useTexcache && disposer.texcache.hasOwnProperty(texpath)){
+				// 	newTexture = disposer.texcache[texpath];
 				// }
 				// else{
-					// newTexture = resManager.texcache[texpath] = loadTexture(texpath);
+					// newTexture = disposer.texcache[texpath] = loadTexture(texpath);
 					newTexture = loadTexture(texpath);
 				// }
 
@@ -554,7 +554,7 @@ function hackMaterials(origMaterials, disposables) {
 					map: placeholderTexture,
 				});
 			}
-			resManager.regDisposable(basicMaterial, disposables);
+			disposer.regDisposable(basicMaterial, disposables);
 			newMaterials.push(basicMaterial);
 		} else {
 			newMaterials.push(m);
