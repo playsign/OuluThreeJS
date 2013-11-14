@@ -1,6 +1,7 @@
 /* -*- js-indent-level: 8 -*-
  *
  * @author Tapani Jamsa
+ * inspired by Quickfingers http://forum.unity3d.com/threads/68807-Infinite-Terrain-Free-Project-Source
  */
 "use strict";
 
@@ -33,7 +34,6 @@ GRID.Manager = function() {
 	this.cullCooldown = 3; // seconds
 	this.orphanBlocks = [];
 
-
 };
 
 GRID.Manager.prototype = {
@@ -48,7 +48,7 @@ GRID.Manager.prototype = {
 			for (var i = 0; i < this.orphanBlocks.length; i++) {
 				this.destroyBlock(this.orphanBlocks[i], i);
 			}
-			// debugger;
+
 		} else if (this.cullCooldown <= this.cullTimer && this.orphanBlocks.length === 0) {
 			var cullPosition = null;
 
@@ -77,22 +77,15 @@ GRID.Manager.prototype = {
 	},
 
 	getGridPosition: function(targetPosition, blockSize) {
-		// console.log("getGridPosition");
 		var gridPosition = {
 			x: Math.round(targetPosition.x() / blockSize),
 			z: Math.round(targetPosition.z() / blockSize),
 		};
-		// console.log("gridPositionChange: ");
-		// console.log(gridPositionChange);
 
 		return gridPosition;
-
-		// this.targetGridPosition.x = Math.round(this.target.x / this.blockSize);
-		// this.targetGridPosition.z = Math.round(this.target.z / this.blockSize);
 	},
 
 	init: function() {
-		// console.log("init");
 		this.blockCount = this.totalBuffer * 2 + 1;
 		this.visibleBlocks = new Array(this.blockCount);
 		for (var a = 0; a < this.blockCount; a++) {
@@ -102,7 +95,6 @@ GRID.Manager.prototype = {
 
 		for (var x = 0; x < this.blockCount; x++) {
 			for (var z = 0; z < this.blockCount; z++) {
-				// debugger;
 
 				var blockGridPosition = {
 					x: newGridPosition.x - this.totalBuffer + x,
@@ -117,7 +109,6 @@ GRID.Manager.prototype = {
 				}
 
 				this.visibleBlocks[x][z] = this.generateBlock(blockGridPosition, enableTextures);
-
 			}
 		}
 
@@ -181,12 +172,7 @@ GRID.Manager.prototype = {
 		var group = new THREE.Object3D(); //create an empty container
 		// document.body.appendChild(loaderCTM.statusDomElement);
 
-		// var position = new THREE.Vector3(-105, -78, -40);
-		// var scale = new THREE.Vector3(30, 30, 30);
-
 		loaderCTM.loadParts("BlockCTM_normals.js", function(geometries, materials) {
-			// console.log("geometries");
-			// console.log(geometries);
 
 			// Create LOD material
 			var basicMaterial = [];
@@ -234,7 +220,6 @@ GRID.Manager.prototype = {
 			}
 
 			for (var i = 0; i < geometries.length; i++) {
-				// console.log("add mesh");
 				var mesh = null;
 				if (enableTextures) {
 					newBlock.texturedMaterials[i].materialIndex = i;
@@ -243,9 +228,6 @@ GRID.Manager.prototype = {
 					mesh = new THREE.Mesh(geometries[i], newBlock.lodMaterial);
 				}
 
-				// mesh.position = position;
-				// mesh.scale = scale;
-				// scene.add(mesh);
 				group.add(mesh); //add a mesh with geometry to it
 				// disposer.regDisposable(mesh.geometry, newBlock.outerDisposables); // causes minus geometry count
 
@@ -396,10 +378,6 @@ GRID.Manager.prototype = {
 	},
 
 	destroyBlock: function(b, orphanIndex) {
-		// console.clear();
-		// console.log("destroyBlock: ");
-		// console.log(b);
-		// console.log(b.mesh);
 		if (b.mesh === null) {
 			// console.log("Can't remove the block because the scene is still adding the mesh!");
 
@@ -408,7 +386,6 @@ GRID.Manager.prototype = {
 				this.orphanBlocks.push(b);
 				b.orphanID = this.orphanBlocks.length - 1;
 			}
-			// debugger;
 		} else {
 			// dispose
 			disposer.unloadAssets(b.outerDisposables);
@@ -473,7 +450,6 @@ GRID.Manager.prototype = {
 	},
 
 	isOccupied: function(gridPosition) {
-		// debugger;
 		for (var x = 0; x < this.visibleBlocks.length; x++) {
 			for (var z = 0; z < this.visibleBlocks.length; z++) {
 				if (this.visibleBlocks[x][z].gridPosition.x === gridPosition.x && this.visibleBlocks[x][z].gridPosition.z === gridPosition.z) {
