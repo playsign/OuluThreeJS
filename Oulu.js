@@ -12,7 +12,6 @@
 var container, scene, carCamera, flyCamera, renderer, flyControls, stats, rendererStats, directionalLight;
 var flyMode = false;
 var clock = new THREE.Clock();
-var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
@@ -36,9 +35,6 @@ var controlsCar = {
 	moveRight: false
 
 };
-
-init();
-animate();
 
 // FUNCTIONS	
 
@@ -100,12 +96,12 @@ function init() {
 	// flyControls.rollSpeed = Math.PI / 12; // Math.PI / 24
 	// flyControls.autoForward = false;
 	// flyControls.dragToLook = true;
-	flyControls = new THREE.PointerLockControls(flyCamera);
+	flyControls = new THREE.FreeLookControls(flyCamera, renderer.domElement);
 	flyControls.enabled = false;
 	scene.add(flyControls.getObject());
 	// STATS
 	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.position = 'absolute'
 	stats.domElement.style.bottom = '0px';
 	stats.domElement.style.zIndex = 100;
 	container.appendChild(stats.domElement);
@@ -200,7 +196,7 @@ function init() {
 	};
 	gridManager.init();
 
-
+	animate();
 }
 
 function addCar(object, x, y, z, s) {
@@ -403,10 +399,7 @@ function update() {
 	var delta = clock.getDelta(); // seconds.
 
 	if (flyMode === true) {
-		// flyControls.movementSpeed = delta * 10000;
-		// flyControls.update(delta);
-
-		flyControls.update(Date.now() - time);
+		flyControls.update(delta * 1000);
 	} else {
 		if (car && car.bodyMesh) {
 			var relativeCameraOffset = new THREE.Vector3(0, 3, -15);

@@ -3,9 +3,10 @@
  * free look mod by Playsign
  */
 
-THREE.PointerLockControls = function(camera) {
+THREE.FreeLookControls = function(camera, domElement) {
 
 	var scope = this;
+	this.domElement = (domElement !== undefined) ? domElement : document;
 
 	camera.rotation.set(0, 0, 0);
 
@@ -13,7 +14,7 @@ THREE.PointerLockControls = function(camera) {
 	pitchObject.add(camera);
 
 	var yawObject = new THREE.Object3D();
-	yawObject.position.set(200,100,200);
+	yawObject.position.set(200, 100, 200);
 	yawObject.add(pitchObject);
 
 	var moveForward = false;
@@ -29,15 +30,22 @@ THREE.PointerLockControls = function(camera) {
 	var canJump = false;
 
 	var velocity = new THREE.Vector3();
+	var speed = 5;
 
 	var PI_2 = Math.PI / 2;
 
 	var onMouseDown = function(event) {
 		dragging = true;
+
+		document.addEventListener('mousemove', onMouseMove, false);
+		document.addEventListener('mouseup', onMouseUp, false);
 	};
 
 	var onMouseUp = function(event) {
 		dragging = false;
+
+		document.removeEventListener('mousemove', onMouseMove, false);
+		document.removeEventListener('mouseup', onMouseUp, false);
 	};
 
 	var onMouseMove = function(event) {
@@ -132,17 +140,18 @@ THREE.PointerLockControls = function(camera) {
 
 	};
 
-	document.addEventListener('mouseup', onMouseUp, false);
-	document.addEventListener('mousedown', onMouseDown, false);
-	document.addEventListener('mousemove', onMouseMove, false);
-	document.addEventListener('keydown', onKeyDown, false);
-	document.addEventListener('keyup', onKeyUp, false);
 
 	this.enabled = false;
 
 	this.getObject = function() {
 
 		return yawObject;
+
+	};
+
+	this.getVelocity = function() {
+
+		return velocity;
 
 	};
 
@@ -176,7 +185,7 @@ THREE.PointerLockControls = function(camera) {
 
 		if (scope.enabled === false) return;
 
-		delta *= 0.00001;
+		delta *= 0.1;
 
 		velocity.x += (-velocity.x) * 0.08 * delta;
 		velocity.y += (-velocity.y) * 0.08 * delta;
@@ -199,9 +208,9 @@ THREE.PointerLockControls = function(camera) {
 
 		// }
 
-		yawObject.translateX(velocity.x);
-		yawObject.translateY(velocity.y);
-		yawObject.translateZ(velocity.z);
+		yawObject.translateX(velocity.x * speed);
+		yawObject.translateY(velocity.y * speed);
+		yawObject.translateZ(velocity.z * speed);
 
 		// if ( yawObject.position.y < 10 ) {
 
@@ -214,4 +223,9 @@ THREE.PointerLockControls = function(camera) {
 
 	};
 
+	this.domElement.addEventListener('mouseup', onMouseUp, false);
+	this.domElement.addEventListener('mousedown', onMouseDown, false);
+	this.domElement.addEventListener('mousemove', onMouseMove, false);
+	window.addEventListener('keydown', onKeyDown, false);
+	window.addEventListener('keyup', onKeyUp, false);
 };
