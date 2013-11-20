@@ -12,7 +12,6 @@ var container, scene, carCamera, flyCamera, renderer, controls, flyControls, sta
 var flyMode = false;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
-var time = Date.now();
 var car, oulu, colliderBuildings, colliderGround;
 var debugMode = false;
 
@@ -262,11 +261,7 @@ function update() {
 	var delta = clock.getDelta(); // seconds.
 
 	if (flyMode === true) {
-		// flyControls.movementSpeed = delta * 10000;
-		// flyControls.update(delta);
-
-		flyControls.update(Date.now() - time);
-		time = Date.now();
+		flyControls.update(delta * 1000);
 	} else {
 		if (car && car.bodyMesh) {
 			var relativeCameraOffset = new THREE.Vector3(0, 3, -15);
