@@ -12,7 +12,6 @@
 var container, scene, carCamera, flyCamera, renderer, flyControls, stats, rendererStats, directionalLight;
 var flyMode = false;
 var clock = new THREE.Clock();
-var time = Date.now();
 var car;
 var oulu = new GRID.Block();
 var gridManager = new GRID.Manager();
@@ -354,14 +353,7 @@ function update() {
 	var delta = clock.getDelta(); // seconds.
 
 	if (flyMode === true) {
-		// flyControls.movementSpeed = delta * 10000;
-		// flyControls.update(delta);
-
 		flyControls.update(delta * 1000);
-
-
-		// flyControls.update(Date.now() - time);
-		// time = Date.now();
 	} else {
 		if (car && car.bodyMesh) {
 			var relativeCameraOffset = new THREE.Vector3(0, 3, -15);
