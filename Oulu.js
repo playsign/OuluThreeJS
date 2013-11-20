@@ -24,9 +24,6 @@ var controlsCar = {
 
 };
 
-init();
-animate();
-
 // FUNCTIONS 		
 
 function init() {
@@ -87,7 +84,7 @@ function init() {
 	// flyControls.rollSpeed = Math.PI / 12; // Math.PI / 24
 	// flyControls.autoForward = false;
 	// flyControls.dragToLook = true;
-	flyControls = new THREE.PointerLockControls(flyCamera);
+	flyControls = new THREE.FreeLookControls(flyCamera, renderer.domElement);
 	flyControls.enabled = false;
 	scene.add(flyControls.getObject());
 	// STATS
@@ -150,7 +147,7 @@ function init() {
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
 
-
+	animate();
 }
 
 function addCar(object, x, y, z, s) {
@@ -269,6 +266,7 @@ function update() {
 		// flyControls.update(delta);
 
 		flyControls.update(Date.now() - time);
+		time = Date.now();
 	} else {
 		if (car && car.bodyMesh) {
 			var relativeCameraOffset = new THREE.Vector3(0, 3, -15);
