@@ -165,7 +165,10 @@ var allMaterials = [];
 var allGeometries = [];
 var unloadTextures = null;
 
-function addModelToScene(geometry, materials, type) {
+function addModelToScene(geometry, materials, type, path) {
+	if(path === undefined){
+		path = "./images/";
+	}
 
 	var material, newMesh;
 	var basicMaterial;
@@ -176,9 +179,10 @@ function addModelToScene(geometry, materials, type) {
 		for (var i = 0; i < materials.length; i++) {
 			if (materials[i].map) {
 				//  JPG TO DDS
+				console.log( materials[i].map);
 				var ddsName = materials[i].map.sourceFile.substr(0, materials[i].map.sourceFile.lastIndexOf(".")) + ".dds";
 				// console.log("ddsName: " + ddsName);
-				var texpath = "./images/" + ddsName;
+				var texpath = path + ddsName;
 				if (useTexcache && texcache.hasOwnProperty(texpath)) {
 					map = texcache[texpath];
 					console.log("tex cache hit: " + texpath);
