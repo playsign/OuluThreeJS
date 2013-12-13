@@ -1,0 +1,41 @@
+
+material TreesAndBushes
+{
+	technique
+	{
+		pass
+		{
+	                ambient 1.0 1.0 1.0 1.0
+                        diffuse 1.0 1.0 1.0 1.0
+                        specular 0.0 0.0 0.0 1.0 12.5
+                        emissive 1 1 1 1.0
+                        iteration once
+                        lighting off
+			scene_blend src_alpha one_minus_src_alpha
+			alpha_rejection greater_equal 250
+
+    		        texture_unit baseMap
+			{
+				texture TreesAndBushes.dds
+			}
+		}
+
+		pass
+		{
+	                ambient 1.0 1.0 1.0 1.0
+                        diffuse 1.0 1.0 1.0 1.0
+                        specular 0.0 0.0 0.0 1.0 12.5
+                        emissive 1 1 1 1.0
+                        iteration once
+                        lighting off
+                        depth_write off
+			scene_blend src_alpha one_minus_src_alpha
+			alpha_rejection less_equal 250
+
+    		        texture_unit baseMap
+			{
+				texture TreesAndBushes.dds
+			}
+		}
+	}
+}

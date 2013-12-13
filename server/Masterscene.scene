@@ -1,0 +1,753 @@
+<scene exported_by="user" formatVersion="1.0.1" previous_export_time="1348217400.812" export_time="1348220391.171" >
+  <nodes >
+    <node name="ouluStreetBridge.003" >
+      <position y="106.254929" x="17.727232" z="5.954569" />
+      <rotation qy="0.000000" qx="-0.000000" qz="-0.878826" qw="0.477142" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="ouluStreetBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="ouluStreetBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge.005" >
+      <position y="156.019897" x="-14.757041" z="5.470944" />
+      <rotation qy="0.000158" qx="0.000030" qz="-0.880712" qw="0.473653" />
+      <scale y="0.999999" x="0.999999" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge.004" >
+      <position y="154.397522" x="-12.303962" z="5.492985" />
+      <rotation qy="0.000030" qx="-0.000158" qz="0.473669" qw="0.880703" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="AdministrationParkBlock" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="AdministrationParkBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="AdministrationParkBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="ouluStreetBridge" >
+      <position y="75.636063" x="22.331427" z="6.021840" />
+      <rotation qy="0.000687" qx="0.000271" qz="0.475791" qw="0.879558" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="ouluStreetBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="ouluStreetBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge.003" >
+      <position y="23.574993" x="32.094193" z="5.664266" />
+      <rotation qy="0.000079" qx="-0.000140" qz="0.163906" qw="0.986476" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge.002" >
+      <position y="27.069439" x="30.946196" z="5.718713" />
+      <rotation qy="-0.000267" qx="-0.000144" qz="-0.989334" qw="0.145664" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="hallituskatu11" >
+      <position y="49.345505" x="56.059963" z="6.692566" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.289590" qw="0.957151" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="hallituskatu11.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="hallituskatu11" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Hallituskatu9" >
+      <position y="38.648769" x="48.951374" z="6.655028" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.957438" qw="0.288638" />
+      <scale y="0.871911" x="0.871911" z="0.871911" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Hallituskatu9.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Hallituskatu9" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Asemakatu4" >
+      <position y="73.154770" x="121.829216" z="7.246528" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.959415" qw="0.281998" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Asemakatu4.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Asemakatu4" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="SnelmannsBlockRiver" >
+      <position y="-100.707947" x="28.320349" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="106" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="SnelmannsBlockRiver.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="SnelmannsBlockRiver" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="SnelmannsBlock" >
+      <position y="-100.707947" x="28.320349" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="SnelmannsBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="SnelmannsBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="asemakatu2" >
+      <position y="83.557556" x="55.016567" z="6.712107" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.474880" qw="0.880050" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="asemakatu2.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="asemakatu2" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="asemakatu_10" >
+      <position y="14.316566" x="212.968887" z="8.010180" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.479803" qw="0.877376" />
+      <scale y="1.040985" x="1.040985" z="1.040985" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="asemakatu_10.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="asemakatu_10" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="asemakatu6" >
+      <position y="40.428608" x="145.476883" z="8.513025" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.959671" qw="0.281126" />
+      <scale y="1.162905" x="1.162905" z="1.162905" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="asemakatu6.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="asemakatu6" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Isokatu19" >
+      <position y="10.539692" x="119.375603" z="6.894027" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.279489" qw="0.960149" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Isokatu19.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Isokatu19" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluBlock30" >
+      <position y="-100.707947" x="28.320349" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluBlock30.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluBlock30" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="pakkahuoneenkatu_9b" >
+      <position y="13.153316" x="-97.459671" z="5.994006" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.957641" qw="0.287964" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="pakkahuoneenkatu_9b.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="pakkahuoneenkatu_9b" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Hallituskatu12" >
+      <position y="52.902985" x="-23.733610" z="6.184644" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.959620" qw="0.281301" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Hallituskatu12.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Hallituskatu12" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Hallituskatu10" >
+      <position y="79.076782" x="-64.190887" z="4.935246" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.959671" qw="0.281125" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.02539999969303608" damping_rot="0.1589999943971634" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Hallituskatu10.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Hallituskatu10" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="YhdystorniBlock" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="YhdystorniBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="YhdystorniBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluBlock20" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluBlock20.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluBlock20" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Hallituskatu16" >
+      <position y="-31.806992" x="57.172390" z="5.988210" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.956994" qw="0.290109" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Hallituskatu16.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Hallituskatu16" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="hallituskatu14" >
+      <position y="-5.456234" x="18.303999" z="6.924119" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.957244" qw="0.289282" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="hallituskatu14.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="hallituskatu14" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="pakkahuoneenkatu_10" >
+      <position y="-13.367912" x="-111.886047" z="5.527144" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.878535" qw="0.477678" />
+      <scale y="0.999999" x="0.999999" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="pakkahuoneenkatu_10.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="pakkahuoneenkatu_10" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Kauppurienkatu11" >
+      <position y="-120.763748" x="-126.024887" z="7.946524" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.289159" qw="0.957281" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Kauppurienkatu11.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Kauppurienkatu11" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="kauppurienkatu9" >
+      <position y="-69.079422" x="-201.280350" z="7.208516" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.300601" qw="0.953750" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="kauppurienkatu9.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="kauppurienkatu9" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="PallasBlock" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="100" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="PallasBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="PallasBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="kauppurienkatu_13" >
+      <position y="-128.264557" x="-114.887650" z="7.334447" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.291481" qw="0.956577" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="kauppurienkatu_13.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="kauppurienkatu_13" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Kirkkokatu17" >
+      <position y="-82.383957" x="-61.784763" z="7.793477" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.877610" qw="0.479375" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Kirkkokatu17.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Kirkkokatu17" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Isokatu20-22" >
+      <position y="-148.538879" x="-21.709295" z="6.327495" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.483084" qw="0.875574" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Isokatu20-22.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Isokatu20-22" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="KauppuriBlock.001" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="100" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="KauppuriBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="KauppuriBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Kauppurienkatu17" >
+      <position y="-194.053024" x="-12.664443" z="6.299794" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Kauppurienkatu17.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Kauppurienkatu17" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Kauppurienkatu19" >
+      <position y="-218.396027" x="24.494650" z="5.988003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.289086" qw="0.957303" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Kauppurienkatu19.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Kauppurienkatu19" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="uusikatu_28" >
+      <position y="-189.880219" x="36.837940" z="6.055882" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="uusikatu_28.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="uusikatu_28" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="Isokatu23" >
+      <position y="-129.883286" x="11.783446" z="5.826993" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.878445" qw="0.477843" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Isokatu23.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Isokatu23" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="pakkahuoneenkatu_22" >
+      <position y="-152.055542" x="104.907753" z="4.996507" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.472024" qw="0.881585" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="pakkahuoneenkatu_22.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="pakkahuoneenkatu_22" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="KarhisParkBlock" >
+      <position y="-100.707947" x="28.320349" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="100" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="KarhisParkBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="KarhisParkBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="ouluStreetBridge.001" >
+      <position y="-14.113419" x="68.688438" z="5.964278" />
+      <rotation qy="-0.000469" qx="0.002603" qz="-0.879910" qw="0.475132" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="ouluStreetBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="ouluStreetBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="ouluStreetBridge.002" >
+      <position y="-28.446888" x="78.009331" z="6.001537" />
+      <rotation qy="0.002842" qx="-0.000128" qz="0.475561" qw="0.879678" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="ouluStreetBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="ouluStreetBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge.001" >
+      <position y="-76.391098" x="107.129158" z="5.757897" />
+      <rotation qy="0.000144" qx="0.000071" qz="-0.975208" qw="0.221288" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OuluParkBridge" >
+      <position y="-80.123978" x="108.840141" z="5.779938" />
+      <rotation qy="0.000071" qx="-0.000144" qz="0.223220" qw="0.974768" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="OuluParkBridge.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="OuluParkBridge" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="BenchPark.007" >
+      <position y="-83.556023" x="56.147846" z="5.971296" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.492972" qw="0.870045" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="BenchPark3.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="BenchPark3" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="BenchPark.006" >
+      <position y="-84.216400" x="64.332512" z="5.971296" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.273818" qw="0.961781" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="BenchPark3.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="BenchPark3" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="BenchPark.005" >
+      <position y="-87.617615" x="69.819252" z="5.971296" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.273818" qw="0.961781" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="BenchPark3.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="BenchPark3" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="BenchPark.004" >
+      <position y="-95.960129" x="73.642738" z="5.971296" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.873701" qw="0.486463" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="BenchPark3.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="BenchPark3" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="OttoKarhiPark" >
+      <position y="-100.707947" x="28.320356" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="River" >
+      <position y="-100.707947" x="28.320356" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="GalleriaBlock.001" >
+      <position y="-100.707947" x="28.320356" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="SnelmannsBlockRiver.001" >
+      <position y="-100.707947" x="28.320349" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="Kirkkokatu2.002" >
+      <position y="98.489342" x="-25.865005" z="15.787818" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.470766" qw="0.882258" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="Kirkkokatu2.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="Kirkkokatu2" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="water.002" >
+      <position y="-82.258797" x="109.008400" z="4.807961" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="water.002.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="water.002" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_12" >
+      <position y="-78.645950" x="-98.782135" z="5.977387" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_12.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_12" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_11" >
+      <position y="-22.567619" x="-68.291252" z="7.046102" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.474342" qw="0.880341" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_11.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_11" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_13" >
+      <position y="-34.838356" x="-49.810841" z="7.077230" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_13.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_13" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_18" >
+      <position y="-127.820496" x="68.474510" z="5.818627" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.956791" qw="0.290775" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_18.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_18" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_14-16" >
+      <position y="-94.899979" x="19.007887" z="6.220235" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.958306" qw="0.285744" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_14-16.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_14-16" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_pakkahuoneenkatu_15" >
+      <position y="-83.745300" x="23.631971" z="6.189860" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_pakkahuoneenkatu_15.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_pakkahuoneenkatu_15" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_AdministrationParkBlockRiver.001" >
+      <position y="-100.707947" x="28.320349" z="-0.000003" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="106" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_AdministrationParkBlockRiver.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_AdministrationParkBlockRiver" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_hallituskatu_13-17.001" >
+      <position y="-5.811245" x="93.343010" z="6.125488" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.286259" qw="0.958152" />
+      <scale y="0.996809" x="0.996809" z="0.996809" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_hallituskatu_13-17.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_hallituskatu_13-17" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_Pakkahuoneenkatu9a.001" >
+      <position y="33.652668" x="-120.840485" z="17.105062" />
+      <rotation qy="-0.000000" qx="0.000000" qz="0.473366" qw="0.880866" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_Pakkahuoneenkatu9a.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_Pakkahuoneenkatu9a" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_Kauppurienkatu15.001" >
+      <position y="-154.255386" x="-75.532547" z="6.128573" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.277078" qw="0.960847" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_Kauppurienkatu15.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_Kauppurienkatu15" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ GalleriaBlock.001" >
+      <position y="-100.707947" x="28.320356" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281126" qw="0.959671" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="100" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ GalleriaBlock.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ GalleriaBlock" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_KarhisParkBlockRiver" >
+      <position y="-100.707947" x="28.320349" z="0.021098" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.281127" qw="0.959670" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <user_data type="int" name="uid" value="100" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_KarhisParkBlockRiver.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_KarhisParkBlockRiver" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ParkLampsWest" >
+      <position y="-42.398758" x="68.778145" z="5.382111" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.874328" qw="0.485335" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ParkLampsWest.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ParkLampsWest" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ParkLampsNorth" >
+      <position y="-35.455162" x="96.712044" z="5.247767" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.519929" qw="0.854209" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ParkLampsNorth.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ParkLampsNorth" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ParkLampsSouth" >
+      <position y="-131.600601" x="117.175240" z="5.247767" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.519929" qw="0.854209" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ParkLampsSouth.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ParkLampsSouth" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ParkLampsMid" >
+      <position y="-92.421432" x="126.205498" z="5.247767" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.519929" qw="0.854209" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ParkLampsMid.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ParkLampsMid" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_ParkLampsEast" >
+      <position y="-82.240814" x="150.383560" z="5.247767" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.519929" qw="0.854209" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_ParkLampsEast.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_ParkLampsEast" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_TreesBushesWest.001" >
+      <position y="-38.553734" x="85.087608" z="5.579984" />
+      <rotation qy="0.000000" qx="0.000000" qz="0.999997" qw="0.002362" />
+      <scale y="1.359187" x="1.170150" z="1.170150" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_TreesBushesWest.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_TreesBushesWest" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_TreesBushesMid" >
+      <position y="-100.286415" x="86.068413" z="5.591044" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.458782" qw="0.888549" />
+      <scale y="5.060571" x="5.060571" z="5.060572" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_TreesBushesMid.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_TreesBushesMid" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_TreesBushesSouth" >
+      <position y="-136.454651" x="109.828423" z="5.574704" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.694866" qw="0.719140" />
+      <scale y="5.060571" x="5.060571" z="5.060572" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_TreesBushesSouth.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_TreesBushesSouth" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_TreesBushesNorth" >
+      <position y="-76.192184" x="127.278526" z="5.454335" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.928953" qw="0.370199" />
+      <scale y="5.060572" x="5.060572" z="5.060572" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_TreesBushesNorth.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_TreesBushesNorth" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+    <node name="merge_TreesBushesEast" >
+      <position y="-124.615204" x="115.759850" z="5.574704" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.905511" qw="0.424323" />
+      <scale y="5.060572" x="5.060572" z="5.060572" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="merge_TreesBushesEast.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="merge_TreesBushesEast" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+    </node>
+  </nodes>
+  <externals />
+  <environment >
+    <colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourAmbient r="0.0" b="0.0" g="0.0" />
+    <colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+  </environment>
+</scene>
