@@ -1,6 +1,6 @@
 /**
  * @author mrdoob / http://mrdoob.com/
- * free look mod by Playsign
+ * @author Tapani Jämsä (free look modification)
  */
 
 THREE.FreeLookControls = function(camera, domElement) {
