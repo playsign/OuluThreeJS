@@ -106,7 +106,13 @@ function init() {
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
-	var jsonLoader = new THREE.JSONLoader();
+	
+	var sceneLoader = new THREE.SceneLoader();
+	sceneLoader.load("images/Masterscene.js", function(result) {
+		console.log("Oulu Masterscene SceneLoader done: " + result);
+		scene.add(result.scene);
+	});
+	/*var jsonLoader = new THREE.JSONLoader();
 	jsonLoader.load("Masterscene.js", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
 	});
@@ -115,7 +121,7 @@ function init() {
 	});
 	jsonLoader.load("ColliderGround.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderground");
-	});
+	});*/
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
