@@ -137,7 +137,6 @@ THREE.Car = function() {
 	};
 
 	this.updateCarModel = function(delta, controls) {
-
 		// speed and wheels based on controls
 
 		if (controls.moveForward) {
@@ -208,6 +207,9 @@ THREE.Car = function() {
 
 		var forwardDelta;
 
+		var foundCollision = false;		
+/* collisions disabled now as collision models are not loaded with three r74, part1
+
 		// COLLISION
 		var foundCollision = true;
 
@@ -245,7 +247,7 @@ THREE.Car = function() {
 				}
 			}
 		}
-
+*/
 		if (foundCollision) {
 			forwardDelta = this.speed * -3;
 			this.speed *= -0.25;
@@ -257,6 +259,8 @@ THREE.Car = function() {
 		}
 
 		this.carOrientation += (forwardDelta * this.STEERING_RADIUS_RATIO) * this.wheelOrientation;
+
+/* collisions disabled now as collision models are not loaded with three r74, part2
 
 		// Ground collider
 		var raycaster = new THREE.Raycaster(new THREE.Vector3(this.root.position.x, this.root.position.y + 50, this.root.position.z), new THREE.Vector3(0, -1, 0), 0, 500);
@@ -274,7 +278,7 @@ THREE.Car = function() {
 
 			// this.root.position.y = intersects[0].point.y + 1;
 		}
-
+*/
 		// displacement
 
 
