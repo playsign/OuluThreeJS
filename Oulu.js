@@ -106,16 +106,16 @@ function init() {
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
-	var jsonLoader = new THREE.JSONLoader();
-	jsonLoader.load("Masterscene.js", function(geometry, material) {
+	var objectLoader = new THREE.ObjectLoader();
+	objectLoader.load("images/Masterscene.json", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
 	});
-	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
+	/*jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderbuildings");
 	});
 	jsonLoader.load("ColliderGround.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderground");
-	});
+	});*/
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
@@ -165,8 +165,8 @@ var allMaterials = [];
 var allGeometries = [];
 var unloadTextures = null;
 
-function addModelToScene(geometry, materials, type, path) {
-	if(path === undefined){
+function addModelToScene(obj) { //geometry, materials, type, path) {
+	/*if(path === undefined){
 		path = "./images/";
 	}
 
@@ -239,8 +239,8 @@ function addModelToScene(geometry, materials, type, path) {
 	}
 
 	newMesh.scale.set(1.5, 1.5, 1.5);
-
-	scene.add(newMesh);
+*/
+	scene.add(obj);
 }
 
 
