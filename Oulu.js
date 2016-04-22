@@ -27,6 +27,7 @@ var ouluClones = [];
 // Debug draw colliders
 var debugMode = false;
 
+var useWorker;
 
 var controlsCar = {
 	moveForward: false,
@@ -183,6 +184,16 @@ function init() {
 	};
 
 	car.loadPartsJSON("GreenCar.js", "GreenCar.js");
+
+        // for perf measurement: worker or not
+        var workerArg = location.search.split('worker=').splice(1).join('').split('&')[0]
+        if (workerArg === "false") {
+                useWorker = false;
+                console.log("disabled worker");
+        } else {
+                useWorker = true;
+                console.log("using worker");
+        }
 
 	// GRID
 	// gridManager.setTarget(car.root.position);

@@ -199,7 +199,7 @@ GRID.Manager.prototype = {
 			// gridManager.debugGroup = group;
 
 		}, {
-			useWorker: true
+			useWorker: useWorker
 		});
 
 		return newBlock;
